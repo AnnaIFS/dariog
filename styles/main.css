@@ -162,7 +162,11 @@ ul, ol { list-style: none; }
 .nav-toggle.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 @media (max-width: 768px) {
-  .nav-toggle { display: flex; }
+  .nav-toggle {
+    display: flex;
+    z-index: 200;
+    position: relative;
+  }
 
   .nav-menu {
     display: none;
@@ -173,13 +177,19 @@ ul, ol { list-style: none; }
     align-items: center;
     justify-content: center;
     gap: 32px;
-    z-index: 99;
+    z-index: 150;
   }
 
   .nav-menu.open { display: flex; }
 
+  .nav-toggle.active span {
+    background: var(--ochre);
+    width: 26px;
+    height: 2px;
+  }
+
   .nav-link {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     letter-spacing: 0.2em;
   }
 
@@ -193,8 +203,8 @@ ul, ol { list-style: none; }
   }
 
   .dropdown-menu a {
-    font-size: 0.85rem;
-    padding: 8px 0;
+    font-size: 1rem;
+    padding: 12px 0;
   }
 
   .nav-dropdown:hover .dropdown-menu { display: none; }
@@ -816,18 +826,18 @@ ul, ol { list-style: none; }
 
   /* --- Buttons: bigger text and touch targets --- */
   .btn-primary {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     padding: 16px 32px;
     min-height: 48px;
   }
   .btn-outline {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     padding: 14px 28px;
     min-height: 48px;
   }
   .btn-ghost {
-    font-size: 0.9rem;
-    padding: 8px 0;
+    font-size: 1rem;
+    padding: 10px 0;
   }
 
   /* --- Labels and small text: ensure readability --- */
@@ -835,25 +845,31 @@ ul, ol { list-style: none; }
   .section-label,
   .work-card-label,
   .saray-label {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
 
   .hero-sub {
-    font-size: 1.05rem;
-    color: rgba(240, 230, 208, 0.85);
+    font-size: 1.1rem;
+    color: rgba(240, 230, 208, 0.9);
+    line-height: 1.85;
   }
 
-  /* --- Body text: minimum 1rem on mobile --- */
+  /* --- Body text: 1.05-1.1rem on mobile for readability --- */
   .intro-body p,
   .work-card-text,
   .saray-body,
   .community-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.85;
   }
 
   .intro-link {
-    font-size: 1rem;
-    padding: 8px 0;
+    font-size: 1.05rem;
+    padding: 10px 0;
+  }
+
+  .intro-quote {
+    font-size: clamp(1.4rem, 5vw, 1.8rem);
   }
 
   /* --- Work section cards --- */
@@ -861,36 +877,39 @@ ul, ol { list-style: none; }
     padding: 28px 20px 24px;
   }
   .work-card-text {
-    opacity: 0.92;
+    opacity: 1;
   }
   .work-card-link {
-    font-size: 0.9rem;
-    padding: 8px 0;
+    font-size: 1rem;
+    padding: 10px 0;
     display: inline-block;
   }
   .work-header {
     margin-bottom: 40px;
   }
   .work-sub {
-    font-size: 1.05rem;
+    font-size: 1.1rem;
+    opacity: 1;
   }
   .work-org {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    opacity: 1;
   }
   .work-org a {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    opacity: 1;
   }
 
   /* --- SARAY section on homepage --- */
   .saray-sub {
-    font-size: 1rem;
-    opacity: 0.8;
+    font-size: 1.05rem;
+    opacity: 0.9;
   }
   .saray-body {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .saray-quote {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   /* --- Community section --- */
@@ -898,56 +917,78 @@ ul, ol { list-style: none; }
     padding: 60px 24px;
   }
   .community-text {
-    color: rgba(240, 230, 208, 0.8);
+    font-size: 1.1rem;
+    color: rgba(240, 230, 208, 0.9);
   }
   .community-role {
-    font-size: 0.8rem;
+    font-size: 0.85rem;
+    opacity: 1;
+  }
+  .community-name {
+    font-size: 1.3rem;
   }
   .community-oneliner {
-    font-size: 0.9rem;
-    color: rgba(240, 230, 208, 0.7);
+    font-size: 1rem;
+    color: rgba(240, 230, 208, 0.8);
   }
   .community-link {
-    font-size: 0.8rem;
-    opacity: 0.8;
-    padding: 8px 0;
+    font-size: 0.9rem;
+    opacity: 1;
+    padding: 10px 0;
     display: inline-block;
   }
 
-  /* --- Footer: readable text and tap targets --- */
+  /* --- Footer: high contrast and readable --- */
+  .footer {
+    background: #0E0503;
+    border-top: 1px solid rgba(212, 148, 58, 0.15);
+  }
   .footer-brand {
-    font-size: 0.8rem;
+    font-size: 0.9rem;
+    color: var(--bone);
   }
   .footer-tagline {
-    font-size: 0.85rem;
+    font-size: 0.95rem;
+    color: rgba(240, 230, 208, 0.8);
   }
   .footer-links a {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 10px 0;
-    opacity: 0.7;
+    opacity: 0.85;
   }
   .footer-social a {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 10px 0;
-    opacity: 0.7;
+    opacity: 0.85;
   }
   .footer-social svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
   }
   .footer-bottom {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+    color: rgba(240, 230, 208, 0.6);
   }
 
-  /* --- Nav hamburger touch target --- */
+  /* --- Mobile nav menu: visible close button --- */
   .nav-toggle {
     padding: 12px;
-    min-width: 44px;
-    min-height: 44px;
+    min-width: 48px;
+    min-height: 48px;
     justify-content: center;
+    z-index: 200;
+    position: relative;
+  }
+  .nav-toggle.active span {
+    background: var(--ochre);
+    width: 26px;
+    height: 2px;
+  }
+  .nav-link {
+    font-size: 1.2rem;
   }
   .dropdown-menu a {
-    font-size: 0.9rem;
+    font-size: 1rem;
     padding: 12px 0;
   }
 
