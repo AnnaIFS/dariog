@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About | Dario Hampi Pakari</title>
+  <meta name="description" content="Psychologist, Medicine Man, IFS Practitioner. Twenty years working at the intersection of modern psychology and ancient wisdom.">
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    .about-hero {
+      min-height: 70vh;
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(26, 10, 2, 0.90) 0%,
+          rgba(26, 10, 2, 0.70) 40%,
+          rgba(26, 10, 2, 0.20) 100%
+        ),
+        url('images/fuoco-sacro-1.jpg');
+      background-size: cover;
+      background-position: 70% center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 120px 6% 100px;
+      position: relative;
+    }
+    .about-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .about-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.4rem, 4.5vw, 4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--bone);
+      max-width: 600px;
+    }
+
+    .story {
+      background: var(--bone);
+      padding: 80px 6% 100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .story::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--earth);
+      clip-path: ellipse(60% 100% at 55% 100%);
+    }
+    .story-body p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 16px;
+      color: var(--earth);
+    }
+
+    .credentials {
+      background: var(--earth);
+      padding: 80px 6%;
+      position: relative;
+    }
+    .credentials::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .credentials-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .credentials-inner .section-label {
+      margin-bottom: 40px;
+    }
+    .credential-item {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--bone);
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(212, 148, 58, 0.2);
+    }
+    .credential-item:first-of-type {
+      border-top: 1px solid rgba(212, 148, 58, 0.2);
+    }
+
+    .speaking {
+      background: var(--bone);
+      padding: 80px 6% 100px;
+      position: relative;
+    }
+    .speaking::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--earth);
+      clip-path: ellipse(60% 100% at 55% 100%);
+    }
+    .speaking-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .speaking-inner p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--earth);
+      margin-bottom: 20px;
+    }
+    .speaking-inner .btn-primary {
+      margin-bottom: 24px;
+    }
+
+    .fino-section {
+      background: var(--earth);
+      padding: 80px 6%;
+    }
+    .fino-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .fino-inner p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(240, 230, 208, 0.75);
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .about-hero { padding: 140px 24px 60px; }
+      .story {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding: 60px 24px;
+      }
+      .credentials { padding: 60px 24px; }
+      .speaking { padding: 60px 24px; }
+      .fino-section { padding: 60px 24px; }
+      .story-body p { font-size: 1rem; }
+      .speaking-inner p { font-size: 1rem; }
+      .fino-inner p { font-size: 1rem; }
+      .credential-item { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">Dario Hampi Pakari</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-dropdown">
+        <a href="services.html" class="nav-link dropdown-toggle">Work &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="individual.html">Individual</a>
+          <a href="couple.html">Couple</a>
+          <a href="group.html">Group</a>
+          <a href="https://fino.website" target="_blank" rel="noopener">With Organizations</a>
+        </div>
+      </div>
+      <a href="saray.html" class="nav-link">SARAY</a>
+      <a href="about.html" class="nav-link active">About</a>
+      <a href="https://substack.com/@dariog" class="nav-link" target="_blank" rel="noopener">Substack</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="about-hero">
+    <div style="max-width:600px;">
+      <p class="hero-label">About</p>
+      <h1>Twenty years walking between worlds.</h1>
+      <p style="font-size:1rem; font-weight:300; color:rgba(240,230,208,0.75); max-width:460px; margin-top:20px; line-height:1.8;">Psychologist. Medicine man. IFS Practitioner. Different paths, one purpose.</p>
+    </div>
+  </section>
+
+
+  <!-- THE FULL STORY -->
+  <section class="story">
+    <div class="intro-photo-wrap">
+      <div class="intro-photo-frame">
+        <img src="images/dario-new-1.jpg" alt="Dario Giuffrida" class="intro-photo" loading="lazy">
+      </div>
+    </div>
+    <div>
+      <p class="section-label">Who I Am</p>
+      <div class="story-body">
+        <p>I am a psychologist, a medicine man, and a vision quester. For over twenty years I have dedicated my life to individual and collective transformation, working at the intersection of modern organizational psychology and the ancient wisdom of Sumak Kawsay, the art of living well.</p>
+        <p>I trained at Sapienza University in Rome, then spent years working in Latin America with communities navigating trauma and systemic breakdown. I studied under medicine people and have guided sacred rituals across Europe and the Americas for two decades.</p>
+        <p>I co-founded Fuoco Sacro in Italy and Sumak Kawsay Iglesia del Buen Vivir in Florida, both dedicated to preserving and sharing the wisdom of indigenous traditions.</p>
+        <p>I also co-founded FINO with my wife Anna, bringing Self-leadership into organizations and leadership teams.</p>
+        <p>I speak English, Spanish, Italian, and Portuguese.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CREDENTIALS -->
+  <section class="credentials">
+    <div class="credentials-inner">
+      <p class="section-label">Training and Lineage</p>
+      <div class="credential-item">Organizational Psychologist - Sapienza University, Rome</div>
+      <div class="credential-item">Trained IFS Practitioner</div>
+      <div class="credential-item">Keeper of Chanupa (Sacred Pipe)</div>
+      <div class="credential-item">Vision Quester</div>
+      <div class="credential-item">Sun Dancer</div>
+      <div class="credential-item">Kuraka and Minister - Sumak Kawsay, Iglesia del Buen Vivir, Florida</div>
+      <div class="credential-item">Co-Founder - Fuoco Sacro, Italy</div>
+      <div class="credential-item">Co-Founder - FINO</div>
+    </div>
+  </section>
+
+
+  <!-- SPEAKING -->
+  <section class="speaking">
+    <div class="speaking-inner">
+      <p class="section-label">Available for Events and Podcasts</p>
+      <p>I speak at conferences and on podcasts on the themes that run through all my work. What it means to lead from within. How ancient traditions answer modern questions. What twenty years of practice teaches us about change, community, and what it means to be human.</p>
+      <a href="https://youtu.be/5boyw1BMCeg" class="btn-primary" target="_blank" rel="noopener">SEEKERS Podcast - Full Episode</a>
+      <br><br>
+      <a href="contact.html" class="intro-link">Get in touch &rarr;</a>
+    </div>
+  </section>
+
+
+  <!-- FINO -->
+  <section class="fino-section">
+    <div class="fino-inner">
+      <p>I co-founded FINO with my wife Anna. FINO brings Self-leadership into organizations, leadership teams, and companies through IFS-based coaching and group programs.</p>
+      <a href="https://fino.website" class="btn-primary" target="_blank" rel="noopener">fino.website</a>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Dario Hampi Pakari</p>
+        <p class="footer-tagline">Psychologist &middot; Medicine Man &middot; IFS Practitioner</p>
+        <p class="footer-tagline">I speak English, Spanish, Italian, and Portuguese.</p>
+      </div>
+      <div class="footer-links">
+        <a href="services.html">Work With Me</a>
+        <a href="saray.html">SARAY</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/dario_hampi_pakari/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 15c3-1 6-1 9 1"/><path d="M7 12c4-1.5 8-1.5 12 1"/><path d="M6 9c5-2 10-2 14 1"/></svg>
+          Spotify
+        </a>
+        <a href="https://www.youtube.com/@dario_hampi_pakari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="4"/><polygon points="10,8 16,12 10,16"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.facebook.com/dario.boag" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="https://substack.com/@dariog" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="4"/><line x1="4" y1="9" x2="20" y2="9"/><path d="M4 14l8 6 8-6"/></svg>
+          Substack
+        </a>
+        <a href="https://linktr.ee/dario_hampi_pakari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="22" x2="12" y2="10"/><path d="M6 10l6-6 6 6"/><path d="M6 16l6-6 6 6"/></svg>
+          Linktree
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

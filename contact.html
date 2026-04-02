@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Dario Hampi Pakari</title>
+  <meta name="description" content="Book a free 30-minute intro call with Dario. Available in English, Spanish, Italian, and Portuguese.">
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    .contact-hero {
+      min-height: 50vh;
+      background: var(--earth);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 6% 80px;
+      position: relative;
+    }
+    .contact-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .contact-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5rem);
+      font-weight: 300;
+      color: var(--bone);
+      margin-bottom: 16px;
+    }
+    .contact-hero p {
+      font-size: 0.95rem;
+      color: var(--ash);
+      line-height: 1.7;
+    }
+
+    .calendly-section {
+      background: var(--bone);
+      padding: 60px 5%;
+      position: relative;
+    }
+    .calendly-section::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--earth);
+      clip-path: ellipse(60% 100% at 55% 100%);
+    }
+    .calendly-wrap {
+      max-width: 660px;
+      margin: 0 auto;
+    }
+
+    .other-ways {
+      background: var(--earth);
+      padding: 80px 6%;
+    }
+    .other-ways-inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .other-ways-inner > p {
+      font-size: 0.95rem;
+      color: rgba(240, 230, 208, 0.75);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .contact-form label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      display: block;
+      margin-bottom: 6px;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      background: rgba(240, 230, 208, 0.06);
+      border: 1px solid rgba(240, 230, 208, 0.15);
+      color: var(--bone);
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      padding: 14px 16px;
+      outline: none;
+      transition: border-color 0.25s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: rgba(212, 148, 58, 0.4);
+    }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: rgba(240, 230, 208, 0.3);
+    }
+    .contact-form textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    .contact-form .btn-primary {
+      align-self: flex-start;
+      border: none;
+      cursor: pointer;
+    }
+    .social-row {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+      margin-top: 48px;
+    }
+    .social-row a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--bone);
+      opacity: 0.6;
+      transition: opacity 0.25s, color 0.25s;
+    }
+    .social-row a:hover { opacity: 1; color: var(--ochre); }
+
+    @media (max-width: 768px) {
+      .contact-hero { padding: 140px 24px 60px; }
+      .calendly-section { padding: 40px 16px; }
+      .other-ways { padding: 60px 24px; }
+      .contact-form label { font-size: 0.75rem; }
+      .contact-form input,
+      .contact-form textarea { font-size: 1rem; }
+      .social-row a { font-size: 0.85rem; padding: 10px 8px; }
+    }
+  </style>
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">Dario Hampi Pakari</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-dropdown">
+        <a href="services.html" class="nav-link dropdown-toggle">Work &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="individual.html">Individual</a>
+          <a href="couple.html">Couple</a>
+          <a href="group.html">Group</a>
+          <a href="https://fino.website" target="_blank" rel="noopener">With Organizations</a>
+        </div>
+      </div>
+      <a href="saray.html" class="nav-link">SARAY</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="https://substack.com/@dariog" class="nav-link" target="_blank" rel="noopener">Substack</a>
+      <a href="contact.html" class="nav-link active">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="contact-hero">
+    <div>
+      <h1>Start Here</h1>
+      <p>Available in English, Spanish,<br>Italian, and Portuguese.</p>
+    </div>
+  </section>
+
+
+  <!-- CALENDLY -->
+  <section class="calendly-section">
+    <div class="calendly-wrap">
+      <div class="calendly-inline-widget"
+           data-url="https://calendly.com/dariogpsy/30min"
+           style="min-width:320px;height:900px;overflow:hidden;">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- OTHER WAYS -->
+  <section class="other-ways">
+    <div class="other-ways-inner">
+      <p id="formIntro">Prefer to write first?</p>
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xdaplelv" method="POST">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required>
+        </div>
+        <div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your email" required>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="What brings you here?" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send message</button>
+      </form>
+      <div id="formSuccess" style="display:none; text-align:center; padding:40px 0;">
+        <p style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:300; color:var(--bone); margin-bottom:12px;">Message sent.</p>
+        <p style="font-size:0.9rem; color:rgba(240,230,208,0.7);">I will get back to you soon.</p>
+      </div>
+      <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          var form = this;
+          fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          }).then(function(response) {
+            if (response.ok) {
+              form.style.display = 'none';
+              document.getElementById('formIntro').style.display = 'none';
+              document.getElementById('formSuccess').style.display = 'block';
+            } else {
+              alert('Something went wrong. Please try again.');
+            }
+          }).catch(function() {
+            alert('Something went wrong. Please try again.');
+          });
+        });
+      </script>
+      <p class="section-label" style="margin-top: 48px; text-align: center;">Find Me</p>
+      <div class="social-row">
+        <a href="https://www.instagram.com/dario_hampi_pakari/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://www.youtube.com/@dario_hampi_pakari" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.facebook.com/dario.boag" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://substack.com/@dariog" target="_blank" rel="noopener">Substack</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Dario Hampi Pakari</p>
+        <p class="footer-tagline">Psychologist &middot; Medicine Man &middot; IFS Practitioner</p>
+        <p class="footer-tagline">I speak English, Spanish, Italian, and Portuguese.</p>
+      </div>
+      <div class="footer-links">
+        <a href="services.html">Work With Me</a>
+        <a href="saray.html">SARAY</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/dario_hampi_pakari/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 15c3-1 6-1 9 1"/><path d="M7 12c4-1.5 8-1.5 12 1"/><path d="M6 9c5-2 10-2 14 1"/></svg>
+          Spotify
+        </a>
+        <a href="https://www.youtube.com/@dario_hampi_pakari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="4"/><polygon points="10,8 16,12 10,16"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.facebook.com/dario.boag" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="https://substack.com/@dariog" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="4"/><line x1="4" y1="9" x2="20" y2="9"/><path d="M4 14l8 6 8-6"/></svg>
+          Substack
+        </a>
+        <a href="https://linktr.ee/dario_hampi_pakari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="22" x2="12" y2="10"/><path d="M6 10l6-6 6 6"/><path d="M6 16l6-6 6 6"/></svg>
+          Linktree
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it</div>
+  </footer>
+
+  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

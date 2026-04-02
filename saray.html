@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SARAY | Dario Hampi Pakari</title>
+  <meta name="description" content="SARAY is a medicine music album by Dario Hampi Pakari. Ten songs received over eighteen years of ceremony. Released on the Summer Solstice, June 21, 2026. Free to listen, open to donation.">
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    /* HERO */
+    .saray-hero {
+      min-height: 85vh;
+      background-image:
+        linear-gradient(
+          rgba(26, 10, 2, 0.72),
+          rgba(26, 10, 2, 0.72)
+        ),
+        url('images/saray-cover.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 6% 100px;
+      position: relative;
+    }
+    .saray-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .saray-hero-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 20px;
+    }
+    .saray-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(5rem, 10vw, 10rem);
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      line-height: 1;
+      color: var(--bone);
+      margin-bottom: 24px;
+    }
+    .saray-hero-date {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ash);
+      margin-bottom: 16px;
+    }
+    .saray-hero-sub {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(240, 230, 208, 0.75);
+      margin-bottom: 40px;
+      line-height: 1.7;
+    }
+
+    /* SHARED SECTION STYLES */
+    .s-bone {
+      background: var(--bone);
+      padding: 100px 6%;
+      position: relative;
+    }
+    .s-bone::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--earth);
+      clip-path: ellipse(60% 100% at 55% 100%);
+    }
+    .s-dark {
+      background: var(--earth);
+      padding: 100px 6%;
+      position: relative;
+    }
+    .s-dark::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .s-inner {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+    .s-inner-wide {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .s-inner p, .s-inner-wide p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .s-bone .s-inner p { color: var(--earth); }
+    .s-dark .s-inner p { color: rgba(240, 230, 208, 0.8); }
+
+    .s-headline {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 300;
+      font-size: clamp(2rem, 3.5vw, 2.8rem);
+      line-height: 1.3;
+      margin-bottom: 28px;
+    }
+    .s-bone .s-headline { color: var(--earth); }
+    .s-dark .s-headline { color: var(--bone); }
+
+    .s-pullquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--ochre);
+      border-left: 2px solid var(--terra);
+      padding-left: 20px;
+      margin: 32px 0;
+      line-height: 1.5;
+    }
+
+    .s-text-link {
+      display: inline-block;
+      margin-top: 12px;
+      color: var(--terra);
+      font-size: 0.9rem;
+      border-bottom: 1px solid rgba(196, 98, 45, 0.3);
+      padding-bottom: 1px;
+      transition: border-color 0.25s;
+    }
+    .s-text-link:hover { border-color: var(--terra); }
+
+    /* SECTION 4 - THE BOW */
+    .s-bow-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.6rem, 2.5vw, 2.4rem);
+      color: var(--bone);
+      text-align: center;
+      line-height: 1.4;
+      margin-bottom: 40px;
+    }
+    .s-bow-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .s-ctas {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    .btn-outline-ochre {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      background: transparent;
+      border: 1px solid var(--ochre);
+      padding: 14px 32px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+    .btn-outline-ochre:hover {
+      background: rgba(212, 148, 58, 0.1);
+    }
+
+    /* SECTION 5 - VOICES */
+    .voices-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--terra);
+      text-align: center;
+      margin-bottom: 0;
+      line-height: 1.6;
+    }
+    .s-inner-wide .section-label {
+      text-align: center;
+    }
+    .voices-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px 60px;
+      margin-top: 48px;
+    }
+    .voice-block {
+      border-left: 1px solid var(--ochre);
+      padding-left: 16px;
+    }
+    .voice-block q {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--earth);
+      line-height: 1.4;
+      margin-bottom: 10px;
+    }
+    .voice-block cite {
+      font-family: 'Outfit', sans-serif;
+      font-style: normal;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ochre);
+    }
+
+    /* SECTION 6 - COLLABORATORS */
+    .s-dark-no-hill .section-label {
+      text-align: center;
+    }
+    .collab-text {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+      color: rgba(240, 230, 208, 0.75) !important;
+      line-height: 1.9 !important;
+    }
+
+    /* SECTION 7 - THE GIFT */
+    .gift-headline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--earth);
+      text-align: center;
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .gift-body {
+      font-size: 0.95rem;
+      color: var(--earth);
+      text-align: center;
+      line-height: 1.85;
+      max-width: 540px;
+      margin: 0 auto 20px;
+    }
+    .gift-cta-top {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .gift-cta-top p {
+      font-size: 0.9rem;
+      color: var(--earth);
+      opacity: 0.75;
+      margin-bottom: 20px;
+    }
+    .gift-support {
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+      padding: 40px 36px;
+      border: 1px solid rgba(196, 98, 45, 0.25);
+      background: rgba(196, 98, 45, 0.04);
+    }
+    .gift-support-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 16px;
+    }
+    .gift-support p {
+      font-size: 0.9rem;
+      color: var(--earth);
+      opacity: 0.75;
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .gift-support-links {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .gift-support-links a {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra);
+      border: 1px solid rgba(196, 98, 45, 0.3);
+      padding: 10px 22px;
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .gift-support-links a:hover {
+      background: rgba(196, 98, 45, 0.08);
+      border-color: var(--terra);
+    }
+
+    /* No hill after last dark section before gift */
+    .s-dark-no-hill::after { display: none; }
+    /* No hill after gift (last bone section before footer) */
+    .s-bone-last::after { display: none; }
+
+    @media (max-width: 768px) {
+      .saray-hero { padding: 140px 24px 60px; }
+      .s-bone, .s-dark { padding: 60px 24px 80px; }
+      .voices-grid { grid-template-columns: 1fr; gap: 36px; }
+      .gift-options { grid-template-columns: 1fr; max-width: 100%; }
+      .s-inner p, .s-inner-wide p { font-size: 1rem; }
+      .s-headline { font-size: clamp(1.8rem, 3vw, 2.8rem); }
+      .saray-hero-label { font-size: 0.8rem; }
+      .saray-hero-date { font-size: 0.75rem; }
+      .voice-block q { font-size: 1.15rem; }
+      .voice-block cite { font-size: 0.75rem; }
+      .collab-text { font-size: 1rem !important; }
+      .gift-body { font-size: 1rem; }
+      .gift-support { padding: 28px 20px; }
+      .gift-support-label { font-size: 0.75rem; }
+      .gift-support p { font-size: 0.95rem; }
+      .gift-support-links a { font-size: 0.78rem; padding: 12px 20px; }
+      .btn-outline-ochre { font-size: 0.8rem; padding: 14px 28px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">Dario Hampi Pakari</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-dropdown">
+        <a href="services.html" class="nav-link dropdown-toggle">Work &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="individual.html">Individual</a>
+          <a href="couple.html">Couple</a>
+          <a href="group.html">Group</a>
+          <a href="https://fino.website" target="_blank" rel="noopener">With Organizations</a>
+        </div>
+      </div>
+      <a href="saray.html" class="nav-link active">SARAY</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="https://substack.com/@dariog" class="nav-link" target="_blank" rel="noopener">Substack</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="saray-hero">
+    <div>
+      <p class="saray-hero-label">Medicine Music</p>
+      <h1>SARAY</h1>
+      <p class="saray-hero-date">Summer Solstice &middot; June 21, 2026</p>
+      <p class="saray-hero-sub">Ten songs. Eighteen years.<br>One community listening together.</p>
+      <a href="https://mailchi.mp/76e358c5126d/6qa1zs7qne" class="btn-primary" target="_blank" rel="noopener">Join the listening &rarr;</a>
+    </div>
+  </section>
+
+
+  <!-- SECTION 1 - THE NAME -->
+  <section class="s-bone">
+    <div class="s-inner">
+      <p class="section-label">The Name</p>
+      <h2 class="s-headline">What SARAY means.</h2>
+      <p>SARAY carries two meanings woven together.</p>
+      <p>In Kichwa, SARA means corn. Not just food. Corn is culture, economy, and spirit in the Andean world. Spirit of abundance, nourishment, and the bonds that hold a community together.</p>
+      <p>Saray is also the Kichwa expression for the corn flower in bloom. This album is a prayer for that blossoming. For the flowering of everything corn brings: life, generosity, and the nourishment we offer one another.</p>
+      <p>And Saray is the name of my daughter. Like corn, children carry the seeds of what we pass forward. These songs are a prayer for peace for the children of this world. For the joy and lightness that lives in them, that we adults sometimes forget.</p>
+      <p>This album lives at that intersection. Ancestral wisdom and personal love, offered as one gift.</p>
+    </div>
+  </section>
+
+
+  <!-- SECTION 2 - THE SONGS -->
+  <section class="s-dark">
+    <div class="s-inner">
+      <p class="section-label">Where They Came From</p>
+      <h2 class="s-headline">These songs were received.</h2>
+      <p>Over eighteen years of ceremonies, journeys, and moments of deep listening - from the high peaks of the Q'ero Nation in Peru, to the sacred fires of Sumak Kawsay, the Native American Church, the Shuar people of the Ecuadorian jungle, and the Cof&aacute;n of Colombia - each song arrived as a gift from the invisible world.</p>
+      <p>My only task was to remember them.<br>And to bring them home.</p>
+      <blockquote class="s-pullquote">&ldquo;In the Wind, in the Water, in the Fire, and in the Earth - the songs of all those who came before us are kept safe.&rdquo;</blockquote>
+    </div>
+  </section>
+
+
+  <!-- SECTION 3 - THE FIRST SONG -->
+  <section class="s-bone">
+    <div class="s-inner">
+      <p class="section-label">The First Song</p>
+      <h2 class="s-headline">It began with a storm in the Andes.</h2>
+      <p>In 2005 I was walking in the mountains with Taita Marcelino, a Q'ero elder. A storm was coming. The path was unclear.</p>
+      <p>He sat down, opened his cloth, and read the coca leaves. Every single leaf pointed the same direction.</p>
+      <p>As we walked toward what the mountains showed us, a melody arrived. I did not choose it. It chose the moment.</p>
+      <p><em>Io vengo dalla montagna dove il silenzio mi parla<br>Io vengo dalla montagna dove la pietra mi canta...</em></p>
+      <p>That was the first song.<br>There have been many since.</p>
+      <a href="https://substack.com/@dariog" class="s-text-link" target="_blank" rel="noopener">Read the full story on Substack &rarr;</a>
+    </div>
+  </section>
+
+
+  <!-- SECTION 4 - THE BOW -->
+  <section class="s-dark">
+    <div class="s-bow-inner">
+      <p class="section-label">The Bow</p>
+      <p class="s-bow-quote">&ldquo;Songs are arrows.<br>The community is the bow.&rdquo;</p>
+      <p style="font-size:0.95rem; line-height:1.85; color:rgba(240,230,208,0.8); margin-bottom:16px;">In the traditions I love, a single voice can only travel as far as one arm can throw. But an arrow from a bow travels far.</p>
+      <p style="font-size:0.95rem; line-height:1.85; color:rgba(240,230,208,0.8); margin-bottom:16px;">This is a minga. In the Andes, minga is the communal work of farmers. Not one person calling others to follow. The entire community preparing the ground together.</p>
+      <p style="font-size:0.95rem; line-height:1.85; color:rgba(240,230,208,0.8); margin-bottom:16px;">On June 21, 2026, we will listen together. Not each in private silence. All at the same time. Around the same fire. Like a ceremony.</p>
+      <p style="font-size:0.95rem; line-height:1.85; color:rgba(240,230,208,0.8);">If your heart says yes - the bow is already in your hands.</p>
+      <div class="s-ctas">
+        <a href="https://mailchi.mp/76e358c5126d/6qa1zs7qne" class="btn-primary" target="_blank" rel="noopener">Join the listening &rarr;</a>
+        <a href="https://chat.whatsapp.com/GN6aOMk1cfK5HVqOR8tJk2" class="btn-outline-ochre" target="_blank" rel="noopener">Join the WhatsApp group &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 5 - COMMUNITY VOICES -->
+  <section class="s-bone">
+    <div class="s-inner-wide">
+      <p class="section-label">What Is Medicine Music</p>
+      <p class="voices-intro">I asked our community what medicine music means to them. These are some of the answers.</p>
+      <div class="voices-grid">
+        <div class="voice-block">
+          <q>Remembering.</q>
+          <cite>- Helvecia</cite>
+        </div>
+        <div class="voice-block">
+          <q>Opening consciousness, touching essence, giving direction.</q>
+          <cite>- Ruben</cite>
+        </div>
+        <div class="voice-block">
+          <q>Freedom to pray from the heart.</q>
+          <cite>- Frane</cite>
+        </div>
+        <div class="voice-block">
+          <q>The power to be listened by the spirit.</q>
+          <cite>- JM</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- SECTION 6 - COLLABORATORS -->
+  <section class="s-dark s-dark-no-hill">
+    <div class="s-inner">
+      <p class="section-label">Made With</p>
+      <p class="collab-text">This album was made with Gaddafi Nunez, Paulina Violina, Stefan Suro, Gonzalo Paniagua, Jaume, and Mireia Berdun, alongside family and friends who have been part of this journey.</p>
+    </div>
+  </section>
+
+
+  <!-- SECTION 7 - THE GIFT -->
+  <section class="s-bone s-bone-last">
+    <div class="s-inner-wide">
+      <p class="section-label" style="text-align:center;">The Gift</p>
+      <p class="gift-headline">This music is a gift.</p>
+      <p class="gift-body">SARAY will always be free to listen. These songs came from ceremony, from community, and from the land. They belong to everyone. There is no paywall, no subscription. Just the music, offered openly.</p>
+      <p class="gift-body">If SARAY moves you and you would like to help it travel further, there are a few ways to support.</p>
+
+      <div class="gift-cta-top">
+        <p>Be part of the listening on June 21.</p>
+        <a href="https://mailchi.mp/76e358c5126d/6qa1zs7qne" class="btn-primary" target="_blank" rel="noopener">Join the mailing list</a>
+      </div>
+
+      <div class="gift-support">
+        <p class="gift-support-label">Ways to Support</p>
+        <p>Visit the store for stickers, prints, and more. Or make a direct contribution.</p>
+        <div class="gift-support-links">
+          <a href="https://www.redbubble.com/people/hampipakari/shop?asc=u" target="_blank" rel="noopener">Visit the store</a>
+          <a href="https://donate.stripe.com/bJeeVc2H49ogbcY9mM4ko04" target="_blank" rel="noopener">Donate via Stripe</a>
+          <a href="https://www.paypal.com/ncp/payment/D8PA2LQU74888" target="_blank" rel="noopener">Donate via PayPal</a>
+        </div>
+        <img src="images/saray-cover.jpg" alt="SARAY Album Cover" style="width: 120px; height: 120px; object-fit: cover; margin: 28px auto 0; display: block; opacity: 0.85;" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Dario Hampi Pakari</p>
+        <p class="footer-tagline">Psychologist &middot; Medicine Man &middot; IFS Practitioner</p>
+        <p class="footer-tagline">I speak English, Spanish, Italian, and Portuguese.</p>
+      </div>
+      <div class="footer-links">
+        <a href="services.html">Work With Me</a>
+        <a href="saray.html">SARAY</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/dario_hampi_pakari/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 15c3-1 6-1 9 1"/><path d="M7 12c4-1.5 8-1.5 12 1"/><path d="M6 9c5-2 10-2 14 1"/></svg>
+          Spotify
+        </a>
+        <a href="https://www.youtube.com/@dario_hampi_pakari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="4"/><polygon points="10,8 16,12 10,16"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.facebook.com/dario.boag" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="https://substack.com/@dariog" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="4"/><line x1="4" y1="9" x2="20" y2="9"/><path d="M4 14l8 6 8-6"/></svg>
+          Substack
+        </a>
+        <a href="https://linktr.ee/dario_hampi_pakari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="22" x2="12" y2="10"/><path d="M6 10l6-6 6 6"/><path d="M6 16l6-6 6 6"/></svg>
+          Linktree
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

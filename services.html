@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Work | Dario Hampi Pakari</title>
+  <meta name="description" content="Individual, couple, and group sessions drawing on psychology, IFS, and twenty years of practice.">
+  <link rel="stylesheet" href="styles/main.css">
+  <style>
+    .services-hero {
+      min-height: 60vh;
+      background-image:
+        linear-gradient(
+          to right,
+          rgba(26, 10, 2, 0.82) 0%,
+          rgba(26, 10, 2, 0.82) 40%,
+          rgba(26, 10, 2, 0.60) 100%
+        ),
+        url('images/dario.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      padding: 120px 6% 80px;
+      position: relative;
+    }
+    .services-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .services-hero-content { max-width: 560px; }
+    .services-hero .hero-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 20px;
+    }
+    .services-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--bone);
+      margin-bottom: 20px;
+    }
+    .services-hero p {
+      font-size: 1rem;
+      font-weight: 300;
+      color: rgba(240, 230, 208, 0.75);
+      max-width: 420px;
+      line-height: 1.8;
+    }
+
+    .services-intro {
+      background: var(--bone);
+      padding: 100px 6%;
+      position: relative;
+    }
+    .services-intro::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--earth);
+      clip-path: ellipse(60% 100% at 55% 100%);
+    }
+    .services-intro-inner {
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .services-intro-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--earth);
+      margin-bottom: 32px;
+    }
+    .services-intro-inner p {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--earth);
+      margin-bottom: 16px;
+    }
+
+    .services-cards-section {
+      background: var(--earth);
+      padding: 100px 6% 100px;
+      position: relative;
+    }
+    .services-cards-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .services-cards-header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+    .services-cards-header h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: var(--bone);
+      margin-top: 16px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .svc-card {
+      border: 1px solid rgba(196, 98, 45, 0.15);
+      padding: 40px 28px 32px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .svc-card:hover {
+      border-color: rgba(196, 98, 45, 0.4);
+      box-shadow: 0 0 30px rgba(196, 98, 45, 0.08);
+    }
+    .svc-card .card-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 24px;
+      display: block;
+    }
+    .svc-card-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 14px;
+    }
+    .svc-card-text {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      color: var(--bone);
+      opacity: 0.75;
+      margin-bottom: 20px;
+    }
+    .svc-card-link {
+      font-size: 0.8rem;
+      color: var(--ochre);
+      border-bottom: 1px solid rgba(212, 148, 58, 0.3);
+      padding-bottom: 1px;
+      transition: border-color 0.25s;
+    }
+    .svc-card-link:hover { border-color: var(--ochre); }
+
+    .svc-bottom-cta {
+      background: var(--bone);
+      padding: 60px 6% 80px;
+      text-align: center;
+    }
+    .svc-bottom-cta p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 300;
+      color: var(--earth);
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 768px) {
+      .services-hero { padding: 140px 24px 60px; }
+      .services-intro { padding: 60px 24px 80px; }
+      .services-cards-section { padding: 60px 24px 80px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .svc-bottom-cta { padding: 40px 24px 60px; }
+      .services-intro-inner p { font-size: 1rem; }
+      .svc-card { padding: 28px 20px 24px; }
+      .svc-card-label { font-size: 0.8rem; }
+      .svc-card-text { font-size: 1rem; opacity: 0.85; }
+      .svc-card-link { font-size: 0.85rem; padding: 8px 0; display: inline-block; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav-logo">Dario Hampi Pakari</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-dropdown">
+        <a href="services.html" class="nav-link dropdown-toggle active">Work &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="individual.html">Individual</a>
+          <a href="couple.html">Couple</a>
+          <a href="group.html">Group</a>
+          <a href="https://fino.website" target="_blank" rel="noopener">With Organizations</a>
+        </div>
+      </div>
+      <a href="saray.html" class="nav-link">SARAY</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="https://substack.com/@dariog" class="nav-link" target="_blank" rel="noopener">Substack</a>
+      <a href="contact.html" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="services-hero">
+    <div class="services-hero-content">
+      <p class="hero-label">The Work</p>
+      <h1>The work looks different for each person.</h1>
+      <p>The direction is always the same: back to your Self.</p>
+    </div>
+  </section>
+
+
+  <!-- INTRO -->
+  <section class="services-intro">
+    <div class="services-intro-inner">
+      <p class="section-label">The Approach</p>
+      <p>I work at the intersection of two things that are usually kept separate. Modern psychology - specifically Internal Family Systems, or IFS - and twenty years of practice rooted in the Sumak Kawsay tradition.</p>
+      <p>IFS works with the inner system. The idea is simple: we are not one thing. We carry many parts - parts that protect, parts that carry old pain, parts that know more than we allow them to speak. When those parts are understood and embraced rather than fought, something shifts.</p>
+      <p>The traditional practice brings something else. Presence. Rhythm. The body. The land. The kind of knowing that does not come from thinking.</p>
+      <p>Together, these two approaches reach places that neither reaches alone.</p>
+      <p>I work one-on-one, with couples, and in groups. I also work with organizations through FINO. The format changes. The purpose does not.</p>
+      <p>Sessions are available in English, Spanish, Italian, and Portuguese.</p>
+    </div>
+  </section>
+
+
+  <!-- SERVICE CARDS -->
+  <section class="services-cards-section">
+    <div class="services-cards-inner">
+      <div class="services-cards-header">
+        <p class="section-label">The Work</p>
+        <h2>Where would you like to begin?</h2>
+      </div>
+
+      <div class="services-grid">
+        <div class="svc-card">
+          <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+            <path d="M4 20 C8 12 14 8 20 8 C26 8 32 12 36 20 C32 28 26 32 20 32 C14 32 8 28 4 20Z" stroke="#D4943A" stroke-width="1"/>
+            <circle cx="20" cy="20" r="5" stroke="#D4943A" stroke-width="1"/>
+            <circle cx="20" cy="20" r="1.5" fill="#D4943A"/>
+          </svg>
+          <p class="svc-card-label">Individual</p>
+          <p class="svc-card-text">One-on-one work with the inner system. IFS, psychology, and twenty years of traditional practice. We go at the pace that serves you.</p>
+          <a href="individual.html" class="svc-card-link">Learn more &rarr;</a>
+        </div>
+
+        <div class="svc-card">
+          <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+            <path d="M12 32 C12 32 11 24 12 20" stroke="#D4943A" stroke-width="0.9" stroke-linecap="round"/>
+            <circle cx="13.5" cy="16" r="2.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="10" cy="13.5" r="2.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="13.5" cy="11" r="2.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="17" cy="13.5" r="2.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="13.5" cy="13.5" r="1.5" fill="#D4943A" opacity="0.4"/>
+            <path d="M11 26 C8 24 7 22 9 20" stroke="#D4943A" stroke-width="0.7" stroke-linecap="round"/>
+            <path d="M28 32 C28 32 29 24 28 20" stroke="#D4943A" stroke-width="0.9" stroke-linecap="round"/>
+            <circle cx="26.5" cy="16" r="2.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="30" cy="13.5" r="2.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="26.5" cy="11" r="2.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="23" cy="13.5" r="2.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="26.5" cy="13.5" r="1.5" fill="#D4943A" opacity="0.4"/>
+            <path d="M29 26 C32 24 33 22 31 20" stroke="#D4943A" stroke-width="0.7" stroke-linecap="round"/>
+          </svg>
+          <p class="svc-card-label">Couple</p>
+          <p class="svc-card-text">For couples who want to go deeper. Not conflict management. A space for a different kind of honesty between two people.</p>
+          <a href="couple.html" class="svc-card-link">Learn more &rarr;</a>
+        </div>
+
+        <div class="svc-card">
+          <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+            <path d="M20 22 C19 22 18 21 18 20 C18 18 20 16 20 16 C20 16 22 18 22 20 C22 21 21 22 20 22Z" stroke="#D4943A" stroke-width="0.8" fill="none"/>
+            <circle cx="20" cy="9" r="1.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="27.8" cy="11.8" r="1.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="31" cy="19.5" r="1.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="27" cy="27.5" r="1.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="13" cy="27.5" r="1.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="9" cy="19.5" r="1.5" stroke="#D4943A" stroke-width="0.8"/>
+            <circle cx="12.2" cy="11.8" r="1.5" stroke="#D4943A" stroke-width="0.8"/>
+          </svg>
+          <p class="svc-card-label">Group</p>
+          <p class="svc-card-text">Circles, vision quests, and multi-day retreats. Community carries what we cannot carry alone.</p>
+          <a href="group.html" class="svc-card-link">Learn more &rarr;</a>
+        </div>
+
+        <div class="svc-card">
+          <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+            <rect x="10" y="18" width="20" height="14" rx="1" stroke="#D4943A" stroke-width="0.9"/>
+            <rect x="14" y="8" width="12" height="12" rx="1" stroke="#D4943A" stroke-width="0.9"/>
+          </svg>
+          <p class="svc-card-label">Organizations</p>
+          <p class="svc-card-text">Through FINO, this work enters leadership teams, companies, and larger systems.</p>
+          <a href="https://fino.website" class="svc-card-link" target="_blank" rel="noopener">Visit fino.website &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BOTTOM CTA -->
+  <section class="svc-bottom-cta">
+    <p>Not sure where to start?</p>
+    <a href="https://calendly.com/dariogpsy/30min" class="btn-primary" target="_blank" rel="noopener">Book a free 30-minute intro call</a>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Dario Hampi Pakari</p>
+        <p class="footer-tagline">Psychologist &middot; Medicine Man &middot; IFS Practitioner</p>
+        <p class="footer-tagline">I speak English, Spanish, Italian, and Portuguese.</p>
+      </div>
+      <div class="footer-links">
+        <a href="services.html">Work With Me</a>
+        <a href="saray.html">SARAY</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/dario_hampi_pakari/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 15c3-1 6-1 9 1"/><path d="M7 12c4-1.5 8-1.5 12 1"/><path d="M6 9c5-2 10-2 14 1"/></svg>
+          Spotify
+        </a>
+        <a href="https://www.youtube.com/@dario_hampi_pakari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="4"/><polygon points="10,8 16,12 10,16"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.facebook.com/dario.boag" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="https://substack.com/@dariog" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="4"/><line x1="4" y1="9" x2="20" y2="9"/><path d="M4 14l8 6 8-6"/></svg>
+          Substack
+        </a>
+        <a href="https://linktr.ee/dario_hampi_pakari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="22" x2="12" y2="10"/><path d="M6 10l6-6 6 6"/><path d="M6 16l6-6 6 6"/></svg>
+          Linktree
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it</div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
