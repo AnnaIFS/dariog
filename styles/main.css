@@ -337,7 +337,6 @@ ul, ol { list-style: none; }
 
 @media (max-width: 768px) {
   .hero { padding: 140px 24px 60px; }
-  .hero-headline { font-size: clamp(2.4rem, 8vw, 3.5rem); }
 }
 
 /* ============================================================
@@ -815,13 +814,14 @@ ul, ol { list-style: none; }
 }
 
 .footer-bottom a {
-  color: var(--ash);
+  color: var(--ochre);
+  font-weight: 500;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .footer-bottom a:hover {
-  color: var(--sand);
+  color: #E8A84A;
 }
 
 @media (max-width: 768px) {
@@ -836,17 +836,17 @@ ul, ol { list-style: none; }
 
   /* --- Buttons: bigger text and touch targets --- */
   .btn-primary {
-    font-size: 0.85rem;
+    font-size: 1rem;
     padding: 16px 32px;
     min-height: 48px;
   }
   .btn-outline {
-    font-size: 0.85rem;
+    font-size: 1rem;
     padding: 14px 28px;
     min-height: 48px;
   }
   .btn-ghost {
-    font-size: 1rem;
+    font-size: 1.05rem;
     padding: 10px 0;
   }
 
@@ -855,31 +855,51 @@ ul, ol { list-style: none; }
   .section-label,
   .work-card-label,
   .saray-label {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
+  }
+
+  .hero-label {
+    font-size: 1.2rem;
+    letter-spacing: 0.15em;
+    font-weight: 400;
+    color: var(--ochre);
   }
 
   .hero-sub {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: rgba(240, 230, 208, 0.9);
     line-height: 1.85;
   }
 
-  /* --- Body text: 1.05-1.1rem on mobile for readability --- */
+  /* --- Headings bump on mobile --- */
+  .hero-headline {
+    font-size: clamp(2.8rem, 9vw, 3.8rem);
+  }
+  .work-title {
+    font-size: clamp(2.4rem, 7vw, 3rem);
+  }
+  .saray-title {
+    font-size: clamp(3.2rem, 10vw, 4.5rem);
+  }
+  .intro-quote {
+    font-size: clamp(1.8rem, 5.5vw, 2.2rem);
+  }
+  .community-quote {
+    font-size: clamp(1.8rem, 5vw, 2.4rem);
+  }
+
+  /* --- Body text: bump for readability --- */
   .intro-body p,
   .work-card-text,
   .saray-body,
   .community-text {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     line-height: 1.85;
   }
 
   .intro-link {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     padding: 10px 0;
-  }
-
-  .intro-quote {
-    font-size: clamp(1.4rem, 5vw, 1.8rem);
   }
 
   /* --- Work section cards --- */
@@ -890,7 +910,7 @@ ul, ol { list-style: none; }
     opacity: 1;
   }
   .work-card-link {
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding: 10px 0;
     display: inline-block;
   }
@@ -898,28 +918,28 @@ ul, ol { list-style: none; }
     margin-bottom: 40px;
   }
   .work-sub {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     opacity: 1;
   }
   .work-org {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     opacity: 1;
   }
   .work-org a {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     opacity: 1;
   }
 
   /* --- SARAY section on homepage --- */
   .saray-sub {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     opacity: 0.9;
   }
   .saray-body {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   .saray-quote {
-    font-size: 1.05rem;
+    font-size: 1.2rem;
   }
 
   /* --- Community section --- */
@@ -927,22 +947,23 @@ ul, ol { list-style: none; }
     padding: 60px 24px;
   }
   .community-text {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     color: rgba(240, 230, 208, 0.9);
   }
   .community-role {
-    font-size: 0.85rem;
+    font-size: 1.1rem;
     opacity: 1;
   }
   .community-name {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
   .community-oneliner {
-    font-size: 1rem;
+    font-size: 1.15rem;
     color: rgba(240, 230, 208, 0.8);
+    max-width: 100%;
   }
   .community-link {
-    font-size: 0.9rem;
+    font-size: 1.1rem;
     opacity: 1;
     padding: 10px 0;
     display: inline-block;
@@ -954,20 +975,20 @@ ul, ol { list-style: none; }
     border-top: 1px solid rgba(212, 148, 58, 0.15);
   }
   .footer-brand {
-    font-size: 0.9rem;
+    font-size: 1rem;
     color: var(--bone);
   }
   .footer-tagline {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
     color: rgba(240, 230, 208, 0.8);
   }
   .footer-links a {
-    font-size: 1rem;
+    font-size: 1.05rem;
     padding: 10px 0;
     opacity: 0.85;
   }
   .footer-social a {
-    font-size: 1rem;
+    font-size: 1.05rem;
     padding: 10px 0;
     opacity: 0.85;
   }
@@ -976,8 +997,12 @@ ul, ol { list-style: none; }
     height: 22px;
   }
   .footer-bottom {
-    font-size: 0.8rem;
-    color: rgba(240, 230, 208, 0.6);
+    font-size: 0.9rem;
+    color: rgba(240, 230, 208, 0.7);
+  }
+  .footer-bottom a {
+    color: var(--ochre);
+    font-weight: 500;
   }
 
   /* --- Mobile nav menu: visible close button --- */
@@ -995,10 +1020,10 @@ ul, ol { list-style: none; }
     height: 2px;
   }
   .nav-link {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
   .dropdown-menu a {
-    font-size: 1rem;
+    font-size: 1.1rem;
     padding: 12px 0;
   }
 
