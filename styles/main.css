@@ -814,6 +814,16 @@ ul, ol { list-style: none; }
   color: var(--ash);
 }
 
+.footer-bottom a {
+  color: var(--ash);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-bottom a:hover {
+  color: var(--sand);
+}
+
 @media (max-width: 768px) {
   .footer { padding: 48px 24px 24px; }
   .footer-inner { grid-template-columns: 1fr; gap: 32px; }
