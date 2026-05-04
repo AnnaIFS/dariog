@@ -71,6 +71,69 @@
       line-height: 1.7;
     }
 
+    /* COUNTDOWN */
+    .saray-countdown {
+      margin: 8px auto 32px;
+      max-width: 520px;
+    }
+    .saray-countdown-label {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--ochre);
+      margin-bottom: 18px;
+    }
+    .saray-countdown-grid {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 28px;
+    }
+    .saray-countdown-block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 56px;
+      position: relative;
+    }
+    .saray-countdown-block + .saray-countdown-block::before {
+      content: '';
+      position: absolute;
+      left: -16px;
+      top: 8px;
+      bottom: 28px;
+      width: 1px;
+      background: rgba(212, 148, 58, 0.25);
+    }
+    .saray-countdown-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 4.2vw, 3.8rem);
+      font-weight: 300;
+      line-height: 1;
+      color: var(--bone);
+      letter-spacing: 0.02em;
+      font-variant-numeric: tabular-nums;
+      margin-bottom: 10px;
+    }
+    .saray-countdown-unit {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 400;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(240, 230, 208, 0.6);
+    }
+    .saray-countdown-message {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      color: var(--ochre);
+      line-height: 1.5;
+      margin: 0;
+    }
+
     /* SHARED SECTION STYLES */
     .s-bone {
       background: var(--bone);
@@ -325,6 +388,14 @@
       .saray-hero-label { font-size: 1rem; }
       .saray-hero-date { font-size: 0.95rem; }
       .saray-hero-sub { font-size: 1.15rem; color: rgba(240,230,208,0.9); }
+      .saray-countdown { margin: 4px auto 28px; }
+      .saray-countdown-label { font-size: 0.85rem; letter-spacing: 0.22em; margin-bottom: 14px; }
+      .saray-countdown-grid { gap: 18px; }
+      .saray-countdown-block { min-width: 48px; }
+      .saray-countdown-block + .saray-countdown-block::before { left: -10px; }
+      .saray-countdown-num { font-size: clamp(2.2rem, 11vw, 3rem); margin-bottom: 8px; }
+      .saray-countdown-unit { font-size: 0.7rem; letter-spacing: 0.18em; }
+      .saray-countdown-message { font-size: 1.4rem; }
       .s-bone, .s-dark { padding: 60px 24px 80px; }
       .s-inner p, .s-inner-wide p { font-size: 1.15rem; line-height: 1.85; }
       .s-headline { font-size: clamp(2rem, 5vw, 2.8rem); }
@@ -379,6 +450,29 @@
       <p class="saray-hero-label">Medicine Music</p>
       <h1>SARAY</h1>
       <p class="saray-hero-date">Summer Solstice &middot; June 21, 2026</p>
+
+      <div class="saray-countdown" id="sarayCountdown" aria-live="polite">
+        <p class="saray-countdown-label">Listening together in</p>
+        <div class="saray-countdown-grid" id="sarayCountdownGrid">
+          <div class="saray-countdown-block">
+            <span class="saray-countdown-num" id="countDays">--</span>
+            <span class="saray-countdown-unit">Days</span>
+          </div>
+          <div class="saray-countdown-block">
+            <span class="saray-countdown-num" id="countHours">--</span>
+            <span class="saray-countdown-unit">Hours</span>
+          </div>
+          <div class="saray-countdown-block">
+            <span class="saray-countdown-num" id="countMinutes">--</span>
+            <span class="saray-countdown-unit">Minutes</span>
+          </div>
+          <div class="saray-countdown-block">
+            <span class="saray-countdown-num" id="countSeconds">--</span>
+            <span class="saray-countdown-unit">Seconds</span>
+          </div>
+        </div>
+      </div>
+
       <p class="saray-hero-sub">Ten songs. Eighteen years.<br>One community listening together.</p>
       <a href="https://mailchi.mp/76e358c5126d/6qa1zs7qne" class="btn-primary" target="_blank" rel="noopener noreferrer">Join the listening &rarr;</a>
     </div>
@@ -551,5 +645,41 @@
   </footer>
 
   <script src="../js/main.js"></script>
+  <script>
+    (function () {
+      var target = new Date(2026, 5, 21, 0, 0, 0).getTime();
+      var elDays = document.getElementById('countDays');
+      var elHours = document.getElementById('countHours');
+      var elMin = document.getElementById('countMinutes');
+      var elSec = document.getElementById('countSeconds');
+      var elGrid = document.getElementById('sarayCountdownGrid');
+      var elLabel = document.querySelector('.saray-countdown-label');
+      if (!elDays || !elGrid || !elLabel) return;
+
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+
+      function tick() {
+        var diff = target - Date.now();
+        if (diff <= 0) {
+          elLabel.textContent = 'Today';
+          elGrid.outerHTML = '<p class="saray-countdown-message">Let’s listen together — today is the day.</p>';
+          clearInterval(timer);
+          return;
+        }
+        var s = Math.floor(diff / 1000);
+        var days = Math.floor(s / 86400);
+        var hours = Math.floor((s % 86400) / 3600);
+        var minutes = Math.floor((s % 3600) / 60);
+        var seconds = s % 60;
+        elDays.textContent = days;
+        elHours.textContent = pad(hours);
+        elMin.textContent = pad(minutes);
+        elSec.textContent = pad(seconds);
+      }
+
+      tick();
+      var timer = setInterval(tick, 1000);
+    })();
+  </script>
 </body>
 </html>
