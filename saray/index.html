@@ -250,6 +250,18 @@
       background: rgba(212, 148, 58, 0.1);
     }
 
+    /* HERO CTA pair — keep both buttons visually aligned */
+    .saray-hero .s-ctas .btn-primary,
+    .saray-hero .s-ctas .btn-outline-ochre {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1.1;
+    }
+    .saray-hero .s-ctas .btn-primary {
+      border: 1px solid transparent;
+    }
+
     /* SECTION 5 - VOICES */
     .voices-intro {
       font-family: 'Cormorant Garamond', serif;
@@ -415,6 +427,15 @@
       .gift-support-links a { font-size: 1rem; padding: 14px 22px; }
       .gift-cta-top p { font-size: 1.1rem; }
       .btn-outline-ochre { font-size: 0.95rem; padding: 14px 28px; }
+      .saray-hero .s-ctas { flex-direction: column; align-items: center; gap: 14px; }
+      .saray-hero .s-ctas .btn-primary,
+      .saray-hero .s-ctas .btn-outline-ochre {
+        width: 100%;
+        max-width: 320px;
+        padding: 16px 24px;
+        font-size: 1rem;
+        min-height: 48px;
+      }
     }
   </style>
 </head>
@@ -474,7 +495,10 @@
       </div>
 
       <p class="saray-hero-sub">Ten songs. Eighteen years.<br>One community listening together.</p>
-      <a href="https://mailchi.mp/76e358c5126d/6qa1zs7qne" class="btn-primary" target="_blank" rel="noopener noreferrer">Join the listening &rarr;</a>
+      <div class="s-ctas" style="margin-top:0;">
+        <a href="https://mailchi.mp/76e358c5126d/6qa1zs7qne" class="btn-primary" target="_blank" rel="noopener noreferrer">Join the listening &rarr;</a>
+        <a href="https://chat.whatsapp.com/GN6aOMk1cfK5HVqOR8tJk2" class="btn-outline-ochre" target="_blank" rel="noopener noreferrer">Join the WhatsApp group &rarr;</a>
+      </div>
     </div>
   </section>
 
