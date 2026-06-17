@@ -13,6 +13,460 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
+/* ============================================================
+   SARAY ALBUM — release-state visibility toggles
+   <html> gets .saray-pre (before release) or .saray-out (after),
+   set by js/main.js. These show/hide the right content everywhere.
+   ============================================================ */
+.saray-pre .saray-when-out { display: none !important; }
+.saray-out .saray-when-pre { display: none !important; }
+
+/* ============================================================
+   TOP ALBUM BAR (injected on every page above the nav)
+   ============================================================ */
+.has-album-bar { padding-top: 48px; }
+.has-album-bar .nav { top: 48px; }
+
+.album-bar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 99;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 0 5%;
+  background: linear-gradient(90deg, #190A03, #2A1206 50%, #190A03);
+  border-bottom: 1px solid rgba(212, 148, 58, 0.28);
+  overflow: hidden;
+  font-family: 'Outfit', sans-serif;
+}
+
+/* slow warm sheen drifting across the bar */
+.album-bar::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: -45%;
+  width: 45%;
+  background: linear-gradient(90deg, transparent, rgba(212, 148, 58, 0.16), transparent);
+  transform: skewX(-20deg);
+  pointer-events: none;
+}
+
+.album-bar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--bone);
+}
+
+.album-bar-cover {
+  width: 26px; height: 26px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(212, 148, 58, 0.45);
+  flex-shrink: 0;
+}
+
+.album-bar-text {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: rgba(240, 230, 208, 0.85);
+}
+.album-bar-text strong { color: var(--ochre); font-weight: 600; letter-spacing: 0.16em; }
+
+/* equalizer bars — only shown / animated once the album is out */
+.album-bar-eq {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 14px;
+  flex-shrink: 0;
+}
+.album-bar-eq i {
+  display: block;
+  width: 2px; height: 6px;
+  background: var(--ochre);
+}
+/* Static before release (reads as a little music glyph), animates once out. */
+.album-bar-eq i:nth-child(1) { height: 6px; }
+.album-bar-eq i:nth-child(2) { height: 13px; }
+.album-bar-eq i:nth-child(3) { height: 8px; }
+.album-bar-eq i:nth-child(4) { height: 14px; }
+
+.album-bar-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.album-bar-btn {
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--bone);
+  border: 1px solid rgba(212, 148, 58, 0.6);
+  background: transparent;
+  padding: 5px 14px;
+  border-radius: 2px;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.album-bar-btn:hover {
+  background: rgba(212, 148, 58, 0.12);
+  border-color: var(--ochre);
+  color: var(--ochre);
+}
+
+/* mobile single tap-through link (hidden on desktop) */
+.album-bar-go {
+  display: none;
+  color: var(--ochre);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* animations — disabled for users who prefer reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  .album-bar::before { animation: album-sheen 7s ease-in-out infinite; }
+  .saray-out .album-bar-eq i { animation: album-eq 0.9s ease-in-out infinite; }
+  .saray-out .album-bar-eq i:nth-child(2) { animation-delay: 0.18s; }
+  .saray-out .album-bar-eq i:nth-child(3) { animation-delay: 0.36s; }
+  .saray-out .album-bar-eq i:nth-child(4) { animation-delay: 0.54s; }
+  .saray-out .album-bar { animation: album-pulse 2.4s ease-out 1; }
+}
+@keyframes album-sheen {
+  0%   { left: -45%; }
+  55%  { left: 125%; }
+  100% { left: 125%; }
+}
+@keyframes album-eq {
+  0%, 100% { height: 4px; }
+  50%      { height: 14px; }
+}
+@keyframes album-pulse {
+  0%   { box-shadow: inset 0 0 0 rgba(212,148,58,0); }
+  30%  { box-shadow: inset 0 0 40px rgba(212,148,58,0.35); }
+  100% { box-shadow: inset 0 0 0 rgba(212,148,58,0); }
+}
+
+@media (max-width: 768px) {
+  .has-album-bar { padding-top: 44px; }
+  .has-album-bar .nav { top: 44px; }
+  .album-bar { height: 44px; padding: 0 18px; gap: 10px; }
+  .album-bar-actions { display: none !important; }
+  .album-bar-go { display: inline-block; }
+  .album-bar-brand { flex: 1; }
+  .album-bar-text { font-size: 0.8rem; }
+}
+
+/* ============================================================
+   FOOTER ALBUM BLOCK (injected on every page)
+   ============================================================ */
+.footer-album {
+  max-width: 1200px;
+  margin: 0 auto 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(240, 230, 208, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.footer-album-cover {
+  width: 56px; height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(212, 148, 58, 0.3);
+  flex-shrink: 0;
+}
+.footer-album-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ochre);
+  margin-bottom: 4px;
+}
+.footer-album-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  color: var(--bone);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.footer-album-meta {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.75rem;
+  color: var(--ash);
+}
+.footer-album-links {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+.footer-album-links a {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--bone);
+  border: 1px solid rgba(212, 148, 58, 0.3);
+  padding: 8px 16px;
+  opacity: 0.85;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, opacity 0.2s;
+}
+.footer-album-links a:hover {
+  opacity: 1;
+  border-color: var(--ochre);
+  color: var(--ochre);
+  background: rgba(212, 148, 58, 0.08);
+}
+
+@media (max-width: 768px) {
+  .footer-album {
+    gap: 14px;
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+  }
+  .footer-album-links {
+    margin-left: 0;
+    width: 100%;
+  }
+  .footer-album-links a {
+    font-size: 0.85rem;
+    padding: 12px 16px;
+    flex: 1;
+    text-align: center;
+    min-width: 120px;
+  }
+}
+
+/* ============================================================
+   LISTEN & DOWNLOAD MODULE  (reusable: hero, SARAY page, homepage)
+   Two clear paths — stream now (pills) / download free (button).
+   Ochre + terra read well on both bone and dark backgrounds.
+   ============================================================ */
+.album-cta {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.album-cta-label {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9A4A1C;
+  margin-bottom: 18px;
+}
+/* On the dark SARAY hero, the label reads better in ochre. */
+.saray-hero .album-cta-label,
+.s-dark .album-cta-label { color: var(--ochre); }
+
+.album-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.album-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-width: 150px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--earth);
+  border: 1px solid rgba(196, 98, 45, 0.55);
+  padding: 13px 20px;
+  border-radius: 3px;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.album-link svg { width: 17px; height: 17px; flex-shrink: 0; }
+.album-link:hover { background: rgba(196, 98, 45, 0.1); border-color: var(--terra); color: var(--terra); }
+
+/* On the dark SARAY hero, flip the pills to light text for contrast. */
+.saray-hero .album-link,
+.s-dark .album-link { color: var(--bone); border-color: rgba(212, 148, 58, 0.6); }
+.saray-hero .album-link:hover,
+.s-dark .album-link:hover { background: rgba(212, 148, 58, 0.15); border-color: var(--ochre); color: var(--ochre); }
+
+.album-more {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: var(--terra);
+  border-bottom: 1px solid rgba(196, 98, 45, 0.3);
+  padding-bottom: 1px;
+  transition: border-color 0.25s;
+}
+.album-more:hover { border-color: var(--terra); }
+
+.album-or {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 400px;
+  margin: 28px auto;
+}
+.album-or::before, .album-or::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(42, 18, 6, 0.22);
+}
+.album-or span {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: #9A4A1C;
+  white-space: nowrap;
+}
+
+/* On dark backgrounds (the SARAY hero) flip the divider + text to light. */
+.saray-hero .album-or::before, .saray-hero .album-or::after,
+.s-dark .album-or::before, .s-dark .album-or::after { background: rgba(240, 230, 208, 0.28); }
+.saray-hero .album-or span,
+.s-dark .album-or span { color: var(--ochre); }
+
+.album-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--bone);
+  background: var(--terra);
+  padding: 16px 34px;
+  border-radius: 3px;
+  transition: background 0.25s, box-shadow 0.25s;
+}
+.album-download svg { width: 18px; height: 18px; flex-shrink: 0; }
+.album-download:hover { background: #A8501F; box-shadow: 0 6px 24px rgba(196, 98, 45, 0.3); }
+
+.album-download-note {
+  margin: 14px auto 0;
+  max-width: 400px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  line-height: 1.65;
+  color: rgba(42, 18, 6, 0.8);
+}
+/* On the dark SARAY hero, keep the note light for contrast. */
+.saray-hero .album-download-note,
+.s-dark .album-download-note { color: rgba(240, 230, 208, 0.8); }
+
+/* Left-aligned variant (homepage SARAY column) */
+.album-cta--start { margin-left: 0; text-align: left; }
+.album-cta--start .album-links { justify-content: flex-start; }
+.album-cta--start .album-or { margin-left: 0; }
+.album-cta--start .album-download-note { margin-left: 0; }
+
+@media (max-width: 768px) {
+  .album-cta-label { font-size: 0.9rem; }
+  .album-links { gap: 10px; }
+  .album-link {
+    width: 100%;
+    min-width: 0;
+    font-size: 0.95rem;
+    padding: 16px;
+  }
+  .album-more { font-size: 0.95rem; padding: 8px 0; }
+  .album-or span { font-size: 1.1rem; }
+  .album-download {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.95rem;
+    padding: 18px;
+  }
+  .album-download-note { font-size: 0.95rem; }
+  .album-cta--start .album-link,
+  .album-cta--start .album-download { width: 100%; }
+}
+
+/* ============================================================
+   FREE-DOWNLOAD FORM (SARAY page — Formspree)
+   ============================================================ */
+.dl-form-wrap {
+  max-width: 480px;
+  margin: 0 auto 40px;
+  text-align: center;
+  padding: 36px 32px;
+  border: 1px solid rgba(196, 98, 45, 0.3);
+  background: rgba(196, 98, 45, 0.05);
+}
+.dl-form-intro {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  color: rgba(42, 18, 6, 0.8);
+  line-height: 1.7;
+  margin: 8px auto 24px;
+  max-width: 380px;
+}
+.dl-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 360px;
+  margin: 0 auto;
+}
+.dl-form input {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.95rem;
+  padding: 14px 16px;
+  border: 1px solid rgba(42, 18, 6, 0.28);
+  background: var(--bone);
+  color: var(--earth);
+  border-radius: 3px;
+}
+.dl-form input::placeholder { color: rgba(42, 18, 6, 0.5); }
+.dl-form input:focus { outline: none; border-color: var(--terra); }
+.dl-form button { margin-top: 6px; cursor: pointer; }
+.dl-form-error {
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.85rem;
+  color: #9A2A14;
+  margin-top: 4px;
+}
+.dl-success { text-align: center; }
+.dl-success-msg {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  color: var(--earth);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .dl-form-wrap { padding: 28px 20px; }
+  .dl-form-intro { font-size: 1.05rem; }
+  .dl-form input { font-size: 1.05rem; padding: 16px; }
+}
+
 body {
   background: var(--bone);
   color: var(--earth);

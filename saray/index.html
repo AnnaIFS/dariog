@@ -255,7 +255,7 @@
       background: rgba(212, 148, 58, 0.1);
     }
 
-    /* HERO CTA pair — keep both buttons visually aligned */
+    /* HERO CTA pair - keep both buttons visually aligned */
     .saray-hero .s-ctas .btn-primary,
     .saray-hero .s-ctas .btn-outline-ochre {
       display: inline-flex;
@@ -473,11 +473,13 @@
   <!-- HERO -->
   <section class="saray-hero">
     <div>
-      <p class="saray-hero-label">Medicine Music</p>
+      <p class="saray-hero-label">New Album &middot; Medicine Music</p>
       <h1>SARAY</h1>
-      <p class="saray-hero-date">Summer Solstice &middot; June 21, 2026</p>
+      <p class="saray-hero-sub" style="margin-bottom:18px;">Ten sacred songs, received over eighteen years of ceremony.<br>Free to listen, and free to download.</p>
+      <p class="saray-hero-date saray-when-pre">Releasing on the Summer Solstice &middot; 21 June 2026</p>
+      <p class="saray-hero-date saray-when-out">Out now &middot; free on every platform</p>
 
-      <div class="saray-countdown" id="sarayCountdown" aria-live="polite">
+      <div class="saray-countdown saray-when-pre" id="sarayCountdown" aria-live="polite">
         <p class="saray-countdown-label">Listening together in</p>
         <div class="saray-countdown-grid" id="sarayCountdownGrid">
           <div class="saray-countdown-block">
@@ -499,11 +501,12 @@
         </div>
       </div>
 
-      <p class="saray-hero-sub">Ten songs. Eighteen years.<br>One community listening together.</p>
-      <div class="s-ctas" style="margin-top:0;">
+      <div class="s-ctas saray-when-pre" style="margin-top:8px;">
         <a href="https://mailchi.mp/76e358c5126d/6qa1zs7qne" class="btn-primary" target="_blank" rel="noopener noreferrer">Join the listening &rarr;</a>
         <a href="https://chat.whatsapp.com/GN6aOMk1cfK5HVqOR8tJk2" class="btn-outline-ochre" target="_blank" rel="noopener noreferrer">Join the WhatsApp group &rarr;</a>
       </div>
+
+      <div class="album-cta saray-when-out" data-saray-listen style="margin-top:8px;"></div>
     </div>
   </section>
 
@@ -610,9 +613,28 @@
       <p class="gift-body">SARAY will always be free to listen. These songs came from ceremony, from community, and from the land. They belong to everyone. There is no paywall, no subscription. Just the music, offered openly.</p>
       <p class="gift-body">If SARAY moves you and you would like to help it travel further, there are a few ways to support.</p>
 
-      <div class="gift-cta-top">
+      <div class="gift-cta-top saray-when-pre">
         <p>Be part of the listening on June 21.</p>
         <a href="https://mailchi.mp/76e358c5126d/6qa1zs7qne" class="btn-primary" target="_blank" rel="noopener noreferrer">Join the mailing list</a>
+      </div>
+
+      <div class="album-cta saray-when-out" data-saray-listen style="margin-bottom:8px;"></div>
+
+      <div id="get-album" class="dl-form-wrap saray-when-out">
+        <p class="gift-support-label">Free Download</p>
+        <p class="dl-form-intro">Leave your name and email and we&rsquo;ll send you the album to keep - listen on your computer or phone, anytime.</p>
+        <form id="dlForm" class="dl-form" method="POST" novalidate>
+          <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+          <input type="email" name="email" placeholder="Your email" autocomplete="email" required>
+          <input type="hidden" name="_subject" value="SARAY album download">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important">
+          <button type="submit" class="btn-primary">Send me the album &rarr;</button>
+          <p class="dl-form-error" role="alert" hidden>Something went wrong - please try again.</p>
+        </form>
+        <div id="dlSuccess" class="dl-success" hidden>
+          <p class="dl-success-msg">Thank you. Your download is ready - we&rsquo;ve also emailed you the link.</p>
+          <a id="dlLink" class="album-download" target="_blank" rel="noopener noreferrer"><span>&darr; Download SARAY</span></a>
+        </div>
       </div>
 
       <div class="gift-support">
@@ -674,41 +696,5 @@
   </footer>
 
   <script src="../js/main.js"></script>
-  <script>
-    (function () {
-      var target = new Date(2026, 5, 21, 0, 0, 0).getTime();
-      var elDays = document.getElementById('countDays');
-      var elHours = document.getElementById('countHours');
-      var elMin = document.getElementById('countMinutes');
-      var elSec = document.getElementById('countSeconds');
-      var elGrid = document.getElementById('sarayCountdownGrid');
-      var elLabel = document.querySelector('.saray-countdown-label');
-      if (!elDays || !elGrid || !elLabel) return;
-
-      function pad(n) { return n < 10 ? '0' + n : '' + n; }
-
-      function tick() {
-        var diff = target - Date.now();
-        if (diff <= 0) {
-          elLabel.textContent = 'Today';
-          elGrid.outerHTML = '<p class="saray-countdown-message">Let’s listen together — today is the day.</p>';
-          clearInterval(timer);
-          return;
-        }
-        var s = Math.floor(diff / 1000);
-        var days = Math.floor(s / 86400);
-        var hours = Math.floor((s % 86400) / 3600);
-        var minutes = Math.floor((s % 3600) / 60);
-        var seconds = s % 60;
-        elDays.textContent = days;
-        elHours.textContent = pad(hours);
-        elMin.textContent = pad(minutes);
-        elSec.textContent = pad(seconds);
-      }
-
-      tick();
-      var timer = setInterval(tick, 1000);
-    })();
-  </script>
 </body>
 </html>
