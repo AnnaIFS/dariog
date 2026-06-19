@@ -69,7 +69,7 @@ var SARAY = {
   //   'auto'  -> flip automatically at releaseUTC  (normal)
   //   true    -> force OUT NOW  (go live early / if a platform is ready)
   //   false   -> force COUNTDOWN (hold the release back)
-  RELEASED: 'auto',
+  RELEASED: true,  // flipped live 19 Jun 2026 (ahead of the 21 Jun auto-flip) so it can be verified with internet access
 
   // --- Links  (paste the final URLs here when you have them) ----------
   // Leave '' for "not ready yet"; the button will simply point at the
