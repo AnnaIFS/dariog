@@ -2,30 +2,81 @@
 //  NAVIGATION
 // ============================================================
 
-// Nav scroll
+// Nav scroll - throttled with rAF so scrolling never queues up style work
 var nav = document.getElementById('nav');
+var navScrollQueued = false;
 window.addEventListener('scroll', function () {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
+  if (navScrollQueued) return;
+  navScrollQueued = true;
+  requestAnimationFrame(function () {
+    navScrollQueued = false;
+    // While the menu is open <body> is fixed, so scrollY is 0 - keep the
+    // bar as it was instead of flickering back to the transparent state.
+    if (document.documentElement.classList.contains('menu-open')) return;
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  });
 }, { passive: true });
 
 // Mobile menu
 var toggle = document.getElementById('navToggle');
 var menu = document.getElementById('navMenu');
+var lockedScrollY = 0;
+
+function lockScroll() {
+  lockedScrollY = window.scrollY || window.pageYOffset || 0;
+  document.body.style.top = (-lockedScrollY) + 'px';
+  document.documentElement.classList.add('menu-open');
+}
+
+function unlockScroll() {
+  if (!document.documentElement.classList.contains('menu-open')) return;
+  document.documentElement.classList.remove('menu-open');
+  document.body.style.top = '';
+  // Jump straight back - html has scroll-behavior: smooth, which would
+  // otherwise animate the restore.
+  var prev = document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior = 'auto';
+  window.scrollTo(0, lockedScrollY);
+  document.documentElement.style.scrollBehavior = prev;
+}
+
+function setMenu(open) {
+  menu.classList.toggle('open', open);
+  toggle.classList.toggle('active', open);
+  toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  if (open) {
+    lockScroll();
+  } else {
+    unlockScroll();
+    // Reset any dropdown left expanded, so the menu reopens in a clean state.
+    menu.querySelectorAll('.nav-dropdown.open').forEach(function (d) {
+      d.classList.remove('open');
+    });
+  }
+}
+
+toggle.setAttribute('aria-expanded', 'false');
 
 toggle.addEventListener('click', function () {
-  var open = menu.classList.toggle('open');
-  toggle.classList.toggle('active', open);
-  document.body.style.overflow = open ? 'hidden' : '';
+  setMenu(!menu.classList.contains('open'));
 });
 
 // Close mobile menu when a real page link is clicked (not dropdown toggles)
 menu.querySelectorAll('a').forEach(function (a) {
   a.addEventListener('click', function () {
     if (a.classList.contains('dropdown-toggle')) return;
-    menu.classList.remove('open');
-    toggle.classList.remove('active');
-    document.body.style.overflow = '';
+    setMenu(false);
   });
+});
+
+// Escape closes the menu
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && menu.classList.contains('open')) setMenu(false);
+});
+
+// Rotating to landscape / resizing up to desktop must not leave a locked page
+window.addEventListener('resize', function () {
+  if (window.innerWidth > 768 && menu.classList.contains('open')) setMenu(false);
 });
 
 // Mobile dropdown toggles

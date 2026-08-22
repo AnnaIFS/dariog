@@ -13,6 +13,19 @@
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
+/* Scroll lock while the mobile menu is open.
+   `overflow-x: hidden` on <html> makes <html> the scrolling box, so setting
+   overflow on <body> alone did nothing and the page kept scrolling behind
+   the menu. Locking both, plus fixing <body>, also stops iOS rubber-banding. */
+html.menu-open { overflow: hidden; }
+html.menu-open body {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
 /* ============================================================
    SARAY ALBUM — release-state visibility toggles
    <html> gets .saray-pre (before release) or .saray-out (after),
@@ -622,19 +635,40 @@ ul, ol { list-style: none; }
     position: relative;
   }
 
+  /* The scrolled nav must NOT use backdrop-filter on mobile: a filtered
+     ancestor becomes the containing block for its position:fixed children,
+     which shrank the open menu down to the nav bar (page showing through)
+     and made scrolling repaint the blur on every frame. */
+  .nav.scrolled {
+    background: rgba(42, 18, 6, 0.97);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
   .nav-menu {
     display: none;
     position: fixed;
     inset: 0;
+    height: 100vh;
+    height: 100dvh;
     background: var(--earth);
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 32px;
+    padding: 92px 24px calc(40px + env(safe-area-inset-bottom, 0px));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
     z-index: 150;
   }
 
   .nav-menu.open { display: flex; }
+
+  /* Auto margins centre the links when they fit and collapse to 0 when the
+     list is taller than the screen, so nothing ends up scrolled off the top. */
+  .nav-menu.open > *:first-child { margin-top: auto; }
+  .nav-menu.open > *:last-child  { margin-bottom: auto; }
 
   .nav-toggle.active span {
     background: var(--ochre);
