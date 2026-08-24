@@ -1,0 +1,30 @@
+# This repository is PUBLIC — everything committed here is visible to anyone,
+# permanently, including in git history. Keep credentials and local config out.
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.*
+
+# Local tool config
+.claude/settings.local.json
+.vscode/
+.idea/
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*~
+*.bak
+*.orig
+
+# Build and dependency directories (not used today, but cheap insurance)
+node_modules/
+dist/
+.cache/

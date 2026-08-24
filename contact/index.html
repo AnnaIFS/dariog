@@ -153,6 +153,7 @@
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="author" content="Dario Giuffrida">
   <meta name="theme-color" content="#2A1206">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
 
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Dario Hampi Pakari">
@@ -206,14 +207,14 @@
           {
             "@type": "ListItem",
             "position": 1,
-            "name": "https://dariog.it/",
-            "item": "Home"
+            "name": "Home",
+            "item": "https://dariog.it/"
           },
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "https://dariog.it/contact/",
-            "item": "Contact"
+            "name": "Contact",
+            "item": "https://dariog.it/contact/"
           }
         ]
       }
@@ -285,6 +286,10 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" placeholder="What brings you here?" required></textarea>
         </div>
+        <!-- Honeypot: hidden from people, filled in by bots. Formspree drops
+             any submission where _gotcha has a value. Same pattern as the
+             SARAY download form. -->
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important">
         <button type="submit" class="btn-primary">Send message</button>
       </form>
       <div id="formSuccess" style="display:none; text-align:center; padding:40px 0;">
