@@ -1,0 +1,101 @@
+# robots.txt for dariog.it
+# Policy: open to search engines and to AI assistants.
+# The site is meant to be found — by people searching, and by assistants answering.
+
+# ---------------------------------------------------------------
+# Everything not named below
+# ---------------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /thankyou.html
+
+# ---------------------------------------------------------------
+# Search engines
+# ---------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# Google's AI surfaces (Gemini, AI Overviews)
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence
+User-agent: Applebot-Extended
+Allow: /
+
+# ---------------------------------------------------------------
+# AI assistants and answer engines
+# Allowed deliberately: we want this work described accurately
+# when someone asks an assistant about IFS, Sumak Kawsay,
+# medicine music, or Dario Hampi Pakari by name.
+# ---------------------------------------------------------------
+
+# OpenAI — ChatGPT search, browsing, and training
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+# Anthropic — Claude
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Perplexity
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# Meta AI
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: FacebookBot
+Allow: /
+
+# Others
+User-agent: Amazonbot
+Allow: /
+
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: cohere-ai
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# ---------------------------------------------------------------
+# Guides
+# ---------------------------------------------------------------
+Sitemap: https://dariog.it/sitemap.xml

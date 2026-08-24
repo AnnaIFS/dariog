@@ -1,5 +1,66 @@
 # dariog.it — Session Log
 
+## Session: August 24, 2026 — SEO + AI-crawler setup, and the Search Console answer
+
+**Asked:** is the site on Google Search Console, and was a sitemap ever created? Then: build everything needed for SEO and for AI bots, full audit and setup.
+
+**Answer to the first question: no, and no.** Verified rather than assumed — a Search Console property cannot be verified without leaving a tag or file behind, and there were none:
+
+| Check | Result |
+|---|---|
+| `dariog.it/sitemap.xml` | 404 |
+| `dariog.it/robots.txt` | 404 |
+| `google-site-verification` meta tag | absent from all 9 pages |
+| `google*.html` verification file | never existed in git history |
+| Analytics / Tag Manager | not installed |
+
+**Already fine before this session** (worth recording so it isn't re-audited): unique title + meta description on every page, exactly one `<h1>` per page, `alt` on every `<img>`, `loading="lazy"` already in place, correct viewport, HTTPS, clean trailing-slash URLs (no-slash 301s to slash — so the sitemap uses the slash form).
+
+### Built
+
+- **`sitemap.xml`** — 8 public pages. `thankyou.html` deliberately excluded.
+- **`robots.txt`** — allows search engines, disallows `/thankyou.html`, points at the sitemap, and names ~20 AI crawlers individually (OpenAI, Anthropic, Perplexity, Google-Extended, Applebot-Extended, Meta, CCBot, others) with an explicit `Allow`. Named rather than left to the wildcard so the intent is documented and Google-Extended/Applebot-Extended are unambiguous.
+- **`llms.txt`** — plain-language summary of who Dario is and what each page covers, for AI assistants. Content drawn from the site's own about/services/saray copy, not invented.
+- **Per-page head block** in all 9 pages, wrapped in `SEO_START` / `SEO_END` comments so the generator script is idempotent — re-running replaces the block instead of duplicating it. Contains: canonical, `robots` with `max-image-preview:large`, author, theme-color, full Open Graph set, Twitter card, `preconnect` to the Google Fonts hosts (the CSS `@import` is render-blocking), and JSON-LD.
+- **Structured data** — homepage carries `WebSite` + a full `Person` (alternateName Dario Giuffrida, Sapienza, IFS, four languages, `knowsAbout`, six `sameAs` profiles) under `@id` `https://dariog.it/#person`; subpages reference that `@id` rather than redefining it. `Service` on services/individual/couple/group, `MusicAlbum` on saray (10 tracks, 2026-06-21, Spotify artist as `sameAs`), `ContactPage` with a `ScheduleAction` to Calendly, `AboutPage`, and `BreadcrumbList` on every subpage. Deliberately **not** `LocalBusiness`/`ProfessionalService` — those want a postal address and telephone, and would only earn Search Console warnings without them. All 8 blocks verified to parse as JSON.
+- **`thankyou.html`** → `noindex, follow` + self-canonical.
+- **Homepage title** — was bare `Dario Hampi Pakari`, which gave a search engine nothing to match on. Now `Dario Hampi Pakari | Psychologist, IFS Practitioner & Medicine Man`. Easily reverted if it reads wrong.
+
+### Social share images
+
+There were none, so shared links rendered as bare grey rows. Generated with PIL:
+- `images/og-default.jpg` — 1200x630, a 1.91:1 crop of `dario-offering.jpg` taken from y=40 so the face and hands stay in frame. Used site-wide.
+- `images/og-saray.jpg` — 1200x630, the square album cover sharp and centred over a blurred, darkened scale-up of itself, since letterboxing square art looks broken on Facebook/LinkedIn.
+
+### Performance — the real find
+
+`anna_and_dario_1.jpg` was a **5978x3985, 11.8 MB** camera original being served to every visitor of the couple page. Page speed feeds ranking directly, so this mattered as much as any tag. Recompressed at quality 82, progressive, capped on the long edge:
+
+| Image | Page | Before | After |
+|---|---|---|---|
+| `anna_and_dario_1.jpg` | couple | 11.8 MB | 210 KB |
+| `nina-urku-1.jpg` | group | 1.5 MB | 676 KB |
+| `dario-new-1.jpg` | about | 975 KB | 391 KB |
+
+Visually identical at displayed size. Originals remain recoverable from git history.
+
+### Left alone deliberately
+
+- **~34 MB of unused images** in `images/` — `saray-cover.png` (20 MB) plus `half-moon-altar-background.gif`, `dario-picture-smiling-cactus-shirt.jpg`, `dario-profile-nobg.png`. Nothing references them, so they cost no page speed; they only bloat the repo. Kept in case they are masters.
+- **`/` and `/about/` share the same `<h1>`** ("Twenty years walking between worlds."). A mild duplicate signal, but it is Dario's copy — flagged, not rewritten.
+- **`sonaja.gif` (1.5 MB, individual page)** — resizing an animated GIF risks breaking the animation; left as is.
+
+### Still open — the one step that cannot be done from here
+
+Google Search Console needs a human with the right Google account. Handover page written and published as an Artifact (audit + copy-paste steps, owner vs developer labelled):
+`https://claude.ai/code/artifact/db358f49-3c71-4fc3-851c-eae53e6bff86`
+
+Route chosen for it: **URL-prefix property + HTML-tag verification**, because Anna controls the repo and the owner may not have the registrar password. That costs one round-trip (owner copies the tag → developer publishes it → owner clicks Verify). The DNS/Domain-property alternative is documented on the page as the no-developer route. Once verified, the sitemap is submitted as the relative string `sitemap.xml`.
+
+**After the verification tag lands, it must stay in `index.html` permanently — removing it un-verifies the property.**
+
+---
+
 ## Session: August 22, 2026 — Fixed the mobile menu
 
 **Reported:** on a phone the menu "doesn't open well" — scrolling lags and the page shows through behind it.
