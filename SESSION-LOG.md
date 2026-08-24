@@ -59,6 +59,37 @@ Route chosen for it: **URL-prefix property + HTML-tag verification**, because An
 
 **After the verification tag lands, it must stay in `index.html` permanently — removing it un-verifies the property.**
 
+### Security pass (same session)
+
+Full review of the site code, the git history, the live headers, the repo and the DNS.
+
+**Clean — checked and found nothing:**
+- **No secrets, ever.** Scanned the working tree and all 22 commits across every ref for API keys, tokens, private keys, Stripe/GitHub/Google/Slack patterns. Nothing. No file has ever been deleted from history either, so nothing was committed and later scrubbed.
+- **No XSS route.** The three `innerHTML` writes in `js/main.js` (album bar, footer block, listen module) are built entirely from the hardcoded `SARAY` config object — no user input, no URL data reaches them. The one read of `location.search` is a regex `test()` for `?released=0|1` that only flips a boolean; it is never interpolated into the DOM. No `eval`, `document.write`, or `insertAdjacentHTML` anywhere.
+- **No mixed content**, and every `target="_blank"` already carries `rel="noopener noreferrer"`.
+- **HTTPS is enforced** — `http://dariog.it` and `www` both 301 to `https://dariog.it/`.
+- **DNS is correct**: the four official GitHub Pages A records, `www` CNAME to `annaifs.github.io`.
+- **Email authentication is properly configured** — SPF (`include:spf.titan.email`), DKIM (`titan._domainkey`), and DMARC at `p=quarantine` with aggregate reporting. Domain spoofing is already covered.
+- **No Actions workflows, no dependencies, no lockfiles** — there is no supply chain to audit. Only third-party runtime code is the Calendly widget on `/contact/`.
+
+**Fixed this session:** breadcrumb `name`/`item` swap (see commit message), repo-level `.gitignore`, contact-form honeypot, explicit referrer policy.
+
+**Known gaps that cannot be fixed on GitHub Pages** — recorded so they are not re-investigated:
+
+GitHub Pages serves static files and offers **no way to set response headers**. So the site has no HSTS, no `Content-Security-Policy`, no `X-Frame-Options`, no `X-Content-Type-Options`. Confirmed absent by inspecting the live response.
+- `frame-ancestors` (clickjacking) and HSTS **cannot** be set via `<meta>` — they are header-only by spec. A `<meta http-equiv>` CSP is technically possible but `/contact/` has an inline `<script>` and both `/contact/` and `/saray/` carry inline `style=` attributes, so any useful policy would need `unsafe-inline` or hashes and would be fragile against future edits.
+- **The only real fix is fronting the domain with Cloudflare** (free tier), which allows header rules and would supply all of the above at once. That is a DNS change, not a code change, and it is Anna's call — not done.
+- Risk in the meantime is low: the site is static, has no login, no session, no cookies, and stores nothing.
+
+`access-control-allow-origin: *` in the response is the GitHub Pages default for static assets and is not a finding — there are no credentials or private data behind it.
+
+**Needs a human in a browser** (no `gh` CLI on this machine, so unverified):
+- Repo is **public** (confirmed via the unauthenticated API) — correct for Pages on a free account, but worth remembering that everything committed is permanently world-readable.
+- Unchecked: 2FA on the GitHub account, branch protection on `main`, Actions permissions, and any stale deploy keys or collaborators.
+- Formspree (`xdaplelv` contact, plus the SARAY form): the honeypot helps, but enabling reCAPTCHA and a submission cap in the Formspree dashboard is the stronger control.
+- Adding a **CAA record** would restrict which certificate authorities may issue for `dariog.it`. There is currently none, so any CA can. Low urgency, cheap to add.
+
+
 ---
 
 ## Session: August 22, 2026 — Fixed the mobile menu
