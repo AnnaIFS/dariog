@@ -329,66 +329,130 @@
 }
 
 /* ============================================================
-   PRINT = BROCHURE (A4, 4 pages)
-   p1 cover + welcome · p2 the two circles · p3 mission + photo
-   · p4 who we are + contact
+   PRINT = BROCHURE (A4, exactly 4 pages)
+   Every sheet is built from fixed-height blocks that add up to
+   297mm, with the content centred inside each block, so nothing
+   spills onto the next page and every page lines up the same.
+   p1 cover (160mm) + welcome (137mm)
+   p2 the two circles (297mm)
+   p3 photo (120mm) + mission (177mm)
+   p4 who we are (212mm) + contact (85mm)
+   Shared grid: 18mm side margins on every page.
    ============================================================ */
 @media print {
   @page { size: A4; margin: 0; }
-  html, body { background: var(--bone) !important; }
+  html, body { margin: 0 !important; padding: 0 !important; background: var(--bone) !important; width: 210mm; }
   * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
   .lp-lang, .lp-hero-ctas, .lp-contact-ctas, .lp-print-btn, .lp-footer { display: none !important; }
-  .lp-print-only { display: block; }
-  :where(.lp) p { font-size: 10.5pt; line-height: 1.6; }
-  .lp-section { padding: 16mm 16mm; }
-  .lp-hero::after, .lp-mission::after, .lp-offerings::before { display: none; }
+  .lp-hero::after, .lp-mission::after, .lp-offerings::before, .lp-people::before { display: none !important; }
 
-  .lp-header { padding: 12mm 16mm 0; }
+  /* every block: exact height, content centred, no overflow onto the next sheet */
+  .lp-hero, .lp-intro, .lp-offerings, .lp-band, .lp-mission, .lp-people, .lp-contact {
+    box-sizing: border-box;
+    width: 210mm;
+    overflow: hidden;
+    margin: 0;
+    break-inside: avoid;
+  }
+  .lp-section, .lp-hero { padding-left: 18mm !important; padding-right: 18mm !important; }
+  .lp-inner, .lp-wide { max-width: none; width: 100%; margin: 0; }
+
+  :where(.lp) p { font-size: 10.5pt; line-height: 1.6; }
+  .lp-label { font-size: 7.5pt; letter-spacing: 0.22em; margin-bottom: 4mm; }
+  .lp-kicker { font-size: 8pt; margin-bottom: 5mm; }
+  .lp-h2 { font-size: 26pt; margin-bottom: 0; }
+
+  /* ---- page 1 ---- */
+  .lp-header { padding: 12mm 18mm 0; }
+  .lp-logo { font-size: 8pt; }
   .lp-hero {
+    height: 160mm;
     min-height: 0;
-    height: 150mm;
-    padding: 26mm 16mm 0;
-    grid-template-columns: 7fr 5fr;
+    padding-top: 30mm !important;
+    padding-bottom: 0 !important;
+    display: grid;
+    grid-template-columns: 1fr 64mm;
+    gap: 12mm;
     align-items: end;
   }
-  .lp-hero > div:first-child { align-self: center; }
-  .lp-hero h1 { font-size: 46pt; }
-  .lp-hero-sub { font-size: 11.5pt; margin: 6mm 0 0; }
-  .lp-portrait { margin-bottom: 0; max-width: 70mm; }
+  .lp-hero > div:first-child { align-self: center; padding-bottom: 8mm; }
+  .lp-hero h1 { font-size: 44pt; line-height: 1.02; }
+  .lp-hero-sub { font-size: 11pt; line-height: 1.6; margin: 6mm 0 0; max-width: 95mm; }
+  .lp-portrait { width: 64mm; max-width: 64mm; margin: 0; align-self: end; }
   .lp-portrait::before { display: none; }
 
-  .lp-intro { padding-top: 16mm; padding-bottom: 0; break-after: page; }
-  .lp-intro .lp-prose p + p { margin-top: 5mm; }
-  .lp-intro .lp-lead { font-size: 17pt; margin-bottom: 6mm; }
-  .lp-h2 { font-size: 24pt; margin-bottom: 6mm; }
+  .lp-intro {
+    height: 137mm;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    break-after: page;
+  }
+  .lp-intro .lp-lead { font-size: 16pt; line-height: 1.4; margin-bottom: 6mm; padding-left: 5mm; }
+  .lp-intro .lp-prose p + p { margin-top: 4mm; }
 
-  .lp-offerings { break-after: page; min-height: 297mm; padding-top: 22mm; display: flex; flex-direction: column; justify-content: center; }
-  .lp-offerings > .lp-wide { width: 100%; }
-  .lp-offer p { line-height: 1.7; }
-  .lp-offer-grid { grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 8mm; }
-  .lp-offer { padding: 9mm 8mm; break-inside: avoid; }
-  .lp-offer h3 { font-size: 17pt; margin: 2mm 0 5mm; }
-  .lp-offer-num { font-size: 26pt; margin-bottom: 3mm; }
-  .lp-offer p { font-size: 9.8pt; }
-  .lp-offer-close { font-size: 12pt !important; }
+  /* ---- page 2 ---- */
+  .lp-offerings {
+    height: 297mm;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    break-after: page;
+  }
+  .lp-offer-grid { grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 10mm; align-items: stretch; }
+  .lp-offer { padding: 10mm 8mm; border-top-width: 2.5pt; }
+  .lp-offer-num { font-size: 24pt; margin-bottom: 4mm; }
+  .lp-offer .lp-label { font-size: 7pt; }
+  .lp-offer h3 { font-size: 17pt; margin: 2mm 0 5mm; min-height: 2.3em; }
+  .lp-offer p { font-size: 9.8pt; line-height: 1.65; }
+  .lp-offer p + p { margin-top: 3.5mm; }
+  .lp-offer-close { font-size: 12pt !important; line-height: 1.45 !important; }
 
-  .lp-band { height: 120mm; min-height: 0; }
-  .lp-mission { padding: 22mm 20mm; min-height: 177mm; break-after: page; display: flex; flex-direction: column; justify-content: center; }
-  .lp-mission-quote { font-size: 24pt; margin-bottom: 8mm; }
-  .lp-mission p:not(.lp-mission-quote):not(.lp-label) { font-size: 11.5pt; }
-  .lp-sep { margin: 8mm auto; }
+  /* ---- page 3 ---- */
+  .lp-band { height: 120mm; min-height: 0; background-position: center 62%; }
+  .lp-mission {
+    height: 177mm;
+    padding: 0 26mm !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    break-after: page;
+  }
+  .lp-mission-quote { font-size: 22pt; line-height: 1.3; margin-bottom: 7mm; }
+  .lp-mission p:not(.lp-mission-quote):not(.lp-label) { font-size: 11pt; max-width: none; }
+  .lp-sep { margin: 7mm auto; }
 
-  .lp-people { padding-top: 18mm; padding-bottom: 6mm; }
-  .lp-people-grid { grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 6mm; }
-  .lp-person h3 { font-size: 17pt; }
-  .lp-role { font-size: 7.5pt; margin: 1mm 0 4mm; padding-bottom: 4mm; }
-  .lp-person p { font-size: 9.6pt; }
+  /* ---- page 4 ---- */
+  .lp-people {
+    height: 212mm;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .lp-people-grid { grid-template-columns: 1fr 1fr; gap: 10mm; margin-top: 8mm; }
+  .lp-person h3 { font-size: 16pt; }
+  .lp-role { font-size: 6.8pt; letter-spacing: 0.08em; white-space: nowrap; line-height: 1.5; margin: 1.5mm 0 4mm; padding-bottom: 4mm; }
+  .lp-person p { font-size: 9.4pt; line-height: 1.6; }
+  .lp-person p + p { margin-top: 3mm; }
 
-  .lp-contact { padding-top: 10mm; padding-bottom: 14mm; break-inside: avoid; }
-  .lp-contact .lp-h2 { font-size: 18pt; margin-bottom: 3mm; }
-  .lp-contact-sub { margin-bottom: 6mm; }
-  .lp-links { grid-template-columns: 1fr 1fr; }
-  .lp-links a { padding: 5mm 6mm; }
+  .lp-contact {
+    height: 85mm;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .lp-contact .lp-h2 { font-size: 20pt; margin-bottom: 3mm; }
+  .lp-contact-sub { font-size: 10.5pt !important; margin: 0 auto 7mm; }
+  .lp-links { grid-template-columns: 1fr 1fr; max-width: 130mm; margin: 0 auto; }
+  .lp-links a { padding: 5mm 7mm; }
+  .lp-links small { font-size: 6.5pt; margin-bottom: 1.5mm; }
   .lp-links span { font-size: 12pt; }
-  .lp-links small { font-size: 6.5pt; }
 }

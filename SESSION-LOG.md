@@ -1,5 +1,28 @@
 # dariog.it — Session Log
 
+## Session: September 17, 2026 — Spanish and Italian site, privacy policy, brochure alignment
+
+**Asked:** translate the whole site into neutral Latin American Spanish and Italian, conversational and faithful rather than mechanical, with a language toggle that looks and works like annamilaeva.com's on desktop and mobile, and easy to change later. Add a privacy policy for Dario based on Anna's. Push it all so Anna can review it online.
+
+### Built
+
+- **`/es/` and `/it/`**: every page in both languages, with translated URLs (`/es/sobre-mi/`, `/it/chi-sono/`, `/es/circulos-sagrados/`, `/it/cerchi-sacri/` and so on). Spanish Sacred Circles is Anna's approved Spanish copy word for word, switched to Dario's voice only.
+- **Toggle**: English | Español | Italiano after Contact on desktop (EN | ES | IT between 769 and 1180px); on phones a row under the logo that folds away on scroll, and again inside the open menu. Styles in `styles/main.css`; menu and scroll-lock code untouched.
+- **`tools/i18n.py`**: the single route map. Running it rewrites `<html lang>`, the toggles, hreflang and `og:locale` tags (between `I18N_*` marker comments) and `sitemap.xml`. Adding a page = one line in the map plus a run. It leaves entries it doesn't manage, like the landing pages, alone.
+- **`js/main.js`**: all injected text (album bar, footer album, listen module, download and waitlist messages) comes from a `STRINGS` table picked by `<html lang>`; SARAY links go to the page in the same language.
+- **`/privacy/`, `/es/privacidad/`, `/it/privacy/`**: adapted from Anna's policy. Controller Dario Giuffrida, business registered in Italy, GDPR applied worldwide, the Garante as the Italian authority, ten-year tax retention. The site is described as not healthcare, and ceremony is deliberately not listed as an offering (Anna's instruction). The waitlist is shared with Anna. Unlike Anna's site, this one discloses third-party cookies from the Calendly widget (contact) and the Spotify player (SARAY). Linked from every footer in all three languages.
+- **How it was merged**: the translation was built in a separate git worktree, then `main` was merged into it; the three conflicts (`js/main.js`, `sacred-circles/index.html`, `sitemap.xml`) were resolved to the translation versions after checking each contained the live changes. A crawl of all 35 pages found no broken links or assets and no invalid JSON-LD before the push. `.claude/worktrees/` and `__pycache__/` are now gitignored.
+- **Brochure alignment**: the print CSS was rebuilt from fixed-height blocks that add up to exactly 297mm per sheet (cover 160 + welcome 137; circles 297; photo 120 + mission 177; people 212 + contact 85), all on an 18mm side margin, with content centred in each block. Both languages export to exactly 4 pages.
+
+### Still open
+
+- **For Anna to read:** the translation choices the build flagged (Work menu "Trabajo" / "Percorsi", "Hombre medicina" / "Uomo medicina", "liderazgo desde el Self" / "leadership del Sé", "solsticio de junio"), the translated SARAY community quotes, and a legal read of the Italian privacy wording.
+- **Privacy facts to confirm with Dario:** retention periods copied from Anna's policy (enquiries twelve months, session notes three years). The effective date says 17 September 2026.
+- **Cookie consent:** EU rules usually want consent before the Calendly and Spotify embeds load. Simplest fix is click-to-load placeholders.
+- **Anna's Spanish page** has the typo "protegiía"; the dariog.it copy is corrected.
+
+---
+
 ## Session: September 17, 2026 — "A bridge between the worlds" landing page
 
 **Asked:** replace the Mailchimp campaign page "Un puente entre los mundos" with a landing page on dariog.it, in English and Spanish, in Dario's style, with the new photo of Anna and Dario. It must work as a brochure too. Not in the menu, shared by link only. No FINO anywhere on it; only Dario's and Anna's personal sites.
