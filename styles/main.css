@@ -606,6 +606,41 @@ ul, ol { list-style: none; }
   display: block;
 }
 
+/* ---- Language toggle ----
+   Markup is written by tools/i18n.py (between I18N_TOGGLE markers).
+   .nav-lang inside .nav-menu = desktop row + block inside the mobile menu.
+   .nav-lang--bar = the row under the logo on phones, hidden once you scroll. */
+.nav-lang {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 0.74rem;
+  font-weight: 300;
+  letter-spacing: 0.04em;
+  padding-left: 28px;
+  border-left: 1px solid rgba(240, 230, 208, 0.22);
+}
+.nav-lang a {
+  color: var(--bone);
+  opacity: 0.72;
+  text-decoration: none;
+  transition: color 0.25s, opacity 0.25s;
+}
+.nav-lang a:hover { color: var(--ochre); opacity: 1; }
+.nav-lang a.active { color: var(--ochre); opacity: 1; font-weight: 500; }
+.nav-lang-sep { color: var(--bone); opacity: 0.3; }
+.nav-lang-short { display: none; }
+.nav-lang--bar { display: none; }
+
+/* Narrow desktops: short codes so the nav fits on one line */
+@media (min-width: 769px) and (max-width: 1180px) {
+  .nav-menu { gap: 26px; }
+  .nav-lang { padding-left: 20px; gap: 8px; }
+  .nav-menu .nav-lang-full { display: none; }
+  .nav-menu .nav-lang-short { display: inline; }
+}
+
 .nav-toggle {
   display: none;
   flex-direction: column;
@@ -697,6 +732,52 @@ ul, ol { list-style: none; }
 
   .nav-dropdown:hover .dropdown-menu { display: none; }
   .nav-dropdown.open .dropdown-menu { display: block; }
+
+  /* Language toggle on phones: a row under the logo that folds away on
+     scroll (like annamilaeva.com), plus the same links at the bottom of
+     the open menu. */
+  .nav { flex-wrap: wrap; }
+  .nav-lang--bar {
+    display: flex;
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 14px;
+    padding: 10px 0 0;
+    margin-top: 12px;
+    border-left: none;
+    border-top: 1px solid rgba(240, 230, 208, 0.16);
+    font-size: 0.9rem;
+    max-height: 60px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.3s ease, opacity 0.25s ease, padding 0.3s ease, margin 0.3s ease, border-color 0.3s ease;
+  }
+  .nav.scrolled .nav-lang--bar {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    margin-top: 0;
+    border-top-color: transparent;
+  }
+  .nav-lang--bar a,
+  .nav-menu .nav-lang a {
+    opacity: 0.9;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: rgba(240, 230, 208, 0.3);
+  }
+  .nav-lang--bar a.active,
+  .nav-menu .nav-lang a.active { text-decoration-color: var(--ochre); }
+
+  .nav-menu .nav-lang {
+    justify-content: center;
+    gap: 14px;
+    padding: 24px 0 0;
+    border-left: none;
+    border-top: 1px solid rgba(240, 230, 208, 0.16);
+    font-size: 1.05rem;
+  }
 }
 
 /* ===== BUTTONS ===== */

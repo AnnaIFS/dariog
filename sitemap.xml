@@ -1,43 +1,274 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://dariog.it/</loc>
     <lastmod>2026-08-21</lastmod>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/"/>
   </url>
   <url>
-    <loc>https://dariog.it/about/</loc>
-    <lastmod>2026-04-03</lastmod>
-    <priority>0.8</priority>
+    <loc>https://dariog.it/es/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/"/>
   </url>
   <url>
     <loc>https://dariog.it/services/</loc>
     <lastmod>2026-04-03</lastmod>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/services/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/servicios/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/percorsi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/services/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/servicios/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/services/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/servicios/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/percorsi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/services/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/percorsi/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/services/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/servicios/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/percorsi/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/services/"/>
   </url>
   <url>
     <loc>https://dariog.it/individual/</loc>
     <lastmod>2026-04-03</lastmod>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/individual/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/individual/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/individuale/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/individual/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/individual/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/individual/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/individual/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/individuale/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/individual/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/individuale/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/individual/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/individual/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/individuale/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/individual/"/>
   </url>
   <url>
     <loc>https://dariog.it/couple/</loc>
     <lastmod>2026-04-03</lastmod>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/couple/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/pareja/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/coppia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/couple/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/pareja/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/couple/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/pareja/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/coppia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/couple/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/coppia/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/couple/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/pareja/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/coppia/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/couple/"/>
   </url>
   <url>
     <loc>https://dariog.it/group/</loc>
-    <lastmod>2026-04-03</lastmod>
+    <lastmod>2026-09-17</lastmod>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/group/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/grupo/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/gruppo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/group/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/grupo/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/group/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/grupo/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/gruppo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/group/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/gruppo/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/group/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/grupo/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/gruppo/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/group/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/sacred-circles/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/sacred-circles/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/circulos-sagrados/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/cerchi-sacri/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/sacred-circles/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/circulos-sagrados/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/sacred-circles/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/circulos-sagrados/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/cerchi-sacri/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/sacred-circles/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/cerchi-sacri/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/sacred-circles/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/circulos-sagrados/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/cerchi-sacri/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/sacred-circles/"/>
   </url>
   <url>
     <loc>https://dariog.it/saray/</loc>
     <lastmod>2026-07-27</lastmod>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/saray/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/saray/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/saray/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/saray/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/saray/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/saray/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/saray/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/saray/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/saray/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/saray/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/saray/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/saray/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/saray/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/saray/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/about/</loc>
+    <lastmod>2026-04-03</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/sobre-mi/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/chi-sono/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/about/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/sobre-mi/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/sobre-mi/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/chi-sono/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/about/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/chi-sono/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/about/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/sobre-mi/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/chi-sono/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/about/"/>
   </url>
   <url>
     <loc>https://dariog.it/contact/</loc>
     <lastmod>2026-04-03</lastmod>
     <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/contact/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/contatti/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/contact/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/contacto/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/contact/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/contatti/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/contact/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/contatti/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/contact/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/contacto/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/contatti/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/contact/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/privacy/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/privacy/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/es/privacidad/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/privacy/"/>
+  </url>
+  <url>
+    <loc>https://dariog.it/it/privacy/</loc>
+    <lastmod>2026-09-17</lastmod>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://dariog.it/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://dariog.it/es/privacidad/"/>
+    <xhtml:link rel="alternate" hreflang="it" href="https://dariog.it/it/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://dariog.it/privacy/"/>
   </url>
 </urlset>

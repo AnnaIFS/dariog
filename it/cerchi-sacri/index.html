@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Cerchi Sacri | Dario Hampi Pakari</title>
+  <meta name="description" content="Uno spazio di coaching in piccolo gruppo per chi sta facendo un lavoro interiore profondo e vuole che i cambiamenti si vedano davvero in un martedì qualunque. Di Anna e Dario.">
+  <link rel="stylesheet" href="/styles/main.css">
+  <style>
+    /* ---- Hero ---- */
+    .sc-hero {
+      min-height: 78vh;
+      background:
+        radial-gradient(ellipse at 70% 45%, rgba(196, 98, 45, 0.22) 0%, rgba(42, 18, 6, 0) 55%),
+        var(--earth);
+      display: flex;
+      align-items: flex-end;
+      padding: 140px 6% 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-hero::after {
+      content: '';
+      z-index: 2;
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .sc-rings {
+      position: absolute;
+      right: -14%;
+      top: 50%;
+      width: min(62vw, 720px);
+      transform: translateY(-50%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .sc-hero-grid {
+      position: relative;
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 56px;
+      align-items: center;
+    }
+    .sc-hero-content { max-width: 640px; position: relative; padding-bottom: 110px; align-self: center; }
+    .sc-hero-photo {
+      position: relative;
+      justify-self: center;
+      width: 100%;
+      max-width: 440px;
+    }
+    .sc-hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: -14px -14px 0 -14px;
+      border: 1px solid rgba(212, 148, 58, 0.35);
+      border-bottom: none;
+      border-radius: 999px 999px 0 0;
+    }
+    .sc-hero-photo img { position: relative; width: 100%; height: auto; }
+    .sc-hero-content .hero-label { text-transform: uppercase; margin-bottom: 20px; }
+    .sc-hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--bone);
+    }
+    .sc-hero-content h1 em { color: var(--ochre); }
+    .sc-hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(240, 230, 208, 0.78);
+      max-width: 500px;
+      margin: 24px 0 36px;
+      line-height: 1.8;
+    }
+    .sc-hero-sub span { color: var(--ochre); font-weight: 400; }
+
+    /* ---- Shared section shells ---- */
+    .sc-light, .sc-dark, .sc-sand {
+      padding: 100px 6%;
+      position: relative;
+    }
+    .sc-light { background: var(--bone); }
+    .sc-sand  { background: var(--parchment); }
+    .sc-dark  { background: var(--earth); color: var(--bone); }
+    .sc-light::after, .sc-dark::after, .sc-sand::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      clip-path: ellipse(60% 100% at 50% 100%);
+    }
+    .to-dark::after  { background: var(--earth); }
+    .to-light::after { background: var(--bone); }
+    .to-sand::after  { background: var(--parchment); }
+
+    .sc-closing::after { display: none; }
+    .sc-title, .sc-price-amount, .sc-step-num { font-variant-numeric: lining-nums; }
+
+    .sc-inner { max-width: 720px; margin: 0 auto; }
+    .sc-inner--wide { max-width: 980px; }
+    .sc-center { text-align: center; }
+
+    .sc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--earth);
+      margin-bottom: 12px;
+    }
+    .sc-dark .sc-title { color: var(--bone); }
+    .sc-lead {
+      font-size: 1rem;
+      color: var(--ash);
+      line-height: 1.8;
+    }
+    .sc-body p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--earth);
+      margin-bottom: 16px;
+    }
+    .sc-body .sc-accent {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.55rem;
+      line-height: 1.4;
+      color: var(--terra);
+      margin: 32px 0;
+      padding-left: 20px;
+      border-left: 2px solid rgba(196, 98, 45, 0.3);
+    }
+
+    /* ---- Cohort ---- */
+    .sc-cohort-dates {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--terra);
+      margin-bottom: 32px;
+    }
+    .sc-schedule { margin-bottom: 28px; }
+    .sc-schedule p { font-size: 1rem; line-height: 1.8; color: var(--earth); }
+    .sc-schedule p + p { color: var(--ash); }
+    .sc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 auto 36px;
+      max-width: 640px;
+    }
+    .sc-meta span {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--earth);
+      border: 1px solid rgba(42, 18, 6, 0.2);
+      padding: 8px 14px;
+    }
+    .sc-meta .sc-price { color: var(--bone); background: var(--terra); border-color: var(--terra); }
+
+    .sc-soldout {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--bone);
+      background: var(--ash);
+      padding: 14px 40px;
+      cursor: not-allowed;
+    }
+
+    /* ---- Waitlist form ---- */
+    .sc-waitlist {
+      max-width: 440px;
+      margin: 36px auto 0;
+      padding-top: 36px;
+      border-top: 1px solid rgba(42, 18, 6, 0.14);
+    }
+    .sc-dark .sc-waitlist { border-top-color: rgba(240, 230, 208, 0.14); }
+    .sc-waitlist-intro {
+      font-size: 0.95rem;
+      color: rgba(42, 18, 6, 0.8);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .sc-dark .sc-waitlist-intro { color: rgba(240, 230, 208, 0.78); }
+    .sc-dark .dl-form input {
+      background: rgba(240, 230, 208, 0.06);
+      border-color: rgba(240, 230, 208, 0.25);
+      color: var(--bone);
+    }
+    .sc-dark .dl-form input::placeholder { color: rgba(240, 230, 208, 0.5); }
+    .sc-dark .dl-form-error { color: #F0A080; }
+    .sc-dark .dl-success-msg { color: var(--bone); }
+
+    /* ---- Story ---- */
+    .sc-story { display: block; }
+    .sc-photo {
+      position: sticky;
+      top: 110px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .sc-photo::before {
+      content: '';
+      position: absolute;
+      left: 6%; right: 6%; top: 10%; bottom: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 40%, #D98A55 0%, var(--terra) 60%, #A8501F 100%);
+    }
+    .sc-photo img {
+      position: relative;
+      width: 100%;
+      height: auto;
+      clip-path: inset(0 0 0 0 round 0 0 50% 50%);
+    }
+
+    /* ---- Steps ---- */
+    .sc-steps { margin-top: 48px; counter-reset: step; }
+    .sc-step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-top: 1px solid rgba(240, 230, 208, 0.12);
+    }
+    .sc-step:last-child { border-bottom: 1px solid rgba(240, 230, 208, 0.12); }
+    .sc-step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--ochre);
+    }
+    .sc-step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--bone);
+      margin-bottom: 6px;
+    }
+    .sc-step p { font-size: 1rem; line-height: 1.8; color: rgba(240, 230, 208, 0.75); }
+    .sc-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--ash);
+      margin-top: 32px;
+    }
+    .sc-qualities {
+      margin-top: 64px;
+      padding: 40px 36px;
+      border: 1px solid rgba(212, 148, 58, 0.3);
+      background: rgba(212, 148, 58, 0.05);
+    }
+    .sc-diamond { font-size: 1.3rem; color: var(--ochre); margin-bottom: 12px; }
+    .sc-qualities h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: var(--bone);
+      margin-bottom: 16px;
+    }
+    .sc-qualities p { font-size: 1rem; line-height: 1.85; color: rgba(240, 230, 208, 0.78); }
+
+    /* ---- For you if ---- */
+    .sc-checklist { margin-top: 40px; }
+    .sc-checklist li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(42, 18, 6, 0.1);
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--earth);
+    }
+    .sc-checklist li:first-child { border-top: 1px solid rgba(42, 18, 6, 0.1); }
+    .sc-checklist svg { width: 22px; height: 22px; margin-top: 4px; color: var(--terra); }
+
+    /* ---- Pricing ---- */
+    .sc-price-card {
+      max-width: 440px;
+      margin: 40px auto 0;
+      padding: 48px 36px;
+      background: var(--bone);
+      border-top: 3px solid var(--terra);
+      text-align: center;
+    }
+    .sc-price-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--earth);
+    }
+    .sc-price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--earth);
+      margin: 12px 0 16px;
+    }
+    .sc-price-card p { font-size: 1rem; line-height: 1.8; color: var(--earth); margin-bottom: 28px; }
+    .sc-price-card .sc-price-note { font-size: 0.9rem; color: var(--ash); margin: 20px 0 0; }
+    .sc-price-card .sc-price-note a { color: var(--terra); border-bottom: 1px solid rgba(196, 98, 45, 0.35); }
+
+    /* ---- Testimonials ---- */
+    .sc-story-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--bone);
+      margin-top: 40px;
+    }
+    .sc-story-quote strong { font-weight: 400; font-style: italic; color: var(--ochre); }
+    .sc-quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .sc-quote {
+      padding: 28px 24px;
+      border: 1px solid rgba(212, 148, 58, 0.25);
+    }
+    .sc-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      color: var(--bone);
+      margin-bottom: 16px;
+    }
+    .sc-quote cite {
+      font-style: normal;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ochre);
+    }
+
+    /* ---- FAQ ---- */
+    .sc-faq { margin-top: 40px; }
+    .sc-faq details { border-bottom: 1px solid rgba(42, 18, 6, 0.12); }
+    .sc-faq details:first-child { border-top: 1px solid rgba(42, 18, 6, 0.12); }
+    .sc-faq summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--earth);
+    }
+    .sc-faq summary::-webkit-details-marker { display: none; }
+    .sc-faq summary::after {
+      content: '+';
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--terra);
+      transition: transform 0.25s;
+    }
+    .sc-faq details[open] summary::after { transform: rotate(45deg); }
+    .sc-faq summary:focus-visible { outline: 2px solid var(--terra); outline-offset: 4px; }
+    .sc-faq details p { font-size: 1rem; line-height: 1.85; color: var(--earth); padding: 0 40px 24px 0; }
+    .sc-disclaimer { font-size: 0.85rem; line-height: 1.7; color: var(--ash); margin-top: 32px; }
+
+    /* ---- Closing ---- */
+    .sc-closing-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-weight: 300;
+      line-height: 1.45;
+      color: var(--ochre);
+      max-width: 640px;
+      margin: 72px auto 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sc-story { grid-template-columns: 1fr; gap: 40px; }
+      .sc-photo { position: relative; top: 0; max-width: 420px; margin: 0 auto; width: 100%; }
+      .sc-quotes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .sc-hero { padding: 130px 24px 0; min-height: 0; }
+      .sc-hero-content { padding-bottom: 8px; }
+      .sc-hero-photo { max-width: 320px; }
+      .sc-hero-content .hero-label { font-size: 1rem; }
+      .sc-hero-content h1 { font-size: clamp(2.4rem, 9vw, 3.4rem); }
+      .sc-hero-sub { font-size: 1.15rem; }
+      .sc-rings { width: 110vw; right: -45%; opacity: 0.25; }
+      .sc-light, .sc-dark, .sc-sand { padding: 64px 24px 88px; }
+      .sc-lead, .sc-body p, .sc-schedule p, .sc-step p, .sc-qualities p,
+      .sc-checklist li, .sc-price-card p, .sc-faq details p { font-size: 1.15rem; }
+      .sc-meta span { font-size: 0.85rem; }
+      .sc-waitlist-intro { font-size: 1.1rem; }
+        .sc-step { grid-template-columns: 44px 1fr; gap: 16px; }
+      .sc-step-num { font-size: 2.2rem; }
+      .sc-qualities { padding: 28px 20px; }
+      .sc-price-card { padding: 36px 20px; }
+      .sc-faq summary { font-size: 1.35rem; }
+      .sc-faq details p { padding-right: 0; }
+      .sc-soldout { display: block; }
+    }
+  </style>
+  <!-- SEO_START — canonical, social cards, structured data -->
+  <link rel="canonical" href="https://dariog.it/it/cerchi-sacri/">
+  <!-- I18N_HEAD_START -->
+  <link rel="alternate" hreflang="en" href="https://dariog.it/sacred-circles/">
+  <link rel="alternate" hreflang="es" href="https://dariog.it/es/circulos-sagrados/">
+  <link rel="alternate" hreflang="it" href="https://dariog.it/it/cerchi-sacri/">
+  <link rel="alternate" hreflang="x-default" href="https://dariog.it/sacred-circles/">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="es_419">
+  <!-- I18N_HEAD_END -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Dario Giuffrida">
+  <meta name="theme-color" content="#2A1206">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dario Hampi Pakari">
+  <meta property="og:url" content="https://dariog.it/it/cerchi-sacri/">
+  <meta property="og:title" content="Cerchi Sacri | Dario Hampi Pakari">
+  <meta property="og:description" content="Uno spazio di coaching in piccolo gruppo per chi sta facendo un lavoro interiore profondo e vuole che i cambiamenti si vedano davvero in un martedì qualunque. Di Anna e Dario.">
+  <meta property="og:image" content="https://dariog.it/images/og-sacred-circles.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Anna Milaeva e Dario Hampi Pakari, che tengono insieme il Cerchio Sacro">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cerchi Sacri | Dario Hampi Pakari">
+  <meta name="twitter:description" content="Uno spazio di coaching in piccolo gruppo per chi sta facendo un lavoro interiore profondo e vuole che i cambiamenti si vedano davvero in un martedì qualunque. Di Anna e Dario.">
+  <meta name="twitter:image" content="https://dariog.it/images/og-sacred-circles.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://dariog.it/it/cerchi-sacri/#service",
+        "name": "Cerchi Sacri",
+        "url": "https://dariog.it/it/cerchi-sacri/",
+        "description": "Uno spazio di coaching IFS in piccolo gruppo, online per otto settimane, tenuto da Anna Milaeva e Dario Hampi Pakari, per chi sta facendo un lavoro interiore profondo e vuole che i cambiamenti durino.",
+        "serviceType": "Percorso di coaching di gruppo IFS",
+        "provider": [
+          {
+            "@type": "Person",
+            "@id": "https://dariog.it/#person",
+            "name": "Dario Hampi Pakari"
+          },
+          {
+            "@type": "Person",
+            "name": "Anna Milaeva",
+            "url": "https://annamilaeva.com/"
+          }
+        ],
+        "areaServed": {
+          "@type": "Place",
+          "name": "In tutto il mondo, online"
+        },
+        "availableLanguage": [
+          "English",
+          "Spanish"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "name": "Gruppo del Cerchio Sacro",
+          "price": "220",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/SoldOut"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Devo conoscere l’IFS per partecipare?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Introduciamo tutto ciò che ti serve man mano. Alcuni partecipanti hanno una lunga esperienza di IFS, altri sono completamente nuovi. Tutti sono benvenuti." }
+          },
+          {
+            "@type": "Question",
+            "name": "È terapia?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. È uno spazio di coaching e di esplorazione personale. Non sostituisce la terapia. Se stai attraversando una crisi in corso, ti consigliamo di lavorare prima con un terapeuta abilitato." }
+          },
+          {
+            "@type": "Question",
+            "name": "E se perdo una sessione?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sappiamo che la vita succede. Le sessioni vengono registrate se tutti i partecipanti sono d’accordo. In ogni caso, ti aiutiamo a restare in contatto con il percorso." }
+          },
+          {
+            "@type": "Question",
+            "name": "Posso partecipare da qualsiasi luogo?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Sì. Le sessioni sono online su Zoom. Ti servono solo uno spazio tranquillo e riservato e una connessione internet stabile." }
+          },
+          {
+            "@type": "Question",
+            "name": "In che lingua sono le sessioni?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Dipende dal gruppo. Alcuni sono in inglese, altri in spagnolo." }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://dariog.it/it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Percorsi",
+            "item": "https://dariog.it/it/percorsi/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Cerchi Sacri",
+            "item": "https://dariog.it/it/cerchi-sacri/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- SEO_END -->
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="/it/" class="nav-logo">Dario Hampi Pakari</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-dropdown">
+        <a href="/it/percorsi/" class="nav-link dropdown-toggle active">Percorsi &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="/it/individuale/">Individuale</a>
+          <a href="/it/coppia/">Coppia</a>
+          <a href="/it/gruppo/">Gruppo</a>
+          <a href="/it/cerchi-sacri/">Cerchi Sacri</a>
+          <a href="https://fino.website" target="_blank" rel="noopener noreferrer">Con le organizzazioni</a>
+        </div>
+      </div>
+      <a href="/it/saray/" class="nav-link">SARAY</a>
+      <a href="/it/chi-sono/" class="nav-link">Chi sono</a>
+      <a href="https://substack.com/@dariog" class="nav-link" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="/it/contatti/" class="nav-link">Contatti</a>
+      <!-- I18N_TOGGLE_START -->
+        <div class="nav-lang" role="navigation" aria-label="Lingua">
+          <a href="/sacred-circles/" lang="en" hreflang="en"><span class="nav-lang-full">English</span><span class="nav-lang-short" aria-hidden="true">EN</span></a>
+          <span class="nav-lang-sep" aria-hidden="true">|</span>
+          <a href="/es/circulos-sagrados/" lang="es" hreflang="es"><span class="nav-lang-full">Español</span><span class="nav-lang-short" aria-hidden="true">ES</span></a>
+          <span class="nav-lang-sep" aria-hidden="true">|</span>
+          <a href="/it/cerchi-sacri/" lang="it" hreflang="it" class="active" aria-current="page"><span class="nav-lang-full">Italiano</span><span class="nav-lang-short" aria-hidden="true">IT</span></a>
+        </div>
+      <!-- I18N_TOGGLE_END -->
+    </div>
+    <!-- I18N_TOGGLE_BAR_START -->
+      <div class="nav-lang nav-lang--bar" role="navigation" aria-label="Lingua">
+        <a href="/sacred-circles/" lang="en" hreflang="en"><span class="nav-lang-full">English</span><span class="nav-lang-short" aria-hidden="true">EN</span></a>
+        <span class="nav-lang-sep" aria-hidden="true">|</span>
+        <a href="/es/circulos-sagrados/" lang="es" hreflang="es"><span class="nav-lang-full">Español</span><span class="nav-lang-short" aria-hidden="true">ES</span></a>
+        <span class="nav-lang-sep" aria-hidden="true">|</span>
+        <a href="/it/cerchi-sacri/" lang="it" hreflang="it" class="active" aria-current="page"><span class="nav-lang-full">Italiano</span><span class="nav-lang-short" aria-hidden="true">IT</span></a>
+      </div>
+    <!-- I18N_TOGGLE_BAR_END -->
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="sc-hero">
+    <svg class="sc-rings" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+      <circle cx="200" cy="200" r="196" stroke="#D4943A" stroke-opacity="0.18"/>
+      <circle cx="200" cy="200" r="150" stroke="#D4943A" stroke-opacity="0.24"/>
+      <circle cx="200" cy="200" r="104" stroke="#D4943A" stroke-opacity="0.3"/>
+      <circle cx="200" cy="200" r="58" stroke="#C4622D" stroke-opacity="0.45"/>
+      <g fill="#D4943A" fill-opacity="0.55">
+        <circle cx="200" cy="50" r="3"/><circle cx="306" cy="94" r="3"/><circle cx="350" cy="200" r="3"/><circle cx="306" cy="306" r="3"/>
+        <circle cx="200" cy="350" r="3"/><circle cx="94" cy="306" r="3"/><circle cx="50" cy="200" r="3"/><circle cx="94" cy="94" r="3"/>
+      </g>
+    </svg>
+    <div class="sc-hero-grid">
+    <div class="sc-hero-content">
+      <h1>Ciò che si è aperto era vero. <em>Ora facciamo in modo che resti.</em></h1>
+      <p class="sc-hero-sub">Cerchio Sacro: uno spazio di coaching in piccolo gruppo per chi sta facendo un lavoro interiore profondo e vuole che i cambiamenti si vedano davvero in un martedì qualunque. <span>Di Anna e Dario.</span></p>
+      <a href="#current-cohort" class="btn-primary">Vedi il gruppo attuale</a>
+    </div>
+    <figure class="sc-hero-photo">
+      <img src="/images/anna-and-dario-arch.webp" alt="Anna e Dario" width="1000" height="1200">
+    </figure>
+    </div>
+  </section>
+
+
+  <!-- CURRENT COHORT -->
+  <section class="sc-light to-sand" id="current-cohort">
+    <div class="sc-inner sc-center">
+      <h2 class="sc-title">Cerchio Sacro #11</h2>
+      <p class="sc-cohort-dates">Da aprile a giugno 2026</p>
+
+      <div class="sc-schedule">
+        <p>Sessioni dal vivo il giovedì alle 18:30, ora dell’Europa centrale.</p>
+        <p>23 e 30 aprile / 7, 14, 21, 28 maggio / 4 giugno</p>
+      </div>
+
+      <div class="sc-meta">
+        <span>7 sessioni</span>
+        <span>8 settimane</span>
+        <span>90 minuti ciascuna</span>
+        <span>Max 16 persone</span>
+        <span class="sc-price">$220</span>
+      </div>
+
+      <span class="sc-soldout" aria-disabled="true">Esaurito</span>
+
+      <div class="sc-waitlist" id="waitlist">
+        <p class="sc-waitlist-intro">Questo gruppo è al completo. Lasciami la tua email e ti avviso quando si apre il prossimo.</p>
+        <form class="dl-form js-waitlist" action="https://formspree.io/f/mlgpnddo" method="POST" novalidate>
+          <input type="text" name="name" placeholder="Il tuo nome e cognome" aria-label="Il tuo nome e cognome" autocomplete="name" required>
+          <input type="email" name="email" placeholder="La tua email" aria-label="La tua email" autocomplete="email" required>
+          <input type="hidden" name="_subject" value="Sacred Circles Waitlist (dariog.it, IT)">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important">
+          <button type="submit" class="btn-primary">Iscrivimi alla lista d’attesa</button>
+          <p class="dl-form-error" role="alert" hidden>Qualcosa è andato storto. Riprova, per favore.</p>
+        </form>
+        <div class="dl-success" role="status" hidden>
+          <p class="dl-success-msg">Sei in lista. Ti avviso quando si apre il prossimo gruppo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WHY WE BUILT THIS -->
+  <section class="sc-sand to-dark">
+    <div class="sc-inner">
+      <div class="sc-story">
+        <div class="sc-body">
+          <h2 class="sc-title">Perché lo abbiamo creato</h2>
+
+          <p>Ciao, siamo Anna e Dario.</p>
+
+          <p>Sono psicologo delle organizzazioni e facilitatore, con oltre 20 anni di lavoro con gruppi e comunità. Formato in Sud America nelle pratiche tradizionali e nei riti di passaggio, da 20 anni tengo spazi cerimoniali a livello internazionale.</p>
+
+          <p>Anna è Deep Transformational Coach certificata, formata in terapia IFS fino al Livello 3, ed è stata leader di startup. Sempre curiosa, sempre impegnata nel proprio lavoro interiore.</p>
+
+          <p>Ecco cosa continuavamo a notare.</p>
+
+          <p>Le persone vivevano esperienze profonde in cerimonia, in ritiro o nel lavoro di gruppo. Aperture vere. Poi, qualche settimana dopo, erano di nuovo negli stessi schemi. L’intuizione era autentica. Ma svaniva. C’era chi cercava un’esperienza ancora più profonda, sperando che questa volta restasse. E chi passava da un approccio all’altro, cercando ciò che avrebbe fatto durare il cambiamento.</p>
+
+          <p class="sc-accent">Siamo rimasti con quella domanda: cosa manca davvero?</p>
+
+          <p>Poi l’IFS ha cambiato tutto per noi.</p>
+
+          <p>Per Anna, ha reso concreta l’autocompassione. Non come idea, ma come pratica. Un modo reale di incontrare la parte che aveva paura, la parte che spingeva, la parte che proteggeva qualcosa. Per me, ha dato struttura e linguaggio a ciò che vedevo accadere nei gruppi da oltre vent’anni.</p>
+
+          <p>Per noi come coppia, ci ha dato un linguaggio comune. Un modo di parlare di ciò che succedeva tra noi senza dare la colpa a nessuno. Potevamo vedere il sistema, capire cosa stava cercando di accadere e scegliere diversamente.</p>
+
+          <p>È lì che tutto è andato al suo posto.</p>
+
+          <p>La cerimonia offre l’apertura. L’IFS offre il linguaggio e la pratica quotidiana. La comunità offre la testimonianza, la costanza, le persone che ti vedono farlo.</p>
+
+          <p class="sc-accent">C’è una lunga strada tra l’informazione e l’azione. L’integrazione non è qualcosa che si fa una volta. È il modo in cui vivi.</p>
+
+          <p>Il Cerchio Sacro è la nostra risposta. Un luogo stabile dove tornare a te. Strumenti semplici che entrano nelle giornate vere. Una comunità che pratica insieme. Perché ciò che si è aperto in te, in cerimonia, in terapia, in un ritiro o nella vita stessa, non svanisca. E diventi il modo in cui ti parli davvero, metti dei confini e ti mostri.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WHAT HAPPENS -->
+  <section class="sc-dark to-light">
+    <div class="sc-inner">
+      <h2 class="sc-title">Cosa succede in un Cerchio Sacro</h2>
+      <p class="sc-lead">Ogni sessione dura 90 minuti. 7 sessioni. 8 settimane. Un gruppo.</p>
+
+      <ol class="sc-steps">
+        <li class="sc-step">
+          <span class="sc-step-num">1</span>
+          <div>
+            <h3>Apriamo insieme</h3>
+            <p>Una breve pratica di respiro per arrivare, tornare nel corpo e lasciarsi alle spalle la giornata.</p>
+          </div>
+        </li>
+        <li class="sc-step">
+          <span class="sc-step-num">2</span>
+          <div>
+            <h3>Si introduce un tema</h3>
+            <p>Ogni settimana portiamo un concetto dell’IFS o della leadership del Sé. Non una lezione. Solo quanto basta per aprire una porta.</p>
+          </div>
+        </li>
+        <li class="sc-step">
+          <span class="sc-step-num">3</span>
+          <div>
+            <h3>Andiamo dentro</h3>
+            <p>Esplorazione interiore guidata. Incontri le tue parti in tempo reale, con sostegno e spazio.</p>
+          </div>
+        </li>
+        <li class="sc-step">
+          <span class="sc-step-num">4</span>
+          <div>
+            <h3>Condividiamo</h3>
+            <p>Le persone raccontano le loro storie. Gli altri fanno da testimoni. Niente consigli, niente soluzioni. Solo la forza di essere visti da chi sta facendo lo stesso lavoro. Spesso è qui che avvengono i cambiamenti più inattesi.</p>
+          </div>
+        </li>
+        <li class="sc-step">
+          <span class="sc-step-num">5</span>
+          <div>
+            <h3>Chiudiamo</h3>
+            <p>Cosa è arrivato. Cosa si è mosso. Cosa porti con te nella settimana.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="sc-note">Ogni sessione segue questo arco, ma nessuna è uguale all’altra. È il gruppo a dare forma a ciò che emerge.</p>
+
+      <div class="sc-qualities">
+        <p class="sc-diamond" aria-hidden="true">&#9671;</p>
+        <h3>Le 8 qualità della leadership del Sé</h3>
+        <p>Ogni settimana attraversiamo una qualità della leadership del Sé: calma, chiarezza, curiosità, fiducia, compassione, coraggio, creatività e connessione. Non sono cose che ti aggiungiamo. Sono ciò che c’è già quando le tue parti si sentono abbastanza al sicuro da fare un passo indietro.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOR YOU IF -->
+  <section class="sc-light to-sand">
+    <div class="sc-inner">
+      <h2 class="sc-title">È per te se...</h2>
+      <ul class="sc-checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>Hai fatto ritiri, cerimonie, terapia o un lavoro interiore profondo e vuoi un modo per mantenerlo vivo</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>L’IFS ti incuriosisce e vuoi sperimentarlo in gruppo prima di impegnarti in un lavoro 1:1</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>Vuoi uno spazio regolare di esplorazione personale, non solo un evento isolato</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>Senti che qualcosa si è mosso dentro di te, ma la tua vita di tutti i giorni non ha ancora recuperato il passo</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>Vuoi esplorare questo lavoro in gruppo prima di impegnarti in un coaching 1:1. Il Cerchio Sacro è un atterraggio caldo e lento. Il gruppo è piccolo, il ritmo è accogliente e niente è forzato.</span></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- PRICING -->
+  <section class="sc-sand to-dark">
+    <div class="sc-inner sc-center">
+      <h2 class="sc-title">Prezzo semplice</h2>
+      <div class="sc-price-card">
+        <h3 class="sc-price-name">Gruppo del Cerchio Sacro</h3>
+        <div class="sc-price-amount">$220</div>
+        <p>7 sessioni in 8 settimane. 90 minuti ciascuna. Piccolo gruppo. Online su Zoom.</p>
+        <span class="sc-soldout" aria-disabled="true">Esaurito</span>
+        <p class="sc-price-note">Lasciami la tua email e ti avviso quando si apre il prossimo gruppo.<br><a href="#join">Iscrivimi alla lista d’attesa &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TESTIMONIALS -->
+  <section class="sc-dark to-light">
+    <div class="sc-inner sc-inner--wide">
+      <div class="sc-inner" style="margin:0 auto;">
+        <h2 class="sc-title">Cosa dice chi ha già partecipato</h2>
+        <p class="sc-story-quote">Nell’ultimo cerchio è arrivata una persona bloccata nello stesso schema. Grandi aperture in cerimonia, poi di nuovo la routine, e già il giovedì la chiarezza era sparita. In sette settimane ha iniziato a riconoscere quando al volante c’era il suo critico interiore. Senza combatterlo, solo notandolo. Ha capito cosa stava proteggendo quella parte. La durezza si è ammorbidita. Ha cominciato a fare piccole scelte da un luogo più calmo. Niente di eclatante. Solo costanza. Ci ha detto: <strong>&ldquo;Finalmente sento di vivere di più da quel luogo aperto, non solo di passarci ogni tanto.&rdquo;</strong> È questo che intendiamo per cambiamento quotidiano.</p>
+      </div>
+
+      <div class="sc-quotes">
+        <blockquote class="sc-quote">
+          <p>&ldquo;Ho trovato un linguaggio più gentile verso di me e più energia per la vita di tutti i giorni.&rdquo;</p>
+          <cite>M., Germania</cite>
+        </blockquote>
+        <blockquote class="sc-quote">
+          <p>&ldquo;Il sostegno del gruppo mi ha fatto fare davvero le pratiche. Il cambiamento è rimasto.&rdquo;</p>
+          <cite>S., Croazia</cite>
+        </blockquote>
+        <blockquote class="sc-quote">
+          <p>&ldquo;Uno spazio sicuro e caldo per integrare, con guide esperte e rispettose.&rdquo;</p>
+          <cite>A., Francia</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="sc-light to-dark">
+    <div class="sc-inner">
+      <h2 class="sc-title">Domande frequenti</h2>
+      <div class="sc-faq">
+        <details>
+          <summary>Devo conoscere l’IFS per partecipare?</summary>
+          <p>No. Introduciamo tutto ciò che ti serve man mano. Alcuni partecipanti hanno una lunga esperienza di IFS, altri sono completamente nuovi. Tutti sono benvenuti.</p>
+        </details>
+        <details>
+          <summary>È terapia?</summary>
+          <p>No. È uno spazio di coaching e di esplorazione personale. Non sostituisce la terapia. Se stai attraversando una crisi in corso, ti consigliamo di lavorare prima con un terapeuta abilitato.</p>
+        </details>
+        <details>
+          <summary>E se perdo una sessione?</summary>
+          <p>Sappiamo che la vita succede. Le sessioni vengono registrate se tutti i partecipanti sono d’accordo. In ogni caso, ti aiutiamo a restare in contatto con il percorso.</p>
+        </details>
+        <details>
+          <summary>Posso partecipare da qualsiasi luogo?</summary>
+          <p>Sì. Le sessioni sono online su Zoom. Ti servono solo uno spazio tranquillo e riservato e una connessione internet stabile.</p>
+        </details>
+        <details>
+          <summary>In che lingua sono le sessioni?</summary>
+          <p>Dipende dal gruppo. Alcuni sono in inglese, altri in spagnolo.</p>
+        </details>
+      </div>
+      <p class="sc-disclaimer">I servizi di coaching non sono terapia e non hanno lo scopo di diagnosticare, trattare, curare o prevenire alcuna malattia o condizione di salute mentale. Se stai vivendo una crisi di salute mentale, contatta un professionista abilitato.</p>
+    </div>
+  </section>
+
+
+  <!-- CLOSING WAITLIST -->
+  <section class="sc-dark sc-closing" id="join">
+    <div class="sc-inner sc-center">
+      <h2 class="sc-title">Il Cerchio Sacro #11 è al completo.</h2>
+      <p class="sc-lead">Iscriviti alla lista d’attesa e ti avviso quando si apre il prossimo gruppo.</p>
+      <span class="sc-soldout" aria-disabled="true" style="margin-top:28px;">Esaurito</span>
+
+      <div class="sc-waitlist">
+        <form class="dl-form js-waitlist" action="https://formspree.io/f/mlgpnddo" method="POST" novalidate>
+          <input type="text" name="name" placeholder="Il tuo nome e cognome" aria-label="Il tuo nome e cognome" autocomplete="name" required>
+          <input type="email" name="email" placeholder="La tua email" aria-label="La tua email" autocomplete="email" required>
+          <input type="hidden" name="_subject" value="Sacred Circles Waitlist (dariog.it, IT)">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important">
+          <button type="submit" class="btn-primary">Iscrivimi alla lista d’attesa</button>
+          <p class="dl-form-error" role="alert" hidden>Qualcosa è andato storto. Riprova, per favore.</p>
+        </form>
+        <div class="dl-success" role="status" hidden>
+          <p class="dl-success-msg">Sei in lista. Ti avviso quando si apre il prossimo gruppo.</p>
+        </div>
+      </div>
+
+      <p class="sc-closing-quote">&ldquo;Si guarisce nella relazione. Essere visti da altri che fanno lo stesso lavoro cambia qualcosa che il lavoro da soli non può toccare.&rdquo;</p>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Dario Hampi Pakari</p>
+        <p class="footer-tagline">Psicologo &middot; Uomo medicina &middot; Practitioner IFS</p>
+        <p class="footer-tagline">Parlo inglese, spagnolo, italiano e portoghese.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/it/percorsi/">Lavora con me</a>
+        <a href="/it/saray/">SARAY</a>
+        <a href="/it/chi-sono/">Chi sono</a>
+        <a href="/it/contatti/">Contatti</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/dario_hampi_pakari/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 15c3-1 6-1 9 1"/><path d="M7 12c4-1.5 8-1.5 12 1"/><path d="M6 9c5-2 10-2 14 1"/></svg>
+          Spotify
+        </a>
+        <a href="https://www.youtube.com/@dario_hampi_pakari" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="4"/><polygon points="10,8 16,12 10,16"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.facebook.com/dario.boag" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="https://substack.com/@dariog" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="4"/><line x1="4" y1="9" x2="20" y2="9"/><path d="M4 14l8 6 8-6"/></svg>
+          Substack
+        </a>
+        <a href="https://linktr.ee/dario_hampi_pakari" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="22" x2="12" y2="10"/><path d="M6 10l6-6 6 6"/><path d="M6 16l6-6 6 6"/></svg>
+          Linktree
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it &middot; <a href="/it/privacy/">Privacy</a> &middot; Sito web realizzato da <a href="https://fino.website/studio/" target="_blank" rel="noopener noreferrer">FINO Studio</a></div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

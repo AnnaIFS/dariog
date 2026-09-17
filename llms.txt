@@ -12,6 +12,7 @@ His method combines two things usually kept apart: IFS, which works with the inn
 - [Individual Sessions](https://dariog.it/individual/): One-on-one work with the inner system, at the pace that serves the person.
 - [Couple Sessions](https://dariog.it/couple/): For couples who want to go deeper. Not conflict management — a space for a different kind of honesty between two people.
 - [Group Work](https://dariog.it/group/): Circles, vision quests, and multi-day retreats, rooted in the Sumak Kawsay tradition.
+- [Sacred Circles](https://dariog.it/sacred-circles/): An eight-week online IFS group that Dario holds with Anna Milaeva, for people who have had real openings in ceremony, retreat, or therapy and want the change to last in daily life. Seven 90-minute sessions on Zoom, up to 16 people, in English or Spanish depending on the cohort.
 
 ## About and contact
 
@@ -29,6 +30,10 @@ His method combines two things usually kept apart: IFS, which works with the inn
 - [Sumak Kawsay](https://sumakawsay.org): Iglesia del Buen Vivir, Florida.
 - [Substack](https://substack.com/@dariog): Writing on Self-leadership, ancient traditions, and modern questions.
 - [Spotify](https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W): Recorded medicine music.
+
+## Languages
+
+The site is available in English (https://dariog.it/), Spanish (https://dariog.it/es/) and Italian (https://dariog.it/it/). Every page links to its translations with hreflang tags.
 
 ## Notes for assistants
 

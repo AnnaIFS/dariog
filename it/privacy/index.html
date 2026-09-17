@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Privacy | Dario Hampi Pakari</title>
+  <meta name="description" content="Cosa succede alle informazioni che condividi su dariog.it, in parole semplici.">
+  <link rel="canonical" href="https://dariog.it/it/privacy/">
+  <!-- I18N_HEAD_START -->
+  <link rel="alternate" hreflang="en" href="https://dariog.it/privacy/">
+  <link rel="alternate" hreflang="es" href="https://dariog.it/es/privacidad/">
+  <link rel="alternate" hreflang="it" href="https://dariog.it/it/privacy/">
+  <link rel="alternate" hreflang="x-default" href="https://dariog.it/privacy/">
+  <meta property="og:locale" content="it_IT">
+  <meta property="og:locale:alternate" content="en_GB">
+  <meta property="og:locale:alternate" content="es_419">
+  <!-- I18N_HEAD_END -->
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="Dario Giuffrida">
+  <meta name="theme-color" content="#2A1206">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/styles/main.css">
+  <style>
+    .pv-hero {
+      background: var(--earth);
+      padding: 150px 6% 90px;
+      position: relative;
+    }
+    .pv-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .pv-hero-inner { max-width: 720px; margin: 0 auto; }
+    .pv-hero .hero-label { text-transform: uppercase; margin-bottom: 18px; }
+    .pv-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 5vw, 4.4rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--bone);
+      margin-bottom: 20px;
+    }
+    .pv-hero p { font-size: 1.05rem; line-height: 1.8; color: rgba(240, 230, 208, 0.75); max-width: 580px; }
+
+    .pv-body { background: var(--bone); padding: 72px 6% 110px; }
+    .pv-inner { max-width: 720px; margin: 0 auto; }
+    .pv-short {
+      border-left: 3px solid var(--terra);
+      background: rgba(196, 98, 45, 0.06);
+      padding: 28px 30px;
+      margin-bottom: 56px;
+    }
+    .pv-short p { font-size: 1.02rem; line-height: 1.85; color: var(--earth); }
+    .pv-short strong { font-weight: 500; }
+    .pv-inner h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9rem;
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--earth);
+      margin: 52px 0 16px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(42, 18, 6, 0.12);
+    }
+    .pv-inner p, .pv-inner li { font-size: 1rem; line-height: 1.85; color: var(--earth); }
+    .pv-inner p + p { margin-top: 14px; }
+    .pv-inner ul { margin: 14px 0; }
+    .pv-inner li { position: relative; padding-left: 22px; margin-bottom: 10px; }
+    .pv-inner li::before { content: ''; position: absolute; left: 2px; top: 0.8em; width: 7px; height: 7px; border-radius: 50%; background: var(--ochre); }
+    .pv-inner a { color: var(--terra); border-bottom: 1px solid rgba(196, 98, 45, 0.35); }
+    .pv-inner a:hover { border-color: var(--terra); }
+    .pv-date { margin-top: 48px !important; font-style: italic; color: var(--ash) !important; }
+
+    @media (max-width: 768px) {
+      .pv-hero { padding: 140px 24px 70px; }
+      .pv-body { padding: 56px 24px 88px; }
+      .pv-hero p, .pv-short p, .pv-inner p, .pv-inner li { font-size: 1.12rem; }
+      .pv-short { padding: 22px 20px; }
+      .pv-inner h2 { font-size: 1.7rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="/it/" class="nav-logo">Dario Hampi Pakari</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-dropdown">
+        <a href="/it/percorsi/" class="nav-link dropdown-toggle">Percorsi &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="/it/individuale/">Individuale</a>
+          <a href="/it/coppia/">Coppia</a>
+          <a href="/it/gruppo/">Gruppo</a>
+          <a href="/it/cerchi-sacri/">Cerchi Sacri</a>
+          <a href="https://fino.website" target="_blank" rel="noopener noreferrer">Con le organizzazioni</a>
+        </div>
+      </div>
+      <a href="/it/saray/" class="nav-link">SARAY</a>
+      <a href="/it/chi-sono/" class="nav-link">Chi sono</a>
+      <a href="https://substack.com/@dariog" class="nav-link" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="/it/contatti/" class="nav-link">Contatti</a>
+      <!-- I18N_TOGGLE_START -->
+        <div class="nav-lang" role="navigation" aria-label="Lingua">
+          <a href="/privacy/" lang="en" hreflang="en"><span class="nav-lang-full">English</span><span class="nav-lang-short" aria-hidden="true">EN</span></a>
+          <span class="nav-lang-sep" aria-hidden="true">|</span>
+          <a href="/es/privacidad/" lang="es" hreflang="es"><span class="nav-lang-full">Español</span><span class="nav-lang-short" aria-hidden="true">ES</span></a>
+          <span class="nav-lang-sep" aria-hidden="true">|</span>
+          <a href="/it/privacy/" lang="it" hreflang="it" class="active" aria-current="page"><span class="nav-lang-full">Italiano</span><span class="nav-lang-short" aria-hidden="true">IT</span></a>
+        </div>
+      <!-- I18N_TOGGLE_END -->
+    </div>
+    <!-- I18N_TOGGLE_BAR_START -->
+      <div class="nav-lang nav-lang--bar" role="navigation" aria-label="Lingua">
+        <a href="/privacy/" lang="en" hreflang="en"><span class="nav-lang-full">English</span><span class="nav-lang-short" aria-hidden="true">EN</span></a>
+        <span class="nav-lang-sep" aria-hidden="true">|</span>
+        <a href="/es/privacidad/" lang="es" hreflang="es"><span class="nav-lang-full">Español</span><span class="nav-lang-short" aria-hidden="true">ES</span></a>
+        <span class="nav-lang-sep" aria-hidden="true">|</span>
+        <a href="/it/privacy/" lang="it" hreflang="it" class="active" aria-current="page"><span class="nav-lang-full">Italiano</span><span class="nav-lang-short" aria-hidden="true">IT</span></a>
+      </div>
+    <!-- I18N_TOGGLE_BAR_END -->
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="pv-hero">
+    <div class="pv-hero-inner">
+      <h1>Privacy</h1>
+      <p>Cosa succede alle informazioni che condividi con me qui. In parole semplici, perché non dovrebbe servirti un avvocato per capire cosa fa un sito web con il tuo nome.</p>
+    </div>
+  </section>
+
+
+  <!-- POLICY -->
+  <section class="pv-body">
+    <div class="pv-inner">
+
+      <div class="pv-short">
+        <p><strong>In breve.</strong> Questo sito offre IFS e coaching, non prestazioni sanitarie. Raccolgo ciò che mi invii tramite un modulo e nient’altro. Il sito in sé non installa cookie e non fa tracciamento, e non chiedo informazioni sulla salute. Due pagine mostrano un player o un calendario di prenotazione di un’altra azienda, che possono installare i propri cookie (dettagli più sotto). Non vendo mai le tue informazioni, cancello entro dodici mesi le richieste che non diventano un lavoro insieme, e puoi chiedermi in qualsiasi momento di mostrarti ciò che conservo o di cancellarlo.</p>
+      </div>
+
+      <h2>Chi sono e da dove lavoro</h2>
+      <p>Dario Giuffrida, conosciuto come Dario Hampi Pakari, è il titolare del trattamento dei dati per dariog.it. La mia attività è registrata in Italia. Lavoro con persone di tutto il mondo, in presenza e online.</p>
+      <p>Questa informativa segue il Regolamento generale sulla protezione dei dati dell’Unione europea (GDPR) e la normativa italiana sulla protezione dei dati, e la applico a tutti, ovunque tu sia. Se la legge del paese in cui vivi ti riconosce diritti più ampi, quei diritti restano validi. Puoi scrivermi per qualsiasi punto di questa pagina tramite il <a href="/it/contatti/">modulo di contatto</a>. Rispondo entro trenta giorni.</p>
+
+      <h2>Che cos’è questa attività</h2>
+      <p>IFS, coaching e cerchi di gruppo. Non psicoterapia, non trattamenti medici o di salute mentale. Non fornisco prestazioni sanitarie tramite questo sito e non fatturo ad assicurazioni.</p>
+      <p>Qui non chiedo e non raccolgo informazioni sulla salute: niente diagnosi, niente cartelle cliniche o di terapia, niente storia di farmaci o trattamenti. Ti prego di non inviarli tramite il sito. Non mi servono e non li conservo.</p>
+
+      <h2>Cosa raccolgo e perché</h2>
+      <ul>
+        <li><strong>Modulo di contatto:</strong> il tuo nome, il tuo indirizzo email e ciò che scrivi, per poterti rispondere. La base giuridica è il tuo consenso e, se poi lavoriamo insieme, l’accordo tra noi.</li>
+        <li><strong>Download gratuito di SARAY:</strong> il tuo nome e il tuo indirizzo email, per poterti inviare l’album. La base giuridica è il tuo consenso.</li>
+        <li><strong>Lista d’attesa dei Cerchi Sacri:</strong> il tuo nome e il tuo indirizzo email, così che io e Anna Milaeva possiamo avvisarti quando si forma un cerchio e mandarti aggiornamenti sui Cerchi Sacri. Conduciamo i Cerchi Sacri insieme, quindi condividiamo questa lista, e Anna la riceve tramite il proprio servizio di moduli. La base giuridica è il tuo consenso, e puoi chiedere a uno qualsiasi di noi due di toglierti dalla lista.</li>
+        <li><strong>Chiamate conoscitive:</strong> si prenotano tramite Calendly, nella pagina contatti o tramite un link. Vedo i dati di prenotazione che inserisci. La base giuridica è l’accordo tra noi.</li>
+        <li><strong>Mailing list:</strong> gestite su Mailchimp. La base giuridica è il tuo consenso, e puoi disiscriverti da qualsiasi email.</li>
+        <li><strong>Scritti:</strong> pubblicati su Substack. La base giuridica è il tuo consenso, e puoi disiscriverti da qualsiasi numero.</li>
+        <li><strong>Donazioni:</strong> gestite su Stripe e PayPal. Vedo il tuo nome, il tuo indirizzo email e l’importo, mai i dati completi della tua carta. La base giuridica è il pagamento che scegli di fare.</li>
+      </ul>
+      <p>Fornire questi dati è sempre una tua scelta. Nulla su questo sito li richiede, se non la cosa che stai chiedendo tu.</p>
+
+      <h2>Chi altro li gestisce</h2>
+      <p>Queste aziende svolgono ciascuna un compito per mio conto:</p>
+      <ul>
+        <li><strong>Formspree</strong> inoltra i moduli inviati alla mia casella di posta. <a href="https://formspree.io/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Informativa privacy</a>.</li>
+        <li><strong>Calendly</strong> gestisce le prenotazioni delle chiamate conoscitive. <a href="https://calendly.com/privacy" target="_blank" rel="noopener noreferrer">Informativa privacy</a>.</li>
+        <li><strong>Mailchimp</strong> invia le mailing list. <a href="https://www.intuit.com/privacy/statement/" target="_blank" rel="noopener noreferrer">Informativa privacy</a>.</li>
+        <li><strong>Substack</strong> ospita i miei scritti e i relativi abbonamenti. <a href="https://substack.com/privacy" target="_blank" rel="noopener noreferrer">Informativa privacy</a>.</li>
+        <li><strong>Stripe</strong> e <strong>PayPal</strong> elaborano le donazioni. <a href="https://stripe.com/privacy" target="_blank" rel="noopener noreferrer">Informativa privacy di Stripe</a>, <a href="https://www.paypal.com/myaccount/privacy/privacyhub" target="_blank" rel="noopener noreferrer">informativa privacy di PayPal</a>.</li>
+        <li><strong>Spotify</strong> riproduce il brano incorporato nella pagina di SARAY. <a href="https://www.spotify.com/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Informativa privacy</a>.</li>
+        <li><strong>GitHub Pages</strong> ospita questo sito e conserva i normali log del server, compresi gli indirizzi IP, per motivi di sicurezza. <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">Informativa privacy</a>.</li>
+        <li><strong>Google Fonts</strong> fornisce i caratteri tipografici, quindi il tuo browser li richiede a Google e, in questo passaggio, il tuo indirizzo IP arriva a Google.</li>
+      </ul>
+      <p>Diverse di queste aziende hanno sede negli Stati Uniti, e lì si trova anche Anna, che riceve la lista d’attesa dei Cerchi Sacri. Quando le tue informazioni vengono trasferite lì, mi baso sulle garanzie che il GDPR richiede per i trasferimenti fuori dall’Unione europea, come l’EU-US Data Privacy Framework o le clausole contrattuali tipo della Commissione europea. Nessun altro le riceve. Non le vendo e non le uso per la pubblicità. L’unica eccezione è un obbligo di legge che non posso rifiutare, e te lo direi a meno che non mi fosse impedito.</p>
+
+      <h2>Cookie e tracciamento</h2>
+      <p>Questo sito non installa cookie propri e non usa strumenti di analisi, pixel pubblicitari o registrazione delle sessioni.</p>
+      <p>Due pagine mostrano contenuti di altre aziende. La pagina contatti mostra un calendario di prenotazione di Calendly, e la pagina di SARAY mostra un player di Spotify. Quando si caricano, Calendly o Spotify possono installare i propri cookie e ricevere il tuo indirizzo IP, secondo le loro informative privacy linkate sopra. Il resto del sito non li carica.</p>
+      <p>Poiché il sito in sé non ti traccia, un segnale Do Not Track del tuo browser qui non cambia nulla. Se in futuro aggiungerò strumenti di analisi, questa sezione dirà cosa misurano e la data qui sotto cambierà prima che entrino in funzione.</p>
+
+      <h2>Per quanto tempo li conservo</h2>
+      <ul>
+        <li><strong>Richieste</strong> che non diventano un lavoro insieme: cancellate entro dodici mesi.</li>
+        <li><strong>Richieste di download di SARAY:</strong> cancellate entro dodici mesi, a meno che tu non ti sia iscritto anche a una mailing list.</li>
+        <li><strong>Iscrizioni alla lista d’attesa e alle mailing list:</strong> finché non ti disiscrivi o chiedi di essere tolto dalla lista.</li>
+        <li><strong>Documentazione delle sessioni</strong> (calendario, accordi e i miei appunti di lavoro): per tutta la durata del lavoro insieme e fino a tre anni dopo.</li>
+        <li><strong>Fatture e registrazioni dei pagamenti:</strong> per il tempo richiesto dalla normativa fiscale e contabile italiana, attualmente dieci anni.</li>
+      </ul>
+
+      <h2>I tuoi diritti</h2>
+      <p>In base al GDPR puoi chiedermi quali dati conservo su di te, chiederne una copia, chiedermi di correggerli, chiedermi di cancellarli, chiedermi di limitarne o interromperne l’uso, opporti a determinati utilizzi, ricevere le tue informazioni in un formato portabile e revocare il tuo consenso in qualsiasi momento. La revoca del consenso non annulla ciò che è stato fatto mentre il consenso era valido.</p>
+      <p>Puoi anche presentare un reclamo a un’autorità per la protezione dei dati. In Italia è il <a href="https://www.garanteprivacy.it/" target="_blank" rel="noopener noreferrer">Garante per la protezione dei dati personali</a>, oppure puoi rivolgerti all’autorità del paese in cui vivi. Se sei nel Regno Unito, lo UK GDPR ti riconosce gli stessi diritti. Se sei in qualsiasi altra parte del mondo, ti riconosco comunque questi diritti.</p>
+      <p>Chiedilo tramite il <a href="/it/contatti/">modulo di contatto</a>. Non devi giustificare nulla né compilare moduli.</p>
+
+      <h2>Come li proteggo</h2>
+      <p>Questo sito viene servito tramite una connessione cifrata, e i servizi elencati sopra conservano le informazioni in account protetti da password robuste e uniche e dall’autenticazione a due fattori dove disponibile. Nessun sistema è perfetto. Se dovesse succedere qualcosa alle tue informazioni, te lo direi tempestivamente e lo notificherei al Garante nei casi previsti dalla legge.</p>
+
+      <h2>Minori</h2>
+      <p>Questo lavoro è rivolto agli adulti. Non raccolgo consapevolmente informazioni da persone con meno di sedici anni. Se pensi che un minore mi abbia inviato qualcosa, dimmelo tramite il <a href="/it/contatti/">modulo di contatto</a> e lo cancellerò.</p>
+
+      <h2>Altri siti</h2>
+      <p>Questo sito rimanda a Instagram, Facebook, YouTube, Spotify, Apple Music, Substack, Linktree, Samply, WhatsApp, Redbubble, Stripe, PayPal, Calendly e ai siti delle comunità e delle persone con cui lavoro. Quando segui un link sei sul loro sito, soggetto alla loro informativa privacy e non a questa.</p>
+
+      <h2>Modifiche</h2>
+      <p>Se qualcosa di tutto questo cambia in modo rilevante, aggiornerò questa pagina e cambierò la data qui sotto prima che la modifica entri in vigore. Non c’è un avviso separato, quindi è la data a dirti se qualcosa è cambiato.</p>
+
+      <p class="pv-date">Data di entrata in vigore: 17 settembre 2026.</p>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Dario Hampi Pakari</p>
+        <p class="footer-tagline">Psicologo &middot; Uomo medicina &middot; Practitioner IFS</p>
+        <p class="footer-tagline">Parlo inglese, spagnolo, italiano e portoghese.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/it/percorsi/">Lavora con me</a>
+        <a href="/it/saray/">SARAY</a>
+        <a href="/it/chi-sono/">Chi sono</a>
+        <a href="/it/contatti/">Contatti</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/dario_hampi_pakari/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 15c3-1 6-1 9 1"/><path d="M7 12c4-1.5 8-1.5 12 1"/><path d="M6 9c5-2 10-2 14 1"/></svg>
+          Spotify
+        </a>
+        <a href="https://www.youtube.com/@dario_hampi_pakari" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="4"/><polygon points="10,8 16,12 10,16"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.facebook.com/dario.boag" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="https://substack.com/@dariog" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="4"/><line x1="4" y1="9" x2="20" y2="9"/><path d="M4 14l8 6 8-6"/></svg>
+          Substack
+        </a>
+        <a href="https://linktr.ee/dario_hampi_pakari" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="22" x2="12" y2="10"/><path d="M6 10l6-6 6 6"/><path d="M6 16l6-6 6 6"/></svg>
+          Linktree
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it &middot; <a href="/it/privacy/">Privacy</a> &middot; Sito web realizzato da <a href="https://fino.website/studio/" target="_blank" rel="noopener noreferrer">FINO Studio</a></div>
+  </footer>
+
+  <script src="/js/main.js"></script>
+</body>
+</html>

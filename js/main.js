@@ -140,9 +140,114 @@ var SARAY = {
 
   // --- Assets ---------------------------------------------------------
   cover: '/images/saray-cover.jpg',
-  page:  '/saray',
-  releaseLabel: '21 June' // shown before release
+  // The SARAY page in each site language (see SITE_LANG below)
+  pages: { en: '/saray', es: '/es/saray/', it: '/it/saray/' },
+  // Release date as shown before release, per language
+  releaseLabel: { en: '21 June', es: 'el 21 de junio', it: 'il 21 giugno' }
 };
+
+
+// ============================================================
+//  SITE LANGUAGE
+//  Each page declares its language in <html lang="..">. Every piece of
+//  text this script injects comes from the table below, so the English,
+//  Spanish and Italian pages all get their own wording.
+//  To change a phrase, edit it here for each language.
+// ============================================================
+var SITE_LANG = (function () {
+  var l = (document.documentElement.getAttribute('lang') || 'en').slice(0, 2).toLowerCase();
+  return (l === 'es' || l === 'it') ? l : 'en';
+})();
+
+var STRINGS = {
+  en: {
+    listenNow:      'Listen now',
+    morePlatforms:  '+ more platforms &rarr;',
+    orKeep:         'or keep it forever',
+    downloadFree:   'Download the album free',
+    downloadNote:   'Free for everyone. Leave your name &amp; email and we&rsquo;ll send you the download link.',
+    albumAria:      'SARAY album',
+    barPre:         'new music album &middot; out {date}',
+    barOut:         'new album &middot; out now',
+    joinListening:  'Join the listening',
+    listenDownload: 'Listen &amp; download',
+    details:        'Details',
+    listen:         'Listen',
+    coverAlt:       'SARAY album cover',
+    theAlbum:       'The Album',
+    footerPre:      'Out {date} &middot; medicine music',
+    footerOut:      'Out now &middot; medicine music',
+    download:       'Download',
+    notConfigured:  'Download form not configured yet.',
+    sending:        'Sending…',
+    failed:         'Something went wrong - please try again.',
+    invalid:        'Please add your name and a valid email.'
+  },
+  es: {
+    listenNow:      'Escucha ahora',
+    morePlatforms:  '+ más plataformas &rarr;',
+    orKeep:         'o guárdalo para siempre',
+    downloadFree:   'Descarga el álbum gratis',
+    downloadNote:   'Gratis para todos. Deja tu nombre y tu correo y te enviamos el enlace de descarga.',
+    albumAria:      'Álbum SARAY',
+    barPre:         'nuevo álbum &middot; sale {date}',
+    barOut:         'nuevo álbum &middot; ya disponible',
+    joinListening:  'Súmate a la escucha',
+    listenDownload: 'Escucha y descarga',
+    details:        'Detalles',
+    listen:         'Escuchar',
+    coverAlt:       'Portada del álbum SARAY',
+    theAlbum:       'El álbum',
+    footerPre:      'Sale {date} &middot; música medicina',
+    footerOut:      'Ya disponible &middot; música medicina',
+    download:       'Descargar',
+    notConfigured:  'El formulario de descarga todavía no está configurado.',
+    sending:        'Enviando…',
+    failed:         'Algo salió mal. Por favor, inténtalo de nuevo.',
+    invalid:        'Escribe tu nombre y un correo válido.'
+  },
+  it: {
+    listenNow:      'Ascolta ora',
+    morePlatforms:  '+ altre piattaforme &rarr;',
+    orKeep:         'oppure tienilo per sempre',
+    downloadFree:   'Scarica l&rsquo;album gratis',
+    downloadNote:   'Gratis per tutti. Lascia nome ed email e ti mandiamo il link per scaricarlo.',
+    albumAria:      'Album SARAY',
+    barPre:         'nuovo album &middot; esce {date}',
+    barOut:         'nuovo album &middot; disponibile ora',
+    joinListening:  'Unisciti all&rsquo;ascolto',
+    listenDownload: 'Ascolta e scarica',
+    details:        'Dettagli',
+    listen:         'Ascolta',
+    coverAlt:       'Copertina dell&rsquo;album SARAY',
+    theAlbum:       'L&rsquo;album',
+    footerPre:      'Esce {date} &middot; musica medicina',
+    footerOut:      'Disponibile ora &middot; musica medicina',
+    download:       'Scarica',
+    notConfigured:  'Il modulo di download non è ancora configurato.',
+    sending:        'Invio in corso…',
+    failed:         'Qualcosa è andato storto. Riprova, per favore.',
+    invalid:        'Inserisci il tuo nome e un&rsquo;email valida.'
+  }
+};
+
+// Look up a phrase for the current page language (falls back to English).
+// Strings may contain HTML entities, so only use t() inside innerHTML;
+// for textContent use tText().
+function t(key) {
+  var table = STRINGS[SITE_LANG] || STRINGS.en;
+  var str = table[key] != null ? table[key] : STRINGS.en[key];
+  var label = SARAY.releaseLabel[SITE_LANG] || SARAY.releaseLabel.en;
+  return str.replace('{date}', label);
+}
+function tText(key) {
+  var el = document.createElement('textarea');
+  el.innerHTML = t(key);
+  return el.value;
+}
+
+// The SARAY page for the current language
+SARAY.page = SARAY.pages[SITE_LANG] || SARAY.pages.en;
 
 
 // ---- State -----------------------------------------------------------
@@ -180,7 +285,7 @@ function sarayWireLinks(scope) {
     // pure same-page anchor (smooth-scrolls, no reload); otherwise link to the
     // SARAY page's form. Same-tab either way.
     if (key === 'download') {
-      a.setAttribute('href', document.getElementById('get-album') ? '#get-album' : '/saray/#get-album');
+      a.setAttribute('href', document.getElementById('get-album') ? '#get-album' : SARAY.page.replace(/\/?$/, '/') + '#get-album');
       return;
     }
     a.setAttribute('href', sarayLink(key));
@@ -203,16 +308,16 @@ var SARAY_ICON = {
 // Drop <div data-saray-listen></div> anywhere and this fills it.
 function sarayListenHTML() {
   return '' +
-    '<p class="album-cta-label">Listen now</p>' +
+    '<p class="album-cta-label">' + t('listenNow') + '</p>' +
     '<div class="album-links">' +
       '<a class="album-link" data-saray="spotify">' + SARAY_ICON.spotify + '<span>Spotify</span></a>' +
       '<a class="album-link" data-saray="appleMusic">' + SARAY_ICON.apple + '<span>Apple Music</span></a>' +
       '<a class="album-link" data-saray="youtube">' + SARAY_ICON.youtube + '<span>YouTube</span></a>' +
     '</div>' +
-    '<a class="album-more" data-saray="more">+ more platforms &rarr;</a>' +
-    '<div class="album-or"><span>or keep it forever</span></div>' +
-    '<a class="album-download" data-saray="download">' + SARAY_ICON.download + '<span>Download the album free</span></a>' +
-    '<p class="album-download-note">Free for everyone. Leave your name &amp; email and we&rsquo;ll send you the download link.</p>';
+    '<a class="album-more" data-saray="more">' + t('morePlatforms') + '</a>' +
+    '<div class="album-or"><span>' + t('orKeep') + '</span></div>' +
+    '<a class="album-download" data-saray="download">' + SARAY_ICON.download + '<span>' + t('downloadFree') + '</span></a>' +
+    '<p class="album-download-note">' + t('downloadNote') + '</p>';
 }
 
 function sarayBuildListenModules() {
@@ -232,20 +337,20 @@ function sarayBuildBar() {
   bar.className = 'album-bar';
   bar.id = 'albumBar';
   bar.innerHTML =
-    '<a class="album-bar-brand" href="' + SARAY.page + '" aria-label="SARAY album">' +
+    '<a class="album-bar-brand" href="' + SARAY.page + '" aria-label="' + t('albumAria') + '">' +
       '<img class="album-bar-cover" src="' + SARAY.cover + '" alt="">' +
       '<span class="album-bar-eq" aria-hidden="true"><i></i><i></i><i></i><i></i></span>' +
-      '<span class="album-bar-text saray-when-pre"><strong>SARAY</strong> &middot; new music album &middot; out ' + SARAY.releaseLabel + '</span>' +
-      '<span class="album-bar-text saray-when-out"><strong>SARAY</strong> &middot; new album &middot; out now</span>' +
+      '<span class="album-bar-text saray-when-pre"><strong>SARAY</strong> &middot; ' + t('barPre') + '</span>' +
+      '<span class="album-bar-text saray-when-out"><strong>SARAY</strong> &middot; ' + t('barOut') + '</span>' +
     '</a>' +
     '<div class="album-bar-actions saray-when-pre">' +
-      '<a class="album-bar-btn" href="' + SARAY.links.notify + '" target="_blank" rel="noopener noreferrer">Join the listening &rarr;</a>' +
+      '<a class="album-bar-btn" href="' + SARAY.links.notify + '" target="_blank" rel="noopener noreferrer">' + t('joinListening') + ' &rarr;</a>' +
     '</div>' +
     '<div class="album-bar-actions saray-when-out">' +
-      '<a class="album-bar-btn" href="' + SARAY.page + '">Listen &amp; download &rarr;</a>' +
+      '<a class="album-bar-btn" href="' + SARAY.page + '">' + t('listenDownload') + ' &rarr;</a>' +
     '</div>' +
-    '<a class="album-bar-go saray-when-pre" href="' + SARAY.page + '">Details &rarr;</a>' +
-    '<a class="album-bar-go saray-when-out" href="' + SARAY.page + '">Listen &rarr;</a>';
+    '<a class="album-bar-go saray-when-pre" href="' + SARAY.page + '">' + t('details') + ' &rarr;</a>' +
+    '<a class="album-bar-go saray-when-out" href="' + SARAY.page + '">' + t('listen') + ' &rarr;</a>';
 
   document.body.insertBefore(bar, document.body.firstChild);
   document.body.classList.add('has-album-bar');
@@ -260,21 +365,21 @@ function sarayBuildFooter() {
   var block = document.createElement('div');
   block.className = 'footer-album';
   block.innerHTML =
-    '<img class="footer-album-cover" src="' + SARAY.cover + '" alt="SARAY album cover">' +
+    '<img class="footer-album-cover" src="' + SARAY.cover + '" alt="' + t('coverAlt') + '">' +
     '<div class="footer-album-info">' +
-      '<p class="footer-album-label">The Album</p>' +
+      '<p class="footer-album-label">' + t('theAlbum') + '</p>' +
       '<p class="footer-album-title">SARAY</p>' +
-      '<p class="footer-album-meta saray-when-pre">Out ' + SARAY.releaseLabel + ' &middot; medicine music</p>' +
-      '<p class="footer-album-meta saray-when-out">Out now &middot; medicine music</p>' +
+      '<p class="footer-album-meta saray-when-pre">' + t('footerPre') + '</p>' +
+      '<p class="footer-album-meta saray-when-out">' + t('footerOut') + '</p>' +
     '</div>' +
     '<div class="footer-album-links saray-when-pre">' +
-      '<a href="' + SARAY.links.notify + '" target="_blank" rel="noopener noreferrer">Join the listening</a>' +
+      '<a href="' + SARAY.links.notify + '" target="_blank" rel="noopener noreferrer">' + t('joinListening') + '</a>' +
     '</div>' +
     '<div class="footer-album-links saray-when-out">' +
       '<a data-saray="spotify">Spotify</a>' +
       '<a data-saray="appleMusic">Apple Music</a>' +
       '<a data-saray="youtube">YouTube</a>' +
-      '<a data-saray="download">Download</a>' +
+      '<a data-saray="download">' + t('download') + '</a>' +
     '</div>';
 
   var inner = footer.querySelector('.footer-inner');
@@ -301,13 +406,13 @@ function sarayDownloadForm() {
     if (errEl) errEl.hidden = true;
 
     if (!SARAY.formAction) {
-      if (errEl) { errEl.textContent = 'Download form not configured yet.'; errEl.hidden = false; }
+      if (errEl) { errEl.textContent = tText('notConfigured'); errEl.hidden = false; }
       return;
     }
 
     var btn = form.querySelector('button[type="submit"]');
     var label = btn ? btn.textContent : '';
-    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    if (btn) { btn.disabled = true; btn.textContent = tText('sending'); }
 
     fetch(SARAY.formAction, {
       method: 'POST',
@@ -321,8 +426,46 @@ function sarayDownloadForm() {
         throw new Error('bad response');
       }
     }).catch(function () {
-      if (errEl) { errEl.textContent = 'Something went wrong - please try again.'; errEl.hidden = false; }
+      if (errEl) { errEl.textContent = tText('failed'); errEl.hidden = false; }
       if (btn) { btn.disabled = false; btn.textContent = label; }
+    });
+  });
+}
+
+
+// ---- Waitlist forms (Sacred Circles page) ----------------------------
+// Same AJAX pattern as the download form: post to the form's own action,
+// then swap the form for the success message that follows it.
+function waitlistForms() {
+  document.querySelectorAll('form.js-waitlist').forEach(function (form) {
+    var success = form.nextElementSibling;
+    var errEl = form.querySelector('.dl-form-error');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (errEl) errEl.hidden = true;
+
+      if (!form.checkValidity()) {
+        if (errEl) { errEl.textContent = tText('invalid'); errEl.hidden = false; }
+        return;
+      }
+
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = tText('sending'); }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (!res.ok) throw new Error('bad response');
+        form.hidden = true;
+        if (success) success.hidden = false;
+      }).catch(function () {
+        if (errEl) { errEl.textContent = tText('failed'); errEl.hidden = false; }
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+      });
     });
   });
 }
@@ -366,6 +509,7 @@ sarayBuildFooter();
 sarayBuildListenModules();
 sarayWireLinks();
 sarayDownloadForm();
+waitlistForms();
 sarayTick();
 
 // Keep the hero countdown ticking only while we are still pre-release.
