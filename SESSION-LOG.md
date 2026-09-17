@@ -1,5 +1,44 @@
 # dariog.it — Session Log
 
+## Session: September 17, 2026 — "A bridge between the worlds" landing page
+
+**Asked:** replace the Mailchimp campaign page "Un puente entre los mundos" with a landing page on dariog.it, in English and Spanish, in Dario's style, with the new photo of Anna and Dario. It must work as a brochure too. Not in the menu, shared by link only. No FINO anywhere on it; only Dario's and Anna's personal sites.
+
+### Built
+
+- **`/a-bridge-between-worlds/`** and **`/es/un-puente-entre-los-mundos/`**, linked to each other with a simple English | Español switch and hreflang tags. Content from the Mailchimp page (welcome, IFS Preparation Circle, Chakana Altar Ceremony, mission, who we are), rewritten to Dario's plain voice; the Spanish is neutral Latin American and uses "Sistemas de Familia Interna", as on annamilaeva.com. Dario's bio uses the facts already on his site; FINO was removed at Anna's request.
+- **`styles/landing.css`**: one stylesheet for both languages. It does not load `js/main.js`, so there is no album bar or site menu on these pages.
+- **Brochure**: an `@media print` block lays the same page out as 4 A4 pages (cover and welcome, the two circles, photo and mission, who we are and contact). "Save this page as a brochure (PDF)" at the bottom calls the browser's print dialog. Keeping print inside the page means the brochure can never drift from the web copy.
+- **Images**: `images/altar-aerial.jpg` (357 KB) is a JPG made from the unused 1.3 MB `half-moon-altar-background.gif`, used behind the header. It shares the arch photo with the Sacred Circles page.
+
+### Still open
+
+- **Nina Urku "fourteen years"** comes from the old Mailchimp page and may be out of date.
+- **Not in `sitemap.xml`** on purpose for now. Add it after the Spanish/Italian merge if the page should be found by search.
+- The Spanish URL lives under `/es/`, which the upcoming translation will also use. It is not part of the translation route map.
+
+---
+
+## Session: September 17, 2026 — Sacred Circles page (English)
+
+**Asked:** bring the Sacred Circles page from annamilaeva.com onto Dario's site, since Anna and Dario run the program together. Copy is approved as is and must only change point of view, from Anna to Dario.
+
+### Built
+
+- **`/sacred-circles/`**: same copy as annamilaeva.com/sacred-circles, verified with a line-by-line text diff. The only wording changes are the voice: "Dario is…" became "I am…", "For Dario…" became "For me…", and the waitlist lines are Dario's "I". Laid out in Dario's palette and fonts; FAQ uses native `<details>` so it needs no JavaScript.
+- **Header photo**: `images/anna-and-dario-arch.webp`, a cutout of Anna and Dario composited into a terracotta arch in the site's colours. The first version put the cutout in a CSS circle, which clipped Dario's shoulder but not Anna's; Anna flagged it. Baking the arch into the image crops both shoulders on one flat line at any screen width.
+- **Waitlist**: both forms post to Anna's Formspree list (`mlgpnddo`), tagged "(dariog.it)" in the subject, so there is one shared waitlist. Honeypot included. `waitlistForms()` in `js/main.js` handles submit, errors and the success message. The privacy line under the forms was removed at Anna's request; a privacy page for Dario is in review.
+- **Linked from** the Work menu on every page and the Group page's "See Current Cohort" button, which used to send people to annamilaeva.com.
+- **SEO**: canonical, social card image `images/og-sacred-circles.jpg`, `Service` + `FAQPage` + `BreadcrumbList` JSON-LD (offer marked SoldOut), sitemap and llms.txt entries.
+
+### Still open
+
+- **Cohort #11 dates (April to June 2026) are in the past** and show Sold Out, same as Anna's page. Both sites need the next cohort when it is set.
+- **In local review, not pushed:** the "A bridge between the worlds" landing page (EN + ES, printable as a brochure), Dario's privacy policy, and the full Spanish/Italian translation with a language toggle (built in a separate worktree).
+- `images/anna-and-dario-cutout.webp` is untracked and no longer used by anything; delete it at the merge.
+
+---
+
 ## Session: August 24, 2026 — SEO + AI-crawler setup, and the Search Console answer
 
 **Asked:** is the site on Google Search Console, and was a sitemap ever created? Then: build everything needed for SEO and for AI bots, full audit and setup.
