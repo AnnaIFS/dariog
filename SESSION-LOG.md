@@ -1,5 +1,24 @@
 # dariog.it — Session Log
 
+## Session: September 17, 2026 — "A bridge between the worlds" landing page
+
+**Asked:** replace the Mailchimp campaign page "Un puente entre los mundos" with a landing page on dariog.it, in English and Spanish, in Dario's style, with the new photo of Anna and Dario. It must work as a brochure too. Not in the menu, shared by link only. No FINO anywhere on it; only Dario's and Anna's personal sites.
+
+### Built
+
+- **`/a-bridge-between-worlds/`** and **`/es/un-puente-entre-los-mundos/`**, linked to each other with a simple English | Español switch and hreflang tags. Content from the Mailchimp page (welcome, IFS Preparation Circle, Chakana Altar Ceremony, mission, who we are), rewritten to Dario's plain voice; the Spanish is neutral Latin American and uses "Sistemas de Familia Interna", as on annamilaeva.com. Dario's bio uses the facts already on his site; FINO was removed at Anna's request.
+- **`styles/landing.css`**: one stylesheet for both languages. It does not load `js/main.js`, so there is no album bar or site menu on these pages.
+- **Brochure**: an `@media print` block lays the same page out as 4 A4 pages (cover and welcome, the two circles, photo and mission, who we are and contact). "Save this page as a brochure (PDF)" at the bottom calls the browser's print dialog. Keeping print inside the page means the brochure can never drift from the web copy.
+- **Images**: `images/altar-aerial.jpg` (357 KB) is a JPG made from the unused 1.3 MB `half-moon-altar-background.gif`, used behind the header. It shares the arch photo with the Sacred Circles page.
+
+### Still open
+
+- **Nina Urku "fourteen years"** comes from the old Mailchimp page and may be out of date.
+- **Not in `sitemap.xml`** on purpose for now. Add it after the Spanish/Italian merge if the page should be found by search.
+- The Spanish URL lives under `/es/`, which the upcoming translation will also use. It is not part of the translation route map.
+
+---
+
 ## Session: September 17, 2026 — Sacred Circles page (English)
 
 **Asked:** bring the Sacred Circles page from annamilaeva.com onto Dario's site, since Anna and Dario run the program together. Copy is approved as is and must only change point of view, from Anna to Dario.
