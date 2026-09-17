@@ -328,6 +328,44 @@ function sarayDownloadForm() {
 }
 
 
+// ---- Waitlist forms (Sacred Circles page) ----------------------------
+// Same AJAX pattern as the download form: post to the form's own action,
+// then swap the form for the success message that follows it.
+function waitlistForms() {
+  document.querySelectorAll('form.js-waitlist').forEach(function (form) {
+    var success = form.nextElementSibling;
+    var errEl = form.querySelector('.dl-form-error');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (errEl) errEl.hidden = true;
+
+      if (!form.checkValidity()) {
+        if (errEl) { errEl.textContent = 'Please add your name and a valid email.'; errEl.hidden = false; }
+        return;
+      }
+
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(function (res) {
+        if (!res.ok) throw new Error('bad response');
+        form.hidden = true;
+        if (success) success.hidden = false;
+      }).catch(function () {
+        if (errEl) { errEl.textContent = 'Something went wrong - please try again.'; errEl.hidden = false; }
+        if (btn) { btn.disabled = false; btn.textContent = label; }
+      });
+    });
+  });
+}
+
+
 // ---- Hero countdown (SARAY page only) --------------------------------
 function pad2(n) { return n < 10 ? '0' + n : '' + n; }
 
@@ -366,6 +404,7 @@ sarayBuildFooter();
 sarayBuildListenModules();
 sarayWireLinks();
 sarayDownloadForm();
+waitlistForms();
 sarayTick();
 
 // Keep the hero countdown ticking only while we are still pre-release.

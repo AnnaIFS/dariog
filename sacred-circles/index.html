@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+  <title>Sacred Circles | Dario Hampi Pakari</title>
+  <meta name="description" content="A small-group coaching space for people doing deep inner work who want the changes to actually show up on a regular Tuesday. By Anna and Dario.">
+  <link rel="stylesheet" href="../styles/main.css">
+  <style>
+    /* ---- Hero ---- */
+    .sc-hero {
+      min-height: 78vh;
+      background:
+        radial-gradient(ellipse at 70% 45%, rgba(196, 98, 45, 0.22) 0%, rgba(42, 18, 6, 0) 55%),
+        var(--earth);
+      display: flex;
+      align-items: flex-end;
+      padding: 140px 6% 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .sc-hero::after {
+      content: '';
+      z-index: 2;
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      background: var(--bone);
+      clip-path: ellipse(60% 100% at 45% 100%);
+    }
+    .sc-rings {
+      position: absolute;
+      right: -14%;
+      top: 50%;
+      width: min(62vw, 720px);
+      transform: translateY(-50%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+    .sc-hero-grid {
+      position: relative;
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+      gap: 56px;
+      align-items: center;
+    }
+    .sc-hero-content { max-width: 640px; position: relative; padding-bottom: 110px; align-self: center; }
+    .sc-hero-photo {
+      position: relative;
+      justify-self: center;
+      width: 100%;
+      max-width: 440px;
+    }
+    .sc-hero-photo::before {
+      content: '';
+      position: absolute;
+      inset: -14px -14px 0 -14px;
+      border: 1px solid rgba(212, 148, 58, 0.35);
+      border-bottom: none;
+      border-radius: 999px 999px 0 0;
+    }
+    .sc-hero-photo img { position: relative; width: 100%; height: auto; }
+    .sc-hero-content .hero-label { text-transform: uppercase; margin-bottom: 20px; }
+    .sc-hero-content h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 5vw, 4.6rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--bone);
+    }
+    .sc-hero-content h1 em { color: var(--ochre); }
+    .sc-hero-sub {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(240, 230, 208, 0.78);
+      max-width: 500px;
+      margin: 24px 0 36px;
+      line-height: 1.8;
+    }
+    .sc-hero-sub span { color: var(--ochre); font-weight: 400; }
+
+    /* ---- Shared section shells ---- */
+    .sc-light, .sc-dark, .sc-sand {
+      padding: 100px 6%;
+      position: relative;
+    }
+    .sc-light { background: var(--bone); }
+    .sc-sand  { background: var(--parchment); }
+    .sc-dark  { background: var(--earth); color: var(--bone); }
+    .sc-light::after, .sc-dark::after, .sc-sand::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 40px;
+      clip-path: ellipse(60% 100% at 50% 100%);
+    }
+    .to-dark::after  { background: var(--earth); }
+    .to-light::after { background: var(--bone); }
+    .to-sand::after  { background: var(--parchment); }
+
+    .sc-closing::after { display: none; }
+    .sc-title, .sc-price-amount, .sc-step-num { font-variant-numeric: lining-nums; }
+
+    .sc-inner { max-width: 720px; margin: 0 auto; }
+    .sc-inner--wide { max-width: 980px; }
+    .sc-center { text-align: center; }
+
+    .sc-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3.6vw, 3rem);
+      font-weight: 300;
+      line-height: 1.2;
+      color: var(--earth);
+      margin-bottom: 12px;
+    }
+    .sc-dark .sc-title { color: var(--bone); }
+    .sc-lead {
+      font-size: 1rem;
+      color: var(--ash);
+      line-height: 1.8;
+    }
+    .sc-body p {
+      font-size: 1rem;
+      line-height: 1.85;
+      color: var(--earth);
+      margin-bottom: 16px;
+    }
+    .sc-body .sc-accent {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.55rem;
+      line-height: 1.4;
+      color: var(--terra);
+      margin: 32px 0;
+      padding-left: 20px;
+      border-left: 2px solid rgba(196, 98, 45, 0.3);
+    }
+
+    /* ---- Cohort ---- */
+    .sc-cohort-dates {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--terra);
+      margin-bottom: 32px;
+    }
+    .sc-schedule { margin-bottom: 28px; }
+    .sc-schedule p { font-size: 1rem; line-height: 1.8; color: var(--earth); }
+    .sc-schedule p + p { color: var(--ash); }
+    .sc-meta {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin: 0 auto 36px;
+      max-width: 640px;
+    }
+    .sc-meta span {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--earth);
+      border: 1px solid rgba(42, 18, 6, 0.2);
+      padding: 8px 14px;
+    }
+    .sc-meta .sc-price { color: var(--bone); background: var(--terra); border-color: var(--terra); }
+
+    .sc-soldout {
+      display: inline-block;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--bone);
+      background: var(--ash);
+      padding: 14px 40px;
+      cursor: not-allowed;
+    }
+
+    /* ---- Waitlist form ---- */
+    .sc-waitlist {
+      max-width: 440px;
+      margin: 36px auto 0;
+      padding-top: 36px;
+      border-top: 1px solid rgba(42, 18, 6, 0.14);
+    }
+    .sc-dark .sc-waitlist { border-top-color: rgba(240, 230, 208, 0.14); }
+    .sc-waitlist-intro {
+      font-size: 0.95rem;
+      color: rgba(42, 18, 6, 0.8);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .sc-dark .sc-waitlist-intro { color: rgba(240, 230, 208, 0.78); }
+    .sc-dark .dl-form input {
+      background: rgba(240, 230, 208, 0.06);
+      border-color: rgba(240, 230, 208, 0.25);
+      color: var(--bone);
+    }
+    .sc-dark .dl-form input::placeholder { color: rgba(240, 230, 208, 0.5); }
+    .sc-dark .dl-form-error { color: #F0A080; }
+    .sc-dark .dl-success-msg { color: var(--bone); }
+
+    /* ---- Story ---- */
+    .sc-story { display: block; }
+    .sc-photo {
+      position: sticky;
+      top: 110px;
+      aspect-ratio: 1 / 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+    .sc-photo::before {
+      content: '';
+      position: absolute;
+      left: 6%; right: 6%; top: 10%; bottom: 0;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 40%, #D98A55 0%, var(--terra) 60%, #A8501F 100%);
+    }
+    .sc-photo img {
+      position: relative;
+      width: 100%;
+      height: auto;
+      clip-path: inset(0 0 0 0 round 0 0 50% 50%);
+    }
+
+    /* ---- Steps ---- */
+    .sc-steps { margin-top: 48px; counter-reset: step; }
+    .sc-step {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: 24px;
+      padding: 28px 0;
+      border-top: 1px solid rgba(240, 230, 208, 0.12);
+    }
+    .sc-step:last-child { border-bottom: 1px solid rgba(240, 230, 208, 0.12); }
+    .sc-step-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.6rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--ochre);
+    }
+    .sc-step h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: var(--bone);
+      margin-bottom: 6px;
+    }
+    .sc-step p { font-size: 1rem; line-height: 1.8; color: rgba(240, 230, 208, 0.75); }
+    .sc-note {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.3rem;
+      color: var(--ash);
+      margin-top: 32px;
+    }
+    .sc-qualities {
+      margin-top: 64px;
+      padding: 40px 36px;
+      border: 1px solid rgba(212, 148, 58, 0.3);
+      background: rgba(212, 148, 58, 0.05);
+    }
+    .sc-diamond { font-size: 1.3rem; color: var(--ochre); margin-bottom: 12px; }
+    .sc-qualities h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 300;
+      color: var(--bone);
+      margin-bottom: 16px;
+    }
+    .sc-qualities p { font-size: 1rem; line-height: 1.85; color: rgba(240, 230, 208, 0.78); }
+
+    /* ---- For you if ---- */
+    .sc-checklist { margin-top: 40px; }
+    .sc-checklist li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(42, 18, 6, 0.1);
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--earth);
+    }
+    .sc-checklist li:first-child { border-top: 1px solid rgba(42, 18, 6, 0.1); }
+    .sc-checklist svg { width: 22px; height: 22px; margin-top: 4px; color: var(--terra); }
+
+    /* ---- Pricing ---- */
+    .sc-price-card {
+      max-width: 440px;
+      margin: 40px auto 0;
+      padding: 48px 36px;
+      background: var(--bone);
+      border-top: 3px solid var(--terra);
+      text-align: center;
+    }
+    .sc-price-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--earth);
+    }
+    .sc-price-amount {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4rem;
+      font-weight: 300;
+      line-height: 1;
+      color: var(--earth);
+      margin: 12px 0 16px;
+    }
+    .sc-price-card p { font-size: 1rem; line-height: 1.8; color: var(--earth); margin-bottom: 28px; }
+    .sc-price-card .sc-price-note { font-size: 0.9rem; color: var(--ash); margin: 20px 0 0; }
+    .sc-price-card .sc-price-note a { color: var(--terra); border-bottom: 1px solid rgba(196, 98, 45, 0.35); }
+
+    /* ---- Testimonials ---- */
+    .sc-story-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.3rem, 2vw, 1.6rem);
+      font-weight: 300;
+      line-height: 1.6;
+      color: var(--bone);
+      margin-top: 40px;
+    }
+    .sc-story-quote strong { font-weight: 400; font-style: italic; color: var(--ochre); }
+    .sc-quotes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .sc-quote {
+      padding: 28px 24px;
+      border: 1px solid rgba(212, 148, 58, 0.25);
+    }
+    .sc-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      line-height: 1.5;
+      color: var(--bone);
+      margin-bottom: 16px;
+    }
+    .sc-quote cite {
+      font-style: normal;
+      font-size: 0.75rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--ochre);
+    }
+
+    /* ---- FAQ ---- */
+    .sc-faq { margin-top: 40px; }
+    .sc-faq details { border-bottom: 1px solid rgba(42, 18, 6, 0.12); }
+    .sc-faq details:first-child { border-top: 1px solid rgba(42, 18, 6, 0.12); }
+    .sc-faq summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 22px 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--earth);
+    }
+    .sc-faq summary::-webkit-details-marker { display: none; }
+    .sc-faq summary::after {
+      content: '+';
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--terra);
+      transition: transform 0.25s;
+    }
+    .sc-faq details[open] summary::after { transform: rotate(45deg); }
+    .sc-faq summary:focus-visible { outline: 2px solid var(--terra); outline-offset: 4px; }
+    .sc-faq details p { font-size: 1rem; line-height: 1.85; color: var(--earth); padding: 0 40px 24px 0; }
+    .sc-disclaimer { font-size: 0.85rem; line-height: 1.7; color: var(--ash); margin-top: 32px; }
+
+    /* ---- Closing ---- */
+    .sc-closing-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+      font-weight: 300;
+      line-height: 1.45;
+      color: var(--ochre);
+      max-width: 640px;
+      margin: 72px auto 0;
+    }
+
+    @media (max-width: 900px) {
+      .sc-hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .sc-story { grid-template-columns: 1fr; gap: 40px; }
+      .sc-photo { position: relative; top: 0; max-width: 420px; margin: 0 auto; width: 100%; }
+      .sc-quotes { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .sc-hero { padding: 130px 24px 0; min-height: 0; }
+      .sc-hero-content { padding-bottom: 8px; }
+      .sc-hero-photo { max-width: 320px; }
+      .sc-hero-content .hero-label { font-size: 1rem; }
+      .sc-hero-content h1 { font-size: clamp(2.4rem, 9vw, 3.4rem); }
+      .sc-hero-sub { font-size: 1.15rem; }
+      .sc-rings { width: 110vw; right: -45%; opacity: 0.25; }
+      .sc-light, .sc-dark, .sc-sand { padding: 64px 24px 88px; }
+      .sc-lead, .sc-body p, .sc-schedule p, .sc-step p, .sc-qualities p,
+      .sc-checklist li, .sc-price-card p, .sc-faq details p { font-size: 1.15rem; }
+      .sc-meta span { font-size: 0.85rem; }
+      .sc-waitlist-intro { font-size: 1.1rem; }
+        .sc-step { grid-template-columns: 44px 1fr; gap: 16px; }
+      .sc-step-num { font-size: 2.2rem; }
+      .sc-qualities { padding: 28px 20px; }
+      .sc-price-card { padding: 36px 20px; }
+      .sc-faq summary { font-size: 1.35rem; }
+      .sc-faq details p { padding-right: 0; }
+      .sc-soldout { display: block; }
+    }
+  </style>
+  <!-- SEO_START — canonical, social cards, structured data -->
+  <link rel="canonical" href="https://dariog.it/sacred-circles/">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+  <meta name="author" content="Dario Giuffrida">
+  <meta name="theme-color" content="#2A1206">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Dario Hampi Pakari">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:url" content="https://dariog.it/sacred-circles/">
+  <meta property="og:title" content="Sacred Circles | Dario Hampi Pakari">
+  <meta property="og:description" content="A small-group coaching space for people doing deep inner work who want the changes to actually show up on a regular Tuesday. By Anna and Dario.">
+  <meta property="og:image" content="https://dariog.it/images/og-sacred-circles.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Anna Milaeva and Dario Hampi Pakari, who hold Sacred Circle together">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sacred Circles | Dario Hampi Pakari">
+  <meta name="twitter:description" content="A small-group coaching space for people doing deep inner work who want the changes to actually show up on a regular Tuesday. By Anna and Dario.">
+  <meta name="twitter:image" content="https://dariog.it/images/og-sacred-circles.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Service",
+        "@id": "https://dariog.it/sacred-circles/#service",
+        "name": "Sacred Circles",
+        "url": "https://dariog.it/sacred-circles/",
+        "description": "A small-group IFS coaching space held online over eight weeks by Anna Milaeva and Dario Hampi Pakari, for people doing deep inner work who want the changes to last.",
+        "serviceType": "IFS group coaching programme",
+        "provider": [
+          {
+            "@type": "Person",
+            "@id": "https://dariog.it/#person",
+            "name": "Dario Hampi Pakari"
+          },
+          {
+            "@type": "Person",
+            "name": "Anna Milaeva",
+            "url": "https://annamilaeva.com/"
+          }
+        ],
+        "areaServed": {
+          "@type": "Place",
+          "name": "Worldwide, online"
+        },
+        "availableLanguage": [
+          "English",
+          "Spanish"
+        ],
+        "offers": {
+          "@type": "Offer",
+          "name": "Sacred Circle Cohort",
+          "price": "220",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/SoldOut"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do I need to know IFS to join?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. We introduce everything you need as we go. Some participants have deep IFS experience, others are completely new to it. Both are welcome." }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this therapy?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. This is a coaching and self-exploration space. It's not a substitute for therapy. If you're in active crisis, we recommend working with a licensed therapist first." }
+          },
+          {
+            "@type": "Question",
+            "name": "What if I miss a session?",
+            "acceptedAnswer": { "@type": "Answer", "text": "We understand life happens. Sessions will be recorded if all participants agree. Either way, we'll help you stay connected to the process." }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I join from anywhere?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Sessions are online via Zoom. All you need is a quiet, private space and a stable internet connection." }
+          },
+          {
+            "@type": "Question",
+            "name": "What language are the sessions in?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Depends on the cohort. Some run in English, others in Spanish." }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://dariog.it/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "The Work",
+            "item": "https://dariog.it/services/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Sacred Circles",
+            "item": "https://dariog.it/sacred-circles/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- SEO_END -->
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="/" class="nav-logo">Dario Hampi Pakari</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="navMenu">
+      <div class="nav-dropdown">
+        <a href="/services" class="nav-link dropdown-toggle active">Work &#9662;</a>
+        <div class="dropdown-menu">
+          <a href="/individual">Individual</a>
+          <a href="/couple">Couple</a>
+          <a href="/group">Group</a>
+          <a href="/sacred-circles">Sacred Circles</a>
+          <a href="https://fino.website" target="_blank" rel="noopener noreferrer">With Organizations</a>
+        </div>
+      </div>
+      <a href="/saray" class="nav-link">SARAY</a>
+      <a href="/about" class="nav-link">About</a>
+      <a href="https://substack.com/@dariog" class="nav-link" target="_blank" rel="noopener noreferrer">Substack</a>
+      <a href="/contact" class="nav-link">Contact</a>
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <section class="sc-hero">
+    <svg class="sc-rings" viewBox="0 0 400 400" fill="none" aria-hidden="true">
+      <circle cx="200" cy="200" r="196" stroke="#D4943A" stroke-opacity="0.18"/>
+      <circle cx="200" cy="200" r="150" stroke="#D4943A" stroke-opacity="0.24"/>
+      <circle cx="200" cy="200" r="104" stroke="#D4943A" stroke-opacity="0.3"/>
+      <circle cx="200" cy="200" r="58" stroke="#C4622D" stroke-opacity="0.45"/>
+      <g fill="#D4943A" fill-opacity="0.55">
+        <circle cx="200" cy="50" r="3"/><circle cx="306" cy="94" r="3"/><circle cx="350" cy="200" r="3"/><circle cx="306" cy="306" r="3"/>
+        <circle cx="200" cy="350" r="3"/><circle cx="94" cy="306" r="3"/><circle cx="50" cy="200" r="3"/><circle cx="94" cy="94" r="3"/>
+      </g>
+    </svg>
+    <div class="sc-hero-grid">
+    <div class="sc-hero-content">
+      <h1>The opening was real. <em>Now let&rsquo;s make it stick.</em></h1>
+      <p class="sc-hero-sub">Sacred Circle - a small-group coaching space for people doing deep inner work who want the changes to actually show up on a regular Tuesday. <span>By Anna and Dario.</span></p>
+      <a href="#current-cohort" class="btn-primary">See Current Cohort</a>
+    </div>
+    <figure class="sc-hero-photo">
+      <img src="../images/anna-and-dario-arch.webp" alt="Anna and Dario" width="1000" height="1200">
+    </figure>
+    </div>
+  </section>
+
+
+  <!-- CURRENT COHORT -->
+  <section class="sc-light to-sand" id="current-cohort">
+    <div class="sc-inner sc-center">
+      <h2 class="sc-title">Sacred Circle #11</h2>
+      <p class="sc-cohort-dates">April to June 2026</p>
+
+      <div class="sc-schedule">
+        <p>Live sessions on Thursdays at 6:30 PM Central European Time.</p>
+        <p>April 23 and 30 / May 7, 14, 21, 28 / June 4</p>
+      </div>
+
+      <div class="sc-meta">
+        <span>7 Sessions</span>
+        <span>8 Weeks</span>
+        <span>90 minutes each</span>
+        <span>Max 16 people</span>
+        <span class="sc-price">$220</span>
+      </div>
+
+      <span class="sc-soldout" aria-disabled="true">Sold Out</span>
+
+      <div class="sc-waitlist" id="waitlist">
+        <p class="sc-waitlist-intro">This cohort is sold out. Leave your email and I&rsquo;ll let you know when the next one opens.</p>
+        <form class="dl-form js-waitlist" action="https://formspree.io/f/mlgpnddo" method="POST" novalidate>
+          <input type="text" name="name" placeholder="Your full name" aria-label="Your full name" autocomplete="name" required>
+          <input type="email" name="email" placeholder="Your email" aria-label="Your email" autocomplete="email" required>
+          <input type="hidden" name="_subject" value="Sacred Circles Waitlist (dariog.it)">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important">
+          <button type="submit" class="btn-primary">Join the Waitlist</button>
+          <p class="dl-form-error" role="alert" hidden>Something went wrong - please try again.</p>
+        </form>
+        <div class="dl-success" role="status" hidden>
+          <p class="dl-success-msg">You&rsquo;re on the list. I&rsquo;ll let you know when the next cohort opens.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WHY WE BUILT THIS -->
+  <section class="sc-sand to-dark">
+    <div class="sc-inner">
+      <div class="sc-story">
+        <div class="sc-body">
+          <h2 class="sc-title">Why we built this</h2>
+
+          <p>Hi, we&rsquo;re Anna and Dario.</p>
+
+          <p>I am an organizational psychologist and facilitator with over 20 years working with groups and communities. Trained in South America in traditional practices and rites of passage, I have been holding ceremony space internationally for 20 years.</p>
+
+          <p>Anna is a certified Deep Transformational Coach who trained in IFS Therapy through Level 3, and a former startup leader. Always curious, always doing her own inner work.</p>
+
+          <p>Here&rsquo;s what we kept noticing.</p>
+
+          <p>People would have profound experiences in ceremony, retreat, or deep group work. Real openings. Then a few weeks later, they&rsquo;d be back in the same loops. The insight was genuine. But it faded. People going deeper into the next experience, hoping it would make it stick. Or cycling through different modalities, looking for what would make the change last.</p>
+
+          <p class="sc-accent">We held that question: what&rsquo;s actually missing?</p>
+
+          <p>Then IFS shifted everything for us.</p>
+
+          <p>For Anna, it made self-compassion tangible. Not as an idea but as a practice. An actual way to meet the part that was afraid, the part that was pushing, the part protecting something. For me, it gave structure and language to what I had been witnessing in groups for over two decades.</p>
+
+          <p>For us as a couple, it gave us a shared language. A way to talk about what was happening between us without making anyone wrong. We could see the system, understand what was trying to happen, and choose differently.</p>
+
+          <p>That&rsquo;s when it clicked.</p>
+
+          <p>Ceremony provides the opening. IFS provides the language and the daily practice. Community provides the witness, the steadiness, the people who see you doing it.</p>
+
+          <p class="sc-accent">There is a long road between information and action. Integration is not something you do once. It is how you live.</p>
+
+          <p>Sacred Circle is our answer. A steady place to come back to yourself. Simple tools that fit real days. A community practicing together. So what opened in you, in ceremony, therapy, a retreat, or life itself, doesn&rsquo;t just fade. It becomes how you actually talk to yourself, set boundaries, and show up.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- WHAT HAPPENS -->
+  <section class="sc-dark to-light">
+    <div class="sc-inner">
+      <h2 class="sc-title">What happens in a Sacred Circle</h2>
+      <p class="sc-lead">Each session is 90 minutes. 7 sessions. 8 weeks. One group.</p>
+
+      <ol class="sc-steps">
+        <li class="sc-step">
+          <span class="sc-step-num">1</span>
+          <div>
+            <h3>We open together</h3>
+            <p>A brief breathwork to arrive, land in the body, and leave the day behind.</p>
+          </div>
+        </li>
+        <li class="sc-step">
+          <span class="sc-step-num">2</span>
+          <div>
+            <h3>A theme is introduced</h3>
+            <p>Each week we bring a concept from IFS or Self-leadership. Not a lecture. Just enough to open a door.</p>
+          </div>
+        </li>
+        <li class="sc-step">
+          <span class="sc-step-num">3</span>
+          <div>
+            <h3>We go inside</h3>
+            <p>Guided inner exploration. You meet your parts in real time, with support and space.</p>
+          </div>
+        </li>
+        <li class="sc-step">
+          <span class="sc-step-num">4</span>
+          <div>
+            <h3>We share</h3>
+            <p>People tell their stories. Others witness. No advice, no fixing. Just the power of being seen by people doing the same work. This is often where the most unexpected shifts happen.</p>
+          </div>
+        </li>
+        <li class="sc-step">
+          <span class="sc-step-num">5</span>
+          <div>
+            <h3>We close</h3>
+            <p>What landed. What shifted. What you&rsquo;re taking into the week.</p>
+          </div>
+        </li>
+      </ol>
+
+      <p class="sc-note">Each session follows this arc but no two sessions are the same. The group shapes what emerges.</p>
+
+      <div class="sc-qualities">
+        <p class="sc-diamond" aria-hidden="true">&#9671;</p>
+        <h3>The 8 qualities of Self-leadership</h3>
+        <p>Each week we move through one quality of Self-leadership: calm, clarity, curiosity, confidence, compassion, courage, creativity, and connectedness. These are not things we add to you. They are what is already there when your parts feel safe enough to step back.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FOR YOU IF -->
+  <section class="sc-light to-sand">
+    <div class="sc-inner">
+      <h2 class="sc-title">This is for you if...</h2>
+      <ul class="sc-checklist">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>You&rsquo;ve done retreats, ceremonies, therapy, or deep inner work and want a way to keep it alive</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>You&rsquo;re curious about IFS and want to experience it in a group setting before committing to 1:1 work</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>You want a regular container for self-exploration, not just a one-time event</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>You feel like something shifted inside you but your daily life hasn&rsquo;t caught up yet</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M7.5 12.5l3 3 6-6.5"/></svg><span>You want to explore this work in a group before committing to 1:1 coaching. Sacred Circle is a warm, slow landing. The group is small, the pace is supportive, and nothing is forced.</span></li>
+      </ul>
+    </div>
+  </section>
+
+
+  <!-- PRICING -->
+  <section class="sc-sand to-dark">
+    <div class="sc-inner sc-center">
+      <h2 class="sc-title">Simple pricing</h2>
+      <div class="sc-price-card">
+        <h3 class="sc-price-name">Sacred Circle Cohort</h3>
+        <div class="sc-price-amount">$220</div>
+        <p>7 sessions over 8 weeks. 90 minutes each. Small group. Online via Zoom.</p>
+        <span class="sc-soldout" aria-disabled="true">Sold Out</span>
+        <p class="sc-price-note">Leave your email and I&rsquo;ll let you know when the next cohort opens.<br><a href="#join">Join the waitlist &rarr;</a></p>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- TESTIMONIALS -->
+  <section class="sc-dark to-light">
+    <div class="sc-inner sc-inner--wide">
+      <div class="sc-inner" style="margin:0 auto;">
+        <h2 class="sc-title">What past participants say</h2>
+        <p class="sc-story-quote">Last circle, someone came in struggling with the same loop. Big openings in ceremony, then back to the grind, the clarity gone by Thursday. Over seven weeks, she started recognizing when her inner critic was driving. Not fighting it, just noticing. She learned what that part was protecting. The harshness softened. She started making small choices from a calmer place. Nothing dramatic. Just steady. She told us: <strong>&ldquo;I finally feel like I&rsquo;m living more from that open place, not just visiting it.&rdquo;</strong> That&rsquo;s what we mean by everyday change.</p>
+      </div>
+
+      <div class="sc-quotes">
+        <blockquote class="sc-quote">
+          <p>&ldquo;I left with a kinder language for myself and more energy for daily life.&rdquo;</p>
+          <cite>M., Germany</cite>
+        </blockquote>
+        <blockquote class="sc-quote">
+          <p>&ldquo;Group support made me actually do the practices. The change stayed.&rdquo;</p>
+          <cite>S., Croatia</cite>
+        </blockquote>
+        <blockquote class="sc-quote">
+          <p>&ldquo;A safe, warm space to integrate with experienced, respectful guides.&rdquo;</p>
+          <cite>A., France</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- FAQ -->
+  <section class="sc-light to-dark">
+    <div class="sc-inner">
+      <h2 class="sc-title">Common questions</h2>
+      <div class="sc-faq">
+        <details>
+          <summary>Do I need to know IFS to join?</summary>
+          <p>No. We introduce everything you need as we go. Some participants have deep IFS experience, others are completely new to it. Both are welcome.</p>
+        </details>
+        <details>
+          <summary>Is this therapy?</summary>
+          <p>No. This is a coaching and self-exploration space. It&rsquo;s not a substitute for therapy. If you&rsquo;re in active crisis, we recommend working with a licensed therapist first.</p>
+        </details>
+        <details>
+          <summary>What if I miss a session?</summary>
+          <p>We understand life happens. Sessions will be recorded if all participants agree. Either way, we&rsquo;ll help you stay connected to the process.</p>
+        </details>
+        <details>
+          <summary>Can I join from anywhere?</summary>
+          <p>Yes. Sessions are online via Zoom. All you need is a quiet, private space and a stable internet connection.</p>
+        </details>
+        <details>
+          <summary>What language are the sessions in?</summary>
+          <p>Depends on the cohort. Some run in English, others in Spanish.</p>
+        </details>
+      </div>
+      <p class="sc-disclaimer">Coaching services are not therapy and are not intended to diagnose, treat, cure, or prevent any disease or mental health condition. If you are experiencing a mental health crisis, please contact a licensed professional.</p>
+    </div>
+  </section>
+
+
+  <!-- CLOSING WAITLIST -->
+  <section class="sc-dark sc-closing" id="join">
+    <div class="sc-inner sc-center">
+      <h2 class="sc-title">Sacred Circle #11 is full.</h2>
+      <p class="sc-lead">Join the waitlist and I&rsquo;ll let you know when the next cohort opens.</p>
+      <span class="sc-soldout" aria-disabled="true" style="margin-top:28px;">Sold Out</span>
+
+      <div class="sc-waitlist">
+        <form class="dl-form js-waitlist" action="https://formspree.io/f/mlgpnddo" method="POST" novalidate>
+          <input type="text" name="name" placeholder="Your full name" aria-label="Your full name" autocomplete="name" required>
+          <input type="email" name="email" placeholder="Your email" aria-label="Your email" autocomplete="email" required>
+          <input type="hidden" name="_subject" value="Sacred Circles Waitlist (dariog.it)">
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none !important">
+          <button type="submit" class="btn-primary">Join the Waitlist</button>
+          <p class="dl-form-error" role="alert" hidden>Something went wrong - please try again.</p>
+        </form>
+        <div class="dl-success" role="status" hidden>
+          <p class="dl-success-msg">You&rsquo;re on the list. I&rsquo;ll let you know when the next cohort opens.</p>
+        </div>
+      </div>
+
+      <p class="sc-closing-quote">&ldquo;We heal in relationship. Being witnessed by others doing the same work changes something that working alone cannot.&rdquo;</p>
+    </div>
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div>
+        <p class="footer-brand">Dario Hampi Pakari</p>
+        <p class="footer-tagline">Psychologist &middot; Medicine Man &middot; IFS Practitioner</p>
+        <p class="footer-tagline">I speak English, Spanish, Italian, and Portuguese.</p>
+      </div>
+      <div class="footer-links">
+        <a href="/services">Work With Me</a>
+        <a href="/saray">SARAY</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/dario_hampi_pakari/" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+          Instagram
+        </a>
+        <a href="https://open.spotify.com/artist/04NyKBLcR0lMxypLLkN48W" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 15c3-1 6-1 9 1"/><path d="M7 12c4-1.5 8-1.5 12 1"/><path d="M6 9c5-2 10-2 14 1"/></svg>
+          Spotify
+        </a>
+        <a href="https://www.youtube.com/@dario_hampi_pakari" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="4"/><polygon points="10,8 16,12 10,16"/></svg>
+          YouTube
+        </a>
+        <a href="https://www.facebook.com/dario.boag" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          Facebook
+        </a>
+        <a href="https://substack.com/@dariog" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="4" y1="4" x2="20" y2="4"/><line x1="4" y1="9" x2="20" y2="9"/><path d="M4 14l8 6 8-6"/></svg>
+          Substack
+        </a>
+        <a href="https://linktr.ee/dario_hampi_pakari" target="_blank" rel="noopener noreferrer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="22" x2="12" y2="10"/><path d="M6 10l6-6 6 6"/><path d="M6 16l6-6 6 6"/></svg>
+          Linktree
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it &middot; Website Created by <a href="https://fino.website/studio/" target="_blank" rel="noopener noreferrer">FINO Studio</a></div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+</body>
+</html>
