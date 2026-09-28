@@ -1,5 +1,36 @@
 # dariog.it — Session Log
 
+## Session: September 28, 2026 — Sacred Circles updated to Circle #12, all three languages
+
+**Asked:** Anna had rewritten the Sacred Circles page on annamilaeva.com to launch the next circle. Match it on dariog.it in English, Spanish and Italian, keeping the information.
+
+### Built
+
+- **Source of truth was Anna's live page, not the paste.** Anna pasted the page text, but the FAQ answers were behind accordions and the enrolment link was not in it. Fetched `annamilaeva.com/sacred-circles` and `/es/circulos-sagrados` instead, so the copy, the eight FAQ answers and the Paperbell checkout link are hers verbatim rather than reconstructed. The Spanish is her approved Spanish word for word; only the Italian is a new translation, matched to the register already on `/it/`.
+- **Point of view** switched Anna → Dario throughout, per the standing rule for this page: "Dario is an organizational psychologist…" became "I am…", "For Dario, it gave structure…" became "For me…". No rewording beyond that.
+- **Cohort block**: #11 sold out → **#12, 12 January to 23 February 2027**, Tuesdays 19:00 CET with New York and Los Angeles times, 7 sessions / 7 weeks, $220 USD, "Enrolling now", closes Friday 8 January, and a **Join Circle #12** button to Anna's Paperbell checkout (`packages/236307`) — the same shared-program logic as the shared Formspree waitlist. The inline waitlist form moved out of this block to the closing CTA; the "if these dates don't work" line anchors down to it.
+- **Two new sections**: "How the circle holds you to it" (the weekly accountability loop) and "What you leave with". Both reuse existing components — a new `.sc-holds` list and a dark-background variant of `.sc-checklist`.
+- **Rewritten**: hero subtitle (now two lines, adding the weekly-commitment line), both bios, three story paragraphs, the 7-week framing, steps 1, 2 and 5, the 8 qualities card, "This is for you if", the pricing card, and the closing CTA.
+- **Testimonials**: added the countries row ("Past circles have brought people together from…") and Anna's three new quotes, six in total.
+- **FAQ**: three answers rewritten and three questions added (time between sessions, breathwork safety, cancellation). The `FAQPage` JSON-LD now carries all eight in each language, and the `Offer` moved from `SoldOut` to `InStock` with the checkout URL and `validThrough` 2027-01-08.
+- **Titles and social cards** now carry the cohort ("Sacred Circle #12. January to February 2027 | Dario Hampi Pakari"), so they need retitling each cohort.
+- **ES and IT state that circle #12 is facilitated in English**, in the cohort block and in the language FAQ. That line comes from Anna's Spanish page.
+- **Section rhythm preserved.** The page alternates bone / parchment / earth backgrounds with curved dividers, where each section's `to-*` class paints the next one's colour. "What you leave with" was inserted as a dark section and "This is for you if" switched to `to-dark` so the chain stays correct end to end.
+
+### Two things worth remembering
+
+- **`js/main.js` finds the waitlist success message with `form.nextElementSibling`.** The new privacy line under the form broke that by sitting between them; it now renders after the success div, so submitting still swaps the form for "You're on the list." Anything inserted next to these forms has to respect that.
+- **The Italian page uses literal `'` and `"` characters, while the English one uses `&rsquo;` and `&ldquo;`.** Edits matched on entity-encoded strings silently fail on `/it/`.
+
+### Still open
+
+- **The privacy line under the waitlist form is back** ("I'll write when a circle is forming, and now and then about other things I'm doing"). It had been removed from dariog.it earlier; Anna's new page has it again, so it was matched.
+- **Anna's Substack strip was not ported.** "Come read what I'm living" points at her own newsletter; Dario's footer already links his.
+- **Testimonial attributions are now mixed** — the original three keep "M., Germany" style cites, Anna's three new ones have none. Dropping all cites would match her page.
+- **`sitemap.xml` lastmod** bumped to 2026-09-28 for the three URLs; no routes changed, so `tools/i18n.py` did not need to run.
+
+---
+
 ## Session: September 17, 2026 — Spanish and Italian site, privacy policy, brochure alignment
 
 **Asked:** translate the whole site into neutral Latin American Spanish and Italian, conversational and faithful rather than mechanical, with a language toggle that looks and works like annamilaeva.com's on desktop and mobile, and easy to change later. Add a privacy policy for Dario based on Anna's. Push it all so Anna can review it online.
