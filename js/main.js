@@ -502,6 +502,63 @@ function sarayTick() {
 })();
 
 
+// ---- In-page links scroll without leaving a #hash in the address bar -
+// "See Current Cohort" used to turn the URL into
+// /sacred-circles/#current-cohort, and that is the link people then copy
+// and share, which drops readers halfway down the page. We scroll by
+// hand instead. The ids stay in the markup, so any #current-cohort or
+// #waitlist link already out there still lands in the right place.
+function quietAnchorLinks() {
+  var nav = document.getElementById('nav');
+
+  document.addEventListener('click', function (e) {
+    var el = e.target;
+    if (!el || !el.closest) return;
+
+    var link = el.closest('a[href^="#"]');
+    if (!link) return;
+
+    var id = link.getAttribute('href').slice(1);
+    if (!id) return;
+
+    var target = document.getElementById(id);
+    if (!target) return;
+
+    e.preventDefault();
+
+    // Clear the fixed nav, which would otherwise cover the heading.
+    var offset = nav ? nav.offsetHeight + 12 : 0;
+    var top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    window.scrollTo({ top: Math.max(0, top), behavior: reduce ? 'auto' : 'smooth' });
+  });
+}
+
+
+// ---- Reveal the testimonial quotes as they scroll into view ----------
+// The CSS only hides them once we add .js-reveal, so if this never runs
+// (no JS, old browser, reduced motion) the quotes just show as normal.
+function revealQuotes() {
+  var quotes = document.querySelectorAll('.sc-quote');
+  if (!quotes.length) return;
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  document.documentElement.classList.add('js-reveal');
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('is-visible');
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
+  quotes.forEach(function (quote) { observer.observe(quote); });
+}
+
+
 // ---- Init ------------------------------------------------------------
 sarayApplyState();
 sarayBuildBar();
@@ -510,6 +567,8 @@ sarayBuildListenModules();
 sarayWireLinks();
 sarayDownloadForm();
 waitlistForms();
+quietAnchorLinks();
+revealQuotes();
 sarayTick();
 
 // Keep the hero countdown ticking only while we are still pre-release.

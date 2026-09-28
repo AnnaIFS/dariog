@@ -337,8 +337,18 @@
       margin-top: 56px;
     }
     .sc-quote {
-      padding: 28px 24px;
-      border: 1px solid rgba(212, 148, 58, 0.25);
+      display: flex;
+      flex-direction: column;
+      padding: 32px 26px;
+      border: 1px solid rgba(212, 148, 58, 0.35);
+      background: rgba(212, 148, 58, 0.06);
+      transition: border-color 0.35s ease, background 0.35s ease;
+    }
+    @media (hover: hover) {
+      .sc-quote:hover {
+        border-color: rgba(212, 148, 58, 0.6);
+        background: rgba(212, 148, 58, 0.11);
+      }
     }
     .sc-quote p {
       font-family: 'Cormorant Garamond', serif;
@@ -348,12 +358,31 @@
       color: var(--bone);
       margin-bottom: 16px;
     }
+    .sc-quote p:last-child { margin-bottom: 0; }
     .sc-quote cite {
+      display: block;
+      margin-top: auto;
+      padding-top: 4px;
       font-style: normal;
       font-size: 0.75rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
       color: var(--ochre);
+    }
+
+    /* Quotes rise into view one after another. Without JS the
+       .js-reveal hook is never added and they simply show. */
+    @media (prefers-reduced-motion: no-preference) {
+      .js-reveal .sc-quote { opacity: 0; }
+      .js-reveal .sc-quote.is-visible {
+        animation: sc-quote-rise 0.7s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+      }
+      .js-reveal .sc-quote.is-visible:nth-child(3n+2) { animation-delay: 0.12s; }
+      .js-reveal .sc-quote.is-visible:nth-child(3n) { animation-delay: 0.24s; }
+    }
+    @keyframes sc-quote-rise {
+      from { opacity: 0; transform: translateY(26px); }
+      to   { opacity: 1; transform: none; }
     }
 
     /* ---- FAQ ---- */
@@ -440,7 +469,8 @@
     .sc-dark .sc-checklist svg { color: var(--ochre); }
 
     /* ---- Where people joined from ---- */
-    .sc-origins { font-size: 0.95rem; line-height: 1.8; color: rgba(240, 230, 208, 0.75); margin-top: 24px; }
+    .sc-origins { font-size: 0.95rem; line-height: 1.8; color: rgba(240, 230, 208, 0.75); margin-top: 14px; }
+    .sc-meta--origins { justify-content: flex-start; max-width: none; margin: 20px 0 0; }
     .sc-dark .sc-meta { margin-bottom: 8px; }
     .sc-dark .sc-meta span { color: rgba(240, 230, 208, 0.85); border-color: rgba(240, 230, 208, 0.22); }
     .sc-meta .sc-more { border: none; letter-spacing: 0; text-transform: none; padding-left: 4px; }
@@ -878,7 +908,7 @@
       <div class="sc-inner" style="margin:0 auto;">
         <h2 class="sc-title">What past participants say</h2>
         <p class="sc-origins">Past circles have brought people together from</p>
-        <div class="sc-meta" style="margin-top:20px;">
+        <div class="sc-meta sc-meta--origins">
           <span>Miami</span>
           <span>California</span>
           <span>Italy</span>
