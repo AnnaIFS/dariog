@@ -339,15 +339,16 @@
     .sc-quote {
       display: flex;
       flex-direction: column;
-      padding: 32px 26px;
-      border: 1px solid rgba(212, 148, 58, 0.35);
-      background: rgba(212, 148, 58, 0.06);
+      padding: 34px 28px;
+      border: 1px solid rgba(212, 148, 58, 0.45);
+      border-top: 2px solid rgba(212, 148, 58, 0.6);
+      background: rgba(212, 148, 58, 0.09);
       transition: border-color 0.35s ease, background 0.35s ease;
     }
     @media (hover: hover) {
       .sc-quote:hover {
-        border-color: rgba(212, 148, 58, 0.6);
-        background: rgba(212, 148, 58, 0.11);
+        border-color: rgba(212, 148, 58, 0.75);
+        background: rgba(212, 148, 58, 0.15);
       }
     }
     .sc-quote p {
@@ -359,16 +360,6 @@
       margin-bottom: 16px;
     }
     .sc-quote p:last-child { margin-bottom: 0; }
-    .sc-quote cite {
-      display: block;
-      margin-top: auto;
-      padding-top: 4px;
-      font-style: normal;
-      font-size: 0.75rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ochre);
-    }
 
     /* Quotes rise into view one after another. Without JS the
        .js-reveal hook is never added and they simply show. */
@@ -932,15 +923,12 @@
       <div class="sc-quotes">
         <blockquote class="sc-quote">
           <p>&ldquo;Il sostegno del gruppo mi ha fatto fare davvero le pratiche. Il cambiamento è rimasto.&rdquo;</p>
-          <cite>S., Croazia</cite>
         </blockquote>
         <blockquote class="sc-quote">
           <p>&ldquo;Ho trovato un linguaggio più gentile verso di me e più energia per la vita di tutti i giorni.&rdquo;</p>
-          <cite>M., Germania</cite>
         </blockquote>
         <blockquote class="sc-quote">
           <p>&ldquo;Uno spazio sicuro e caldo per integrare, con guide esperte e rispettose.&rdquo;</p>
-          <cite>A., Francia</cite>
         </blockquote>
         <blockquote class="sc-quote">
           <p>&ldquo;Mi ha portato pace e forza per affrontare battaglie personali nelle relazioni con le persone a me vicine.&rdquo;</p>
@@ -1073,6 +1061,6 @@
     <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it &middot; <a href="/it/privacy/">Privacy</a> &middot; Sito web realizzato da <a href="https://fino.website/studio/" target="_blank" rel="noopener noreferrer">FINO Studio</a></div>
   </footer>
 
-  <script src="/js/main.js"></script>
+  <script src="/js/main.js?v=20260928b"></script>
 </body>
 </html>

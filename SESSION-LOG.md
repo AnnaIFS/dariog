@@ -22,6 +22,8 @@
 - **Testimonial cards**: attributions are pinned to the bottom of the card with `margin-top: auto` on the `cite`, so the three that carry a name line up instead of floating wherever the quote text ends. Cards got a warmer fill, a stronger border, more padding and a hover state.
 - **The quotes now animate in.** `revealQuotes()` in `js/main.js` adds `.js-reveal` to `<html>` and observes each `.sc-quote`; the CSS only hides them *once that class exists*, so with no JS, no `IntersectionObserver`, or reduced motion set, they simply show. The stagger is `nth-child(3n+2)` / `nth-child(3n)` so a row arrives left to right.
 - **Heading alignment fixed.** The countries row used plain `.sc-meta`, which centres its chips and caps them at 640px — inside a left-aligned 720px column that read as crooked. `.sc-meta--origins` left-aligns it at full width, and the intro line was tightened under the title.
+- **All six attributions removed** at Anna's request, so the quote row matches annamilaeva.com. The `cite` rule went with them; the cards keep the flex column and now carry a heavier ochre border, a 2px top accent and a stronger fill, because the first pass at 6% opacity was invisible against the dark section.
+- **`js/main.js` is now versioned in the script tag** (`?v=20260928b`) on the three Sacred Circles pages. GitHub Pages serves it with `cache-control: max-age=600`, so for ten minutes after a deploy the browser keeps running the old file — which is why the animation and the anchor fix both looked like they had not shipped. Bump the version whenever behaviour in `main.js` changes and matters immediately.
 - **In-page links no longer write a `#hash`.** Clicking "See Current Cohort" turned the address into `/sacred-circles/#current-cohort`, and that is the URL Anna was copying and sharing, which dropped readers past the hero. `quietAnchorLinks()` intercepts clicks on `a[href^="#"]`, scrolls by hand with an offset for the fixed nav, and leaves the URL clean. The ids stay in the markup so existing `#current-cohort` and `#waitlist` links still land correctly. The two landing pages don't load `js/main.js`, so their `#circles` / `#circulos` buttons keep native behaviour.
 
 ### Two things worth remembering
@@ -33,7 +35,6 @@
 
 - **The privacy line under the waitlist form is back** ("I'll write when a circle is forming, and now and then about other things I'm doing"). It had been removed from dariog.it earlier; Anna's new page has it again, so it was matched.
 - **Anna's Substack strip was not ported.** "Come read what I'm living" points at her own newsletter; Dario's footer already links his.
-- **Testimonial attributions are still mixed** — the original three keep "M., Germany" style cites, Anna's three new ones have none. They are aligned now, but the row reads as three attributed and three anonymous. Needs either origins for the new three or a decision to drop all six.
 - **annamilaeva.com has the same `#current-cohort` behaviour** that was just fixed here, so the two sites now differ. Offered to make the same change there.
 - **`sitemap.xml` lastmod** bumped to 2026-09-28 for the three URLs; no routes changed, so `tools/i18n.py` did not need to run.
 
