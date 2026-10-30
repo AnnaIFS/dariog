@@ -55,6 +55,37 @@ Left `sending:` ("Sending…" / "Enviando…" / "Invio in corso…") alone: it i
 button label shared with the Sacred Circles waitlist forms, where it is accurate, and it
 shows for only a moment on the download form.
 
+### Fault 3 — the button stuck on "Sending…" (found after Anna reported it)
+
+Anna asked why it keeps saying "Sending…" while the album is reachable. Real bug, and it
+had been there since launch.
+
+`sarayDownloadForm()` hides the form on success with `form.hidden = true`. But the UA
+stylesheet's `[hidden] { display: none }` is **weaker than any author rule that sets a
+display**, and `styles/main.css` has `.dl-form { display: flex }`. So the attribute was set
+and did nothing: the form stayed on screen with its button disabled and frozen reading
+"Sending…", while the success message and download link appeared underneath it. The album
+was always reachable — the form simply never got out of the way. `.dl-success` has no
+`display`, which is why the reveal half worked and masked the problem.
+
+**This was not limited to SARAY.** The Sacred Circles waitlist forms reuse
+`class="dl-form js-waitlist"` and `waitlistForms()` hides them the same way, so all six
+pages were affected: `saray/`, `es/saray/`, `it/saray/`, `sacred-circles/`,
+`es/circulos-sagrados/`, `it/cerchi-sacri/`.
+
+Fixed with one guard in the reset at the top of `styles/main.css`:
+
+    [hidden] { display: none !important; }
+
+An author `!important` declaration beats any normal author declaration regardless of
+specificity or order, so this holds everywhere and prevents the whole class of bug. Audited
+first: every element carrying `hidden` in the repo is an error message or success block that
+should be hidden until JS reveals it, and no inline styles or competing `!important` display
+rules exist, so nothing else changes.
+
+Worth noting why launch QA missed it: it verified the POST returned `{"ok":true}` and that
+the success path revealed the link, never that the form disappeared.
+
 ### Verified
 
 - Live `main.js` was byte-identical to the repo — no stale-cache issue (`cache-control: max-age=600`).

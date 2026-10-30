@@ -11,6 +11,12 @@
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* The browser's own [hidden] { display: none } is weaker than ANY author rule
+   that sets a display, so `.dl-form { display: flex }` beat it: forms that JS
+   hides on success (SARAY download, Sacred Circles waitlist) stayed on screen
+   with their button stuck reading "Sending...". Enforce hidden for everything. */
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; overflow-x: hidden; }
 
 /* Scroll lock while the mobile menu is open.
