@@ -41,12 +41,19 @@ on Dario's Formspree plan. Emails are still captured as before, so the list keep
 A Mailchimp automation was the alternative; rejected as several moving parts (JSONP form
 swap, automation setup, unverifiable plan limits) for a worse result.
 
-Rewrote **12 strings** so nothing claims an email is sent:
+Rewrote **15 strings** so nothing claims an email is sent:
 - `saray/`, `es/saray/`, `it/saray/` — form intro + success message (6)
+- the submit button itself, which still read "Send me the album" / "Envíame el álbum" /
+  "Mandami l’album" — now "Give me the album" / "Dame el álbum" / "Dammi l’album",
+  Anna's wording, which also matches the "this music is a gift" framing of the section (3)
 - `js/main.js` — `downloadNote`, shown under every Download button site-wide (3)
 - `privacy/`, `es/privacidad/`, `it/privacy/` — the stated purpose for collecting the
   address changed from "so that I can send you the album" to "give you access to", since
   that is a lawful-basis statement and it has to match what actually happens (3)
+
+Left `sending:` ("Sending…" / "Enviando…" / "Invio in corso…") alone: it is the transient
+button label shared with the Sacred Circles waitlist forms, where it is accurate, and it
+shows for only a moment on the download form.
 
 ### Verified
 
