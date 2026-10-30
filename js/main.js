@@ -136,7 +136,10 @@ var SARAY = {
 
   // --- Free-download form ---------------------------------------------
   formAction:   'https://formspree.io/f/xeewgbad',  // Formspree endpoint for the download form
-  downloadFile: 'https://samply.app/p/bkSVBE3VVRC43va9t8QP?si=NjqEcimx8sQAoaH15VgypnFFjMX2',  // Samply album link revealed after the form
+  // Samply album link revealed after the form. The ?token= is required: without it
+  // Samply serves its error page. Replaced 30 Oct 2026 after the previous link
+  // (bkSVBE3VVRC43va9t8QP) stopped resolving and every download 404'd.
+  downloadFile: 'https://samply.app/p/SNQfykoUY8AHwlC50ShK?token=447c781d-dfaa-4ab5-aa5c-058d1e7fd08c&si=NjqEcimx8sQAoaH15VgypnFFjMX2',
 
   // --- Assets ---------------------------------------------------------
   cover: '/images/saray-cover.jpg',
@@ -165,7 +168,7 @@ var STRINGS = {
     morePlatforms:  '+ more platforms &rarr;',
     orKeep:         'or keep it forever',
     downloadFree:   'Download the album free',
-    downloadNote:   'Free for everyone. Leave your name &amp; email and we&rsquo;ll send you the download link.',
+    downloadNote:   'Free for everyone. Leave your name &amp; email and the download is yours right away.',
     albumAria:      'SARAY album',
     barPre:         'new music album &middot; out {date}',
     barOut:         'new album &middot; out now',
@@ -188,7 +191,7 @@ var STRINGS = {
     morePlatforms:  '+ más plataformas &rarr;',
     orKeep:         'o guárdalo para siempre',
     downloadFree:   'Descarga el álbum gratis',
-    downloadNote:   'Gratis para todos. Deja tu nombre y tu correo y te enviamos el enlace de descarga.',
+    downloadNote:   'Gratis para todos. Deja tu nombre y tu correo y la descarga es tuya al instante.',
     albumAria:      'Álbum SARAY',
     barPre:         'nuevo álbum &middot; sale {date}',
     barOut:         'nuevo álbum &middot; ya disponible',
@@ -211,7 +214,7 @@ var STRINGS = {
     morePlatforms:  '+ altre piattaforme &rarr;',
     orKeep:         'oppure tienilo per sempre',
     downloadFree:   'Scarica l&rsquo;album gratis',
-    downloadNote:   'Gratis per tutti. Lascia nome ed email e ti mandiamo il link per scaricarlo.',
+    downloadNote:   'Gratis per tutti. Lascia nome ed email e il download è tuo subito.',
     albumAria:      'Album SARAY',
     barPre:         'nuovo album &middot; esce {date}',
     barOut:         'nuovo album &middot; disponibile ora',

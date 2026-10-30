@@ -1,5 +1,78 @@
 # dariog.it — Session Log
 
+## Session: October 30, 2026 — Fixed the broken SARAY download and the email promise
+
+**Reported:** the album download returned 404 and "the email never arrives". Two separate
+faults, neither of them in the code.
+
+### Fault 1 — the download 404: the Samply upload was gone
+
+`downloadFile` pointed at `samply.app/p/bkSVBE3VVRC43va9t8QP`, the single download URL for
+the whole site. It returned **HTTP 200**, which is why nothing looked broken to any
+uptime check, but the body was a 207-byte `<title>Samply Link Error</title>` page that
+meta-refreshes to `/page-not-found`. Proven dead, not bot-blocked: samply.app serves curl
+a normal homepage, and the link returned a **byte-identical** response to a deliberately
+made-up project ID. It was alive at the 19 Jun launch QA, so the project was archived,
+revoked or expired at some point after release.
+
+Replaced with the link Anna supplied: `samply.app/p/SNQfykoUY8AHwlC50ShK` — verified live,
+serves `Saray - Flor de Maíz`.
+
+**The new link needs its `?token=` to work.** Stripped of the token it returns the same
+error page as a bogus ID, so it is a private share link, which is most likely how the
+previous one died. Noted in a comment above the config value. The durable fix is the ten
+audio files served from dariog.it itself, where nothing can expire; still worth doing.
+
+### Fault 2 — the email was never built, in any language
+
+Formspree only ever emails the **form owner** (Dario's account). It never emails the
+address typed into the form unless an autoresponse is configured, and none was: there is
+no `_autoresponse` field anywhere, and `Optional: turn on Formspree autoresponse with the
+Samply link` sat unticked in the 17 Jun TODO list. Proven empirically — a diagnostic POST
+submitting `ania.milaeva@gmail.com` produced `{"ok":true}` and **zero** Formspree mail in
+that inbox.
+
+So the form was working exactly as built. The page copy was the thing that was wrong: it
+promised an email in all three languages, and had done since launch.
+
+Chose **instant download** over building real delivery. The visitor gets the album the
+moment they submit — no waiting, no spam folder, nothing to configure, and no dependency
+on Dario's Formspree plan. Emails are still captured as before, so the list keeps growing.
+A Mailchimp automation was the alternative; rejected as several moving parts (JSONP form
+swap, automation setup, unverifiable plan limits) for a worse result.
+
+Rewrote **12 strings** so nothing claims an email is sent:
+- `saray/`, `es/saray/`, `it/saray/` — form intro + success message (6)
+- `js/main.js` — `downloadNote`, shown under every Download button site-wide (3)
+- `privacy/`, `es/privacidad/`, `it/privacy/` — the stated purpose for collecting the
+  address changed from "so that I can send you the album" to "give you access to", since
+  that is a lawful-basis statement and it has to match what actually happens (3)
+
+### Verified
+
+- Live `main.js` was byte-identical to the repo — no stale-cache issue (`cache-control: max-age=600`).
+- Formspree endpoint healthy: `{"ok":true}`, CORS allows `dariog.it`, honeypot present.
+- `sarayDownloadForm()` is called (`js/main.js:568`) and the script loads after the form, so
+  no timing bug. The whole chain works; only the destination had died.
+- Swept **all 44 external links**. Samply was the only genuine failure. Paperbell, Redbubble,
+  Facebook and youtu.be return 403/400/429 to curl but are fine in a browser (bot-blocking).
+- `node --check js/main.js` passes. No em-dashes introduced.
+
+### Open
+
+- **Anna to confirm in the Samply player** whether it offers a real download and whether it
+  is all ten tracks. `og:type` is `music.song` (singular) and the embed is single-track
+  height, but the player is a JS app so neither could be checked from the command line.
+- **Emails collected since the link died are sitting in Dario's Formspree (form `xeewgbad`)** —
+  every one of those people asked for the album and got a 404. Worth exporting and mailing
+  the working link by hand.
+- Two items still unticked from 17 Jun: confirm the Formspree activation email, and add
+  dariog.it / www.dariog.it to the form's allowed domains.
+- A test entry labelled "DIAGNOSTIC TEST - please ignore (Claude 30 Oct)" is in Dario's
+  Formspree inbox, safe to delete.
+
+---
+
 ## Session: September 28, 2026 — Sacred Circles updated to Circle #12, all three languages
 
 **Asked:** Anna had rewritten the Sacred Circles page on annamilaeva.com to launch the next circle. Match it on dariog.it in English, Spanish and Italian, keeping the information.
