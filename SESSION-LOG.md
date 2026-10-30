@@ -98,9 +98,13 @@ the success path revealed the link, never that the form disappeared.
 
 ### Open
 
-- **Anna to confirm in the Samply player** whether it offers a real download and whether it
-  is all ten tracks. `og:type` is `music.song` (singular) and the embed is single-track
-  height, but the player is a JS app so neither could be checked from the command line.
+- **Settled:** Anna tested the new link end to end and it works, so the Samply player is
+  staying for now. `og:type: music.song` and the single-track embed height were red
+  herrings. The player is a JS app, so this could only ever be confirmed by clicking it.
+- **Standing risk, not urgent:** the link resolves only with its `?token=`, so it is a
+  private share link — the same shape as the one that died silently for months. If
+  downloads break again, check this first. The permanent fix is the ten audio files served
+  from dariog.it, where nothing can expire.
 - **Emails collected since the link died are sitting in Dario's Formspree (form `xeewgbad`)** —
   every one of those people asked for the album and got a 404. Worth exporting and mailing
   the working link by hand.
