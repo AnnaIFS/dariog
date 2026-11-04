@@ -34,3 +34,5 @@ __pycache__/
 
 # Claude Code agent worktrees
 .claude/worktrees/
+# Internal working log. Keep it on the laptop, never publish it.
+SESSION-LOG.md
