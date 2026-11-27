@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <title>Contatti | Dario Hampi Pakari</title>
-  <meta name="description" content="Prenota una chiamata conoscitiva gratuita di 30 minuti con Dario. Disponibile in inglese, spagnolo, italiano e portoghese.">
+  <meta name="description" content="Scrivi a Dario per domande, idee o per chiedere una chiamata conoscitiva gratuita di 30 minuti. Disponibile in inglese, spagnolo, italiano e portoghese.">
   <link rel="stylesheet" href="/styles/main.css">
   <style>
     .contact-hero {
@@ -17,14 +17,6 @@
       text-align: center;
       padding: 120px 6% 80px;
       position: relative;
-    }
-    .contact-hero::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 40px;
-      background: var(--bone);
-      clip-path: ellipse(60% 100% at 45% 100%);
     }
     .contact-hero h1 {
       font-family: 'Cormorant Garamond', serif;
@@ -39,23 +31,6 @@
       line-height: 1.7;
     }
 
-    .calendly-section {
-      background: var(--bone);
-      padding: 60px 5%;
-      position: relative;
-    }
-    .calendly-section::after {
-      content: '';
-      position: absolute;
-      bottom: -1px; left: 0; right: 0;
-      height: 40px;
-      background: var(--earth);
-      clip-path: ellipse(60% 100% at 55% 100%);
-    }
-    .calendly-wrap {
-      max-width: 660px;
-      margin: 0 auto;
-    }
 
     .other-ways {
       background: var(--earth);
@@ -138,7 +113,6 @@
       .contact-hero { padding: 140px 24px 60px; }
       .contact-hero h1 { font-size: clamp(2.6rem, 8vw, 4rem); }
       .contact-hero p { font-size: 1.15rem; color: rgba(240,230,208,0.8); }
-      .calendly-section { padding: 40px 16px; }
       .other-ways { padding: 60px 24px; }
       .other-ways-inner > p { font-size: 1.15rem; color: rgba(240,230,208,0.85); }
       .contact-form label { font-size: 0.95rem; }
@@ -147,7 +121,6 @@
       .social-row a { font-size: 1.05rem; padding: 12px 10px; }
     }
   </style>
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <!-- SEO_START — canonical, social cards, structured data -->
   <link rel="canonical" href="https://dariog.it/it/contatti/">
   <!-- I18N_HEAD_START -->
@@ -168,7 +141,7 @@
   <meta property="og:site_name" content="Dario Hampi Pakari">
   <meta property="og:url" content="https://dariog.it/it/contatti/">
   <meta property="og:title" content="Contatti | Dario Hampi Pakari">
-  <meta property="og:description" content="Prenota una chiamata conoscitiva gratuita di 30 minuti con Dario. Disponibile in inglese, spagnolo, italiano e portoghese.">
+  <meta property="og:description" content="Scrivi a Dario per domande, idee o per chiedere una chiamata conoscitiva gratuita di 30 minuti. Disponibile in inglese, spagnolo, italiano e portoghese.">
   <meta property="og:image" content="https://dariog.it/images/og-default.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -176,7 +149,7 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Contatti | Dario Hampi Pakari">
-  <meta name="twitter:description" content="Prenota una chiamata conoscitiva gratuita di 30 minuti con Dario. Disponibile in inglese, spagnolo, italiano e portoghese.">
+  <meta name="twitter:description" content="Scrivi a Dario per domande, idee o per chiedere una chiamata conoscitiva gratuita di 30 minuti. Disponibile in inglese, spagnolo, italiano e portoghese.">
   <meta name="twitter:image" content="https://dariog.it/images/og-default.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -201,12 +174,7 @@
             "Spanish",
             "Italian",
             "Portuguese"
-          ],
-          "potentialAction": {
-            "@type": "ScheduleAction",
-            "name": "Prenota una chiamata conoscitiva gratuita di 30 minuti",
-            "target": "https://calendly.com/dariogpsy/30min"
-          }
+          ]
         }
       },
       {
@@ -280,26 +248,16 @@
   <section class="contact-hero">
     <div>
       <h1>Inizia da qui</h1>
-      <p>Disponibile in inglese, spagnolo,<br>italiano e portoghese.</p>
+      <p>Domande, idee o una chiamata conoscitiva?<br>Scrivimi qui sotto.</p>
     </div>
   </section>
 
-
-  <!-- CALENDLY -->
-  <section class="calendly-section">
-    <div class="calendly-wrap">
-      <div class="calendly-inline-widget"
-           data-url="https://calendly.com/dariogpsy/30min"
-           style="min-width:320px;height:900px;overflow:hidden;">
-      </div>
-    </div>
-  </section>
 
 
   <!-- OTHER WAYS -->
   <section class="other-ways">
     <div class="other-ways-inner">
-      <p id="formIntro">Preferisci scrivere prima?</p>
+      <p id="formIntro">Mandami un messaggio e ti risponderò personalmente. Se desideri una chiamata conoscitiva gratuita di 30 minuti, dimmelo e ti manderò un orario per parlarne. Parlo inglese, spagnolo, italiano e portoghese.</p>
       <form class="contact-form" id="contactForm" action="https://formspree.io/f/xdaplelv" method="POST">
         <div>
           <label for="name">Nome</label>
@@ -399,8 +357,6 @@
     </div>
     <div class="footer-bottom">2026 &copy; Dario Giuffrida &middot; dariog.it &middot; <a href="/it/privacy/">Privacy</a> &middot; Sito web realizzato da <a href="https://fino.website/studio/" target="_blank" rel="noopener noreferrer">FINO Studio</a></div>
   </footer>
-
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
   <script src="/js/main.js"></script>
 </body>
 </html>

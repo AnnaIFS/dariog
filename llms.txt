@@ -17,7 +17,7 @@ His method combines two things usually kept apart: IFS, which works with the inn
 ## About and contact
 
 - [About Dario](https://dariog.it/about/): Biography, training, and lineage. Also lists availability for conferences and podcasts.
-- [Contact](https://dariog.it/contact/): Book a free 30-minute introductory call, or send a message. Available in English, Spanish, Italian, and Portuguese.
+- [Contact](https://dariog.it/contact/): Send Dario a message with questions, ideas, or to ask for a free 30-minute intro call. Available in English, Spanish, Italian, and Portuguese.
 
 ## Music
 
